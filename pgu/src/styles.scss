@@ -1,0 +1,7 @@
+// /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap-italia/src/scss/bootstrap-italia.scss";
+
+a:focus:not(.focus--mouse){
+    border-color: white !important;
+    box-shadow: none !important;
+}
