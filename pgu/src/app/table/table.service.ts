@@ -10,20 +10,28 @@ interface data {
 export class TableService {  
   objs:data[] = []; 
   objsKeys:string[] = [];
+  contentLoaded: boolean = false;
 
   
-  async retrieveData(url: string) {
-    const res = await fetch(url);
-    let resJson;
-
-    try{
-      resJson = await res.json();
-    }catch(e){
-      this.objs = [];
+  async retrieveData(url: string, basicValue?: data[]) {
+    if (basicValue != undefined){
+      this.objs = basicValue;
+      this.objsKeys = Object.keys(this.objs[0]);
+      this.contentLoaded = true;
+      return ;
     }
-    this.objs = resJson;
-    console.log(this.objs)
-    this.objsKeys = Object.keys(this.objs[0]);
+    // const res = await fetch(url);
+    // let resJson;
+
+    // try{
+    //   resJson = await res.json();
+    //   this.contentLoaded = true;
+    //   console.log(this.contentLoaded)
+    // }catch(e){
+    //   this.objs = [];
+    // }
+    // this.objs = resJson;
+    // this.objsKeys = Object.keys(this.objs[0]);
   }
   constructor() {
   }

@@ -1,0 +1,23 @@
+<div class="card-wrapper">
+    <div class="card rounded-3 shadow">
+        <div class="card-body">
+          <h1 class="text-primary mb-5">Parametri di Ricerca</h1>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item"><a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Nome e Cognome</a></li>
+            <li class="nav-item"><a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Codice Fiscale</a></li>
+            <li class="nav-item"><a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Email</a></li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane p-4 fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                <app-dynamic-form (dataAsked)="handleSubmit($event)" (fetchedData)="catchData($event)" formBtn="CERCA" outgoingData="http://localhost:3000/form" [basicValue]="form1"></app-dynamic-form>
+            </div>
+            <div class="tab-pane p-4 fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                <app-dynamic-form formBtn="CERCA" outgoingData="http://localhost:3000/form" [basicValue]="form2"></app-dynamic-form>
+            </div>
+            <div class="tab-pane p-4 fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                <app-dynamic-form formBtn="CERCA" outgoingData="http://localhost:3000/form" [basicValue]="form3"></app-dynamic-form>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>

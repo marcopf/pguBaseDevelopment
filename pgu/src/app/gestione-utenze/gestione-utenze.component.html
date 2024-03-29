@@ -27,7 +27,14 @@
 			  role="tabpanel"
 			  aria-labelledby="nav-tab1-tab"
 			>
-               <app-table retrieveUrl="http://localhost:3000/table"></app-table> 
+				<app-ricerca-utenze (dataAsked)="handleSubmit($event)" (fetchedData)="handleData($event)"></app-ricerca-utenze>
+				<!-- <app-dynamic-form formTitle="Add Something" formBtn="Add" incomingData="http://localhost:3000/form" outgoingData="http://localhost:3000/form"></app-dynamic-form> -->
+				@if (isLoading){
+					<app-spinner></app-spinner>
+				}
+				@if(fetchedData != undefined && !isLoading){
+					<app-table [basicValue]="fetchedData"></app-table> 
+				}
 			</div>
 	
 			</div>
