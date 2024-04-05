@@ -1,60 +1,59 @@
-<div class="row">
+<div class="row" style="min-height: 80svw;">
 	<div class="bd-example-tabs">
-	  <div class="row">
-		<div class="col-4 col-md-3">
-		  <div class="nav nav-tabs nav-tabs-vertical" id="nav-vertical-tab" role="tablist" aria-orientation="vertical">
-			<a class="nav-link active" id="nav-vertical-tab1-tab" data-bs-toggle="tab" href="#nav-vertical-tab1" role="tab" aria-controls="nav-vertical-tab1" aria-selected="true">
-			  <span class="list-item-title-icon-wrapper">
-				<svg class="icon"><use href="/assets/svg/sprites.svg#it-user" xlink:href="/assets/svg/sprites.svg#it-user"></use></svg>
-				Ricerca Utenti
-			  </span>
-			</a>
-			<a class="nav-link" id="nav-vertical-tab2-tab" data-bs-toggle="tab" href="#nav-vertical-tab2" role="tab" aria-controls="nav-vertical-tab2" aria-selected="false">
-			  <span class="list-item-title-icon-wrapper">
-				<svg class="icon"><use href="/assets/svg/sprites.svg#it-plus" xlink:href="/assets/svg/sprites.svg#it-plus"></use></svg>
-				Aggiungi Utente
-			  </span>
-			</a>
-		  </div>
-		</div>
-		<div class="col-8 col-md-9">
-		  <div class="tab-content" id="nav-vertical-tabContent">
-			<div class="tab-pane p-3 fade show active" id="nav-vertical-tab1" role="tabpanel" aria-labelledby="nav-vertical-tab1-tab">
-	
-			  <div
-			  class="tab-pane p-4 fade show active"
-			  id="nav-tab1"
-			  role="tabpanel"
-			  aria-labelledby="nav-tab1-tab"
-			>
-				<app-ricerca-utenze (dataAsked)="handleSubmit($event)" (fetchedData)="handleData($event)"></app-ricerca-utenze>
-				<!-- <app-dynamic-form formTitle="Add Something" formBtn="Add" incomingData="http://localhost:3000/form" outgoingData="http://localhost:3000/form"></app-dynamic-form> -->
-				@if (isLoading){
-					<app-spinner></app-spinner>
-				}
-				@if(fetchedData != undefined && !isLoading){
-					<app-table [basicValue]="fetchedData"></app-table> 
-				}
-			</div>
-	
-			</div>
-			<div class="tab-pane p-3 fade" id="nav-vertical-tab2" role="tabpanel" aria-labelledby="nav-vertical-tab2-tab">
-	
-			  <div class="col-12">
-				<div class="card-wrapper">
-				  <div class="card rounded-3 shadow">
-					<div class="card-body">
-					  <h2 class="text-primary">Aggiungi Utente</h2>
-
-					</div>
-				  </div>
+		<div class="row">
+			<div class="col-4 col-md-3">
+				<div class="nav nav-tabs nav-tabs-vertical" id="nav-vertical-tab" role="tablist" aria-orientation="vertical">
+					<a class="nav-link active" id="nav-vertical-tab1-tab" data-bs-toggle="tab" href="#nav-vertical-tab1" role="tab" aria-controls="nav-vertical-tab1" aria-selected="true">
+						<span class="list-item-title-icon-wrapper">
+							<svg class="icon"><use href="/assets/svg/sprites.svg#it-user" xlink:href="/assets/svg/sprites.svg#it-user"></use></svg>
+							Ricerca Utenti
+						</span>
+					</a>
+					<a class="nav-link" id="nav-vertical-tab2-tab" data-bs-toggle="tab" href="#nav-vertical-tab2" role="tab" aria-controls="nav-vertical-tab2" aria-selected="false">
+						<span class="list-item-title-icon-wrapper">
+							<svg class="icon"><use href="/assets/svg/sprites.svg#it-plus" xlink:href="/assets/svg/sprites.svg#it-plus"></use></svg>
+							Aggiungi Utente
+						</span>
+					</a>
 				</div>
-			  </div>
-	
 			</div>
-			<div class="tab-pane p-3 fade" id="nav-vertical-tab3" role="tabpanel" aria-labelledby="nav-vertical-tab3-tab">Contenuto 3</div>
-		  </div>
+			<div class="col-8 col-md-9">
+				<div class="tab-content" id="nav-vertical-tabContent">
+					
+					<div class="tab-pane p-3 fade show active" id="nav-vertical-tab1" role="tabpanel" aria-labelledby="nav-vertical-tab1-tab">
+						<div class="tab-pane p-4 fade show active" id="nav-tab1" role="tabpanel" aria-labelledby="nav-tab1-tab">
+
+							<app-ricerca-utenze (onSearchButtonPressed)="handleSubmit($event)" outgoingDataUrl="http://localhost:3000/test" (onFormDataAvailable)="handleData($event)"></app-ricerca-utenze>
+							
+							@if (isLoading){
+								<app-spinner></app-spinner>
+							}
+
+							@if(fetchedData != undefined && !isLoading){
+								<app-table [basicValue]="fetchedData"></app-table>
+								<app-pagination [isTableLoaded]="isTableLoaded" [currentPage]="currentPage" [elemetsPerPage]="paginationInfo.size" (elementsPerPageSwitch)="changePageSize($event)" (pageSelected)="makePaginationRequest($event)"></app-pagination>
+
+								@if (!isTableLoaded){
+									<h1 class="text-danger">No data Found !</h1>
+								}
+							}
+						</div>
+					</div>
+
+					<div class="tab-pane p-3 fade" id="nav-vertical-tab2" role="tabpanel" aria-labelledby="nav-vertical-tab2-tab">
+						<div class="col-12">
+							<div class="card-wrapper">
+								<div class="card rounded-3 shadow">
+									<div class="card-body">
+					  					<h2 class="text-primary">Aggiungi Utente</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
 		</div>
-	  </div>
 	</div>
 </div>

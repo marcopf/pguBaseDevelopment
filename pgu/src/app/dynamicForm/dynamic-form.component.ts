@@ -33,12 +33,13 @@ type dynamicFormComponent = {
 })
 export class DynamicFormComponent implements OnInit{
   @Input() incomingData: string = "";
-  @Input() outgoingData: string = "";
   @Input() formTitle: string = "";
   @Input() formBtn: string = "";
   @Input() basicValue:  dynamicFormComponent[] | null = null;
-  @Output() fetchedData = new EventEmitter<objInterface>;
+  @Output() formData = new EventEmitter<objInterface>;
   @Output() dataAsked = new EventEmitter<boolean>;
+
+
 
   tag: string = "create-";
   addUserForm = new FormGroup({});
@@ -48,22 +49,8 @@ export class DynamicFormComponent implements OnInit{
   contentLoaded: boolean = false;
 
   onSubmit(){
-    let formValues = this.addUserForm.value;
-    
     this.dataAsked.emit(true);
-    fetch(this.outgoingData, {
-      method: "POST",
-      headers:{
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formValues)
-    })
-    .then(data=>{
-      return data.json()
-    })
-    .then(parsedData=>{
-      this.fetchedData.emit(parsedData)
-    })
+    this.formData.emit(this.addUserForm.value)
   }
 
   formInit(){
@@ -73,7 +60,6 @@ export class DynamicFormComponent implements OnInit{
       this.formGroupObj = this.formFields.createFormGroupObj(this.objs);
       this.addUserForm = new FormGroup(this.formGroupObj);
     })
-    console.log(this.basicValue)
   }
 
   ngOnInit(): void {

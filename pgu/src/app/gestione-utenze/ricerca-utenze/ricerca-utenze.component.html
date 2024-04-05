@@ -9,13 +9,19 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane p-4 fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
-                <app-dynamic-form (dataAsked)="handleSubmit($event)" (fetchedData)="catchData($event)" formBtn="CERCA" outgoingData="http://localhost:3000/form" [basicValue]="form1"></app-dynamic-form>
+              @if(outgoingDataUrl != null){
+                <app-dynamic-form (dataAsked)="handleSubmit($event)" (formData)="catchData($event)" formBtn="CERCA" [basicValue]="form1"></app-dynamic-form>
+              }
             </div>
             <div class="tab-pane p-4 fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                <app-dynamic-form formBtn="CERCA" outgoingData="http://localhost:3000/form" [basicValue]="form2"></app-dynamic-form>
+              @if(outgoingDataUrl != null){
+                <app-dynamic-form (dataAsked)="handleSubmit($event)" formBtn="CERCA" (formData)="catchData($event)" [basicValue]="form2"></app-dynamic-form>
+              }
             </div>
             <div class="tab-pane p-4 fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
-                <app-dynamic-form formBtn="CERCA" outgoingData="http://localhost:3000/form" [basicValue]="form3"></app-dynamic-form>
+              @if(outgoingDataUrl != null){
+                <app-dynamic-form (dataAsked)="handleSubmit($event)" formBtn="CERCA" (formData)="catchData($event)" [basicValue]="form3"></app-dynamic-form>
+              }
             </div>
           </div>
       </div>

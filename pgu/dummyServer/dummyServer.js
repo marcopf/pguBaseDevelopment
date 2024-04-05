@@ -34,7 +34,7 @@ let table2 = [{
   Email: "test@test.it",
   id: 1
 },{
-  Nome: "luigi",
+  Nome: "luigitetst",
   Cognome: "verdi",
   Username: "lverdi",
   Usernameciao: "testlverdi",
@@ -58,6 +58,67 @@ let table2 = [{
   Email: "test@test.it",
   id: 12
 }]
+
+let formExample = {
+  "content": [{
+  Nome: "gulia",
+  Cognome: "bianchi",
+  Username: "inequi",
+  Usernameciao: "hahahaha",
+  "Codice Fiscale": "TRAMR98L07G453S",
+  Email: "test@test.it",
+  id: 1
+},{
+  Nome: "luigitetst",
+  Cognome: "verdi",
+  Username: "lverdi",
+  Usernameciao: "testlverdi",
+  "Codice Fiscale": "TRAMR98L07G4678S",
+  Email: "test@test.it",
+  id: 2
+},{
+  Nome: "mario",
+  Cognome: "rossi",
+  Username: "mrossi",
+  Usernameciao: "testmrossi",
+  "Codice Fiscale": "YTRVBG98L07G453S",
+  Email: "test@test.it",
+  id: 24
+},{
+  Nome: "test",
+  Cognome: "verdi",
+  Username: "lverdi",
+  Usernameciao: "testlverdi",
+  "Codice Fiscale": "TRAMR98L07G4678S",
+  Email: "test@test.it",
+  id: 12
+}],
+  "pageable": {
+    "pageNumber": 1,
+    "pageSize": 5,
+    "sort": {
+      "sorted": false,
+      "empty": true,
+      "unsorted": true
+    },
+    "offset": 5,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": false,
+  "totalPages": 5,
+  "totalElements": 21,
+  "first": false,
+  "size": 5,
+  "number": 1,
+  "sort": {
+    "sorted": false,
+    "empty": true,
+    "unsorted": true
+  },
+  "numberOfElements": 5,
+  "empty": false
+}
 
 const form = [
   {
@@ -127,28 +188,37 @@ app.use(express.json());
 
 app.get("/table", (req, res)=>{
   setTimeout(() => {
-    res.json(table);
-  
+    res.json(formExample);
+
   }, 2000);
 })
 
+app.get('/chieti', (req, res)=>{
+  res.json({value: "test da chieti"})
+})
+app.get('/roma', (req, res)=>{
+  res.json({value: "test da roma"})
+})
 
-
+app.get('/notAuth', (req, res)=>{
+  res.status(401);
+  res.send("hey")
+})
 app.post("/form", (req, res)=>{
-  setTimeout(() => {
-    res.json(table2)
+  //setTimeout(() => {
+    res.json(formExample)
 
-  }, 2000);
+  //}, 2000);
   console.log(req.body)
 })
 app.get("/form", (req, res)=>{
-  setTimeout(() => {
+  //setTimeout(() => {
     res.json(form);
-  
-  }, 2000);
+
+  //}, 2000);
 })
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
   });
-  
+

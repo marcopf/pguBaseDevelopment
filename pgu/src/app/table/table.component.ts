@@ -81,6 +81,7 @@ export class TableComponent implements OnInit{
     this.tableService.retrieveData(this.retrieveUrl, this.basicValue);
   }
 
+
   constructor(protected tableService: TableService){
   }
 }

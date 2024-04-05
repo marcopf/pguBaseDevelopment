@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DynamicFormComponent } from '../../dynamicForm/dynamic-form.component';
 import { FormControl } from '@angular/forms';
 
@@ -25,8 +25,9 @@ interface objInterface {
   styleUrl: './ricerca-utenze.component.scss'
 })
 export class RicercaUtenzeComponent {
-  @Output() fetchedData = new EventEmitter<objInterface>
-  @Output() dataAsked = new EventEmitter<boolean>
+  @Output() onFormDataAvailable = new EventEmitter<objInterface>
+  @Output() onSearchButtonPressed = new EventEmitter<boolean>
+  @Input() outgoingDataUrl: null | string = null;
 
   form1: dynamicFormComponent[] = [
     {
@@ -71,10 +72,10 @@ export class RicercaUtenzeComponent {
   ];
 
   catchData(e:any){
-    this.fetchedData.emit(e);
+    this.onFormDataAvailable.emit(e);
   }
 
   handleSubmit(e: any){
-    this.dataAsked.emit(true);
+    this.onSearchButtonPressed.emit(true);
   }
 }

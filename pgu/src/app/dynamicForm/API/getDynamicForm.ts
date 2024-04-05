@@ -1,5 +1,4 @@
 export default async function getDynamicForm(url: string){
-    console.log('im hereeee', url)
     const res = await fetch(url, {
         method: "GET",
         headers: {
