@@ -92,6 +92,14 @@ let formExample = {
   "Codice Fiscale": "TRAMR98L07G4678S",
   Email: "test@test.it",
   id: 12
+},{
+  Nome: "test",
+  Cognome: "verdi",
+  Username: "lverdi",
+  Usernameciao: "testlverdi",
+  "Codice Fiscale": "TRAMR98L07G4678S",
+  Email: "test@test.it",
+  id: 12
 }],
   "pageable": {
     "pageNumber": 1,
@@ -107,22 +115,92 @@ let formExample = {
   },
   "last": false,
 
-  "totalPages": 10,
-  "totalElements": 100,
+  "totalPages": 3,
+  "totalElements": 13,
 
   "first": false,
-  "size": 10,
+  "size": 5,
   "number": 1,
   "sort": {
     "sorted": false,
     "empty": true,
     "unsorted": true
   },
-  "numberOfElements": 10,
+  "numberOfElements": 5,
   "empty": false
 }
 
 let formExample2 = {
+  "content": [{
+  Nome: "giovanni",
+  Cognome: "panico",
+  Username: "gpanico",
+  Usernameciao: "hahahaha",
+  "Codice Fiscale": "TRAMR98L07G453S",
+  Email: "test@test.it",
+  id: 1
+},{
+  Nome: "alessandro",
+  Cognome: "di stefano",
+  Username: "aldisti",
+  Usernameciao: "testlverdi",
+  "Codice Fiscale": "TRAMR98L07G4678S",
+  Email: "test@test.it",
+  id: 2
+},{
+  Nome: "marco",
+  Cognome: "paternosto",
+  Username: "mpaterno",
+  Usernameciao: "testmrossi",
+  "Codice Fiscale": "YTRVBG98L07G453S",
+  Email: "test@test.it",
+  id: 24
+},{
+  Nome: "marco",
+  Cognome: "paternosto",
+  Username: "mpaterno",
+  Usernameciao: "testmrossi",
+  "Codice Fiscale": "YTRVBG98L07G453S",
+  Email: "test@test.it",
+  id: 24
+}, {
+  Nome: "marco",
+  Cognome: "paternosto",
+  Username: "mpaterno",
+  Usernameciao: "testmrossi",
+  "Codice Fiscale": "YTRVBG98L07G453S",
+  Email: "test@test.it",
+  id: 24
+}],
+  "pageable": {
+    "pageNumber": 1,
+    "pageSize": 5,
+    "sort": {
+      "sorted": false,
+      "empty": true,
+      "unsorted": true
+    },
+    "offset": 5,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": false,
+
+  "totalPages": 3,
+  "totalElements": 13,
+
+  "first": false,
+  "size": 5,
+  "number": 2,
+  "sort": {
+    "sorted": false,
+    "empty": true,
+    "unsorted": true
+  },
+  "numberOfElements": 5,
+  "empty": false
+}
+let formExample3 = {
   "content": [{
   Nome: "giovanni",
   Cognome: "panico",
@@ -162,18 +240,18 @@ let formExample2 = {
   },
   "last": false,
 
-  "totalPages": 10,
-  "totalElements": 100,
+  "totalPages": 3,
+  "totalElements": 13,
 
   "first": false,
-  "size": 10,
-  "number": 2,
+  "size": 5,
+  "number": 3,
   "sort": {
     "sorted": false,
     "empty": true,
     "unsorted": true
   },
-  "numberOfElements": 10,
+  "numberOfElements": 3,
   "empty": false
 }
 
@@ -267,7 +345,11 @@ app.get('/users', (req, res)=>{
     res.json(formExample)
     return ;
   } 
-  res.json(formExample2)
+  if (req.query.page == 2){
+    res.json(formExample2)
+    return ;
+  } 
+  res.json(formExample3)
 })
 app.post("/form", (req, res)=>{
   //setTimeout(() => {

@@ -35,7 +35,8 @@ export class RetrieveUserDataService {
       totalElements: 0,
       totalPages: 0,
       number: 1,
-      size: 10
+      size: 10,
+      numberOfElements: 0
     };
 
     try {

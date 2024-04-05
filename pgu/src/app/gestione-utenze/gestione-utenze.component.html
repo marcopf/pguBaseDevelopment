@@ -40,6 +40,7 @@
 										[elementsPerPage]="paginationInfo.size"
 										[totalElements]="paginationInfo.totalElements"
 										[numberOfPages]="paginationInfo.numberOfPages"
+										[retrievedElements]="paginationInfo.retrievedElements"
 										(elementsPerPageSwitch)="changePageSize($event)"
 										(pageSelected)="makePaginationRequest($event)">
 									</app-pagination>

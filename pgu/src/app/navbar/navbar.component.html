@@ -34,9 +34,28 @@
 									</div>
 								</div>
 							</div>
-							<div class="it-access-top-wrapper">
-								<a class="btn btn-primary btn-sm" href="#">Accedi</a>
-							</div>
+							<div class="btn-group">
+								<button (click)="checkStatus()" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  Menu
+								  <svg class="icon-expand icon icon-sm icon-light"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
+								</button>
+								<div class="dropdown-menu">
+								  <div class="link-list-wrapper">
+									<ul class="link-list">
+										@if(isLogged){
+											<li><a (click)="logout()" class="dropdown-item list-item" href="#"><span>Logout</span></a></li>
+										}
+										@if(!isLogged){
+											<li><a (click)="login()" class="dropdown-item list-item" href="#"><span>Login</span></a></li>
+										}
+									  <li><a class="dropdown-item list-item" onclick="return false;" href="#"><span>Info</span></a></li>
+									</ul>
+								  </div>
+								</div>
+							  </div>
+							<!-- <div class="it-access-top-wrapper">
+								<button (click)="login()" class="btn btn-primary btn-sm" href="#">Login</button>
+							</div> -->
 						</div>
 					</div>
 				</div>

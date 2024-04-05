@@ -14,7 +14,8 @@ interface Pagination {
 	size: number,
 	page: number,
 	totalElements: number,
-	numberOfPages: number
+	numberOfPages: number,
+	retrievedElements: number
 }
 
 @Component({
@@ -33,6 +34,7 @@ export class GestioneUtenzeComponent {
 		size: 10,
 		page: 1,
 		totalElements: 0,
+		retrievedElements: 0,
 		numberOfPages: 0
 	}
 
@@ -49,6 +51,7 @@ export class GestioneUtenzeComponent {
 			paginationInfo.numberOfPages = Number(response.totalPages);
 			paginationInfo.page = Number(response.number);
 			paginationInfo.size = Number(response.size);
+			paginationInfo.retrievedElements = response.numberOfElements;
 			if (this.fetchedData.length > 0){
 				this.isTableLoaded = true;
 			}
