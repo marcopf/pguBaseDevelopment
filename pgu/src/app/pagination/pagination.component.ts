@@ -8,15 +8,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent implements OnInit {
-  @Input() totalElements: number = 1000;
-  @Input() elemetsPerPage: number = 10;
-  @Input() numberOfPages: number = 100;
-  @Input() isTableLoaded: boolean = false;
+  @Input() totalElements: number = 0;
+  @Input() elementsPerPage: number = 0;
+  @Input() numberOfPages: number = 0;
   @Input() currentPage: number = 1;
   @Input() padding: number = 1;
+  @Input() isTableLoaded: boolean = false;
+
   @Output() pageSelected = new EventEmitter<number>;
   @Output() elementsPerPageSwitch = new EventEmitter<number>;
-  totalElementsArray: any = Array.from(Array(Math.ceil(this.totalElements / this.elemetsPerPage)).keys()).map((el)=>el + 1);
+  totalElementsArray: number[] = [];
 
   /**
    * Funzione che si occupa di inviare il dato relativo al numero di elementi per pagina desiderati dall'utente
@@ -40,5 +41,7 @@ export class PaginationComponent implements OnInit {
     this.pageSelected.emit(Number(element.currentTarget.getAttribute('id').split('-')[1]));
   }
   ngOnInit(){
+    console.log(this.currentPage, this.padding, this.totalElements)
+    this.totalElementsArray = Array.from(Array(this.numberOfPages).keys()).map((el)=>el + 1)
   }
 }

@@ -30,7 +30,13 @@ export class RetrieveUserDataService {
       method: 'POST',
     });
 
-    let jsonRes = {content: []};
+    let jsonRes = {
+      content: [],
+      totalElements: 0,
+      totalPages: 0,
+      number: 1,
+      size: 10
+    };
 
     try {
       jsonRes = await res.json();
@@ -39,6 +45,6 @@ export class RetrieveUserDataService {
     }
     return jsonRes;
   }
-  
+
   constructor() { }
 }

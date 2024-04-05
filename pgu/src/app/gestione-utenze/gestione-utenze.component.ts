@@ -10,6 +10,13 @@ interface data {
   [key:string]: string
 }
 
+interface Pagination {
+	size: number,
+	page: number,
+	totalElements: number,
+	numberOfPages: number
+}
+
 @Component({
   selector: 'app-gestione-utenze',
   standalone: true,
@@ -22,11 +29,12 @@ export class GestioneUtenzeComponent {
 	isLoading: boolean = false;
 	isTableLoaded: boolean = false;
 	savedQueryParams: any = undefined;
-	paginationInfo = {
+	paginationInfo: Pagination = {
 		size: 10,
-		page: 1
+		page: 1,
+		totalElements: 0,
+		numberOfPages: 0
 	}
-	currentPage = 1;
 
   	/**
   	  *  Effettua la chiamata per ottenere le info relative alla tabella che mostra i risultati della ricerca
@@ -35,12 +43,16 @@ export class GestioneUtenzeComponent {
   	  *  @param paginationInfo - rappresenta l'oggetto che contiene i query params relativi alla paginazione
   	  */
   	getUsersInfo(params: any, paginationInfo?: any){
-		this.searchUserService.searchUser(params, paginationInfo).then(el=>{
-		  this.fetchedData = el.content as data[];
-		  if (this.fetchedData.length > 0){
-			this.isTableLoaded = true;
-		  }
-		  this.isLoading = false;
+		this.searchUserService.searchUser(params, paginationInfo).then(response=>{
+			this.fetchedData = response.content as data[];
+			paginationInfo.totalElements = Number(response.totalElements);
+			paginationInfo.numberOfPages = Number(response.totalPages);
+			paginationInfo.page = Number(response.number);
+			paginationInfo.size = Number(response.size);
+			if (this.fetchedData.length > 0){
+				this.isTableLoaded = true;
+			}
+			this.isLoading = false;
 		})
   	}
 
@@ -58,7 +70,6 @@ export class GestioneUtenzeComponent {
 
 		if (this.savedQueryParams != undefined){
 			this.paginationInfo.page = requestedPageNumber;
-			this.currentPage = requestedPageNumber;
 			this.getUsersInfo(this.savedQueryParams, this.paginationInfo);
 		}
   	}
@@ -74,7 +85,7 @@ export class GestioneUtenzeComponent {
 		this.isLoading = true;    
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
-		
+
 		if (this.savedQueryParams != undefined){
 			this.paginationInfo.size = pageSize;
 			this.getUsersInfo(this.savedQueryParams, this.paginationInfo);
@@ -105,6 +116,8 @@ export class GestioneUtenzeComponent {
 		this.isLoading = true;    
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
+		this.paginationInfo.page = 1;
+		this.paginationInfo.size = 10;
   	}
 
   constructor(private searchUserService: RetrieveUserDataService){

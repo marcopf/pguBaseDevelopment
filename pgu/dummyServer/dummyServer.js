@@ -106,17 +106,19 @@ let formExample = {
     "unpaged": false
   },
   "last": false,
-  "totalPages": 5,
-  "totalElements": 21,
+
+  "totalPages": 10,
+  "totalElements": 100,
+
   "first": false,
-  "size": 5,
-  "number": 1,
+  "size": 10,
+  "number": 5,
   "sort": {
     "sorted": false,
     "empty": true,
     "unsorted": true
   },
-  "numberOfElements": 5,
+  "numberOfElements": 10,
   "empty": false
 }
 
@@ -206,6 +208,8 @@ app.get('/notAuth', (req, res)=>{
 })
 app.post("/form", (req, res)=>{
   //setTimeout(() => {
+    // const queryParams = req.query;
+    // formExample.number = queryParams.page
     res.json(formExample)
 
   //}, 2000);

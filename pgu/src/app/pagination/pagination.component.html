@@ -12,7 +12,9 @@
 				@if (number >= currentPage - padding && number < currentPage){
 					@if (number == currentPage - padding && number > 1){
 						<li class="page-item"><button class="page-link" id="pageNumber-1" (click)="emitSelectedPage($event)">1</button></li>
-						<li class="page-item"><button disabled class="page-link" href="#">...</button></li>
+						@if (number - 1 !=  1){
+							<li class="page-item"><button disabled class="page-link" href="#">...</button></li>
+						}
 					}
 					<li class="page-item"><button class="page-link" id="pageNumber-{{number}}" (click)="emitSelectedPage($event)">{{number}}</button></li>
 				}
@@ -23,12 +25,13 @@
 					<span class="d-inline-block d-sm-none">Pagina </span>{{currentPage}}
 				</a>
 			</li>
-
 			@for(number of totalElementsArray; track number){
 				@if (number <= currentPage + padding && number > currentPage ){
 					<li class="page-item"><button class="page-link" id="pageNumber-{{number}}" (click)="emitSelectedPage($event)">{{number}}</button></li>
 					@if (number == currentPage + padding && totalElementsArray.length - currentPage > padding){
-						<li class="page-item"><button disabled class="page-link" href="#">...</button></li>
+						@if (number + 1 != numberOfPages){
+							<li class="page-item"><button disabled class="page-link" href="#">...</button></li>
+						}
 						<li class="page-item"><button class="page-link" id="pageNumber-{{numberOfPages}}" (click)="emitSelectedPage($event)">{{numberOfPages}}</button></li>
 					}
 				}
@@ -43,7 +46,7 @@
 		</ul>
 		<div class="dropdown">
 			<button class="btn btn-dropdown dropdown-toggle" type="button" id="pagerChanger" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Salta alla pagina">
-				{{elemetsPerPage}}/pagina
+				{{elementsPerPage}}/pagina
 				<svg class="icon icon-primary icon-sm"><use href="assets/svg/sprites.svg#it-expand"></use></svg>
 			</button>
 			<div class="dropdown-menu" aria-labelledby="pagerChanger">
