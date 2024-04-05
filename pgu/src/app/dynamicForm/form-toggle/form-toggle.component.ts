@@ -9,11 +9,11 @@ import { ReactiveFormsModule, FormControl } from '@angular/forms';
   styleUrl: './form-toggle.component.scss'
 })
 export class FormToggleComponent implements OnChanges{
-  @Input() label!: string;
-  @Input() tag!: string;
-  @Input() key!: string;
-  @Input() formC!: FormControl;
-  @Input() required!: boolean;
+  @Input() label: string = '';
+  @Input() tag: string = '';
+  @Input() key: any;
+  @Input() formC: FormControl = new FormControl;
+  @Input() required: boolean = false;
   requiredLabel = "";
 
   ngOnChanges(): void {

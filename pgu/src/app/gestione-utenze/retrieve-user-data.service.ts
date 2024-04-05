@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const SEARCH_USER = 'http://localhost:3000/form';
+const SEARCH_USER = 'http://localhost:3000/users';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class RetrieveUserDataService {
 
     //effttuo la chimata all'endpoint agganciando tutti i query params elaborati
     const res = await fetch(SEARCH_USER + queryParamsPart, {
-      method: 'POST',
+      method: 'GET',
     });
 
     let jsonRes = {

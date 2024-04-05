@@ -9,12 +9,13 @@ import { Component, Input, OnChanges } from '@angular/core';
   styleUrl: './form-select.component.scss'
 })
 export class FormSelectComponent implements OnChanges {
-  @Input() label!: string;
-  @Input() tag!: string;
-  @Input() key!: string;
   @Input() options!: string[] | undefined;
-  @Input() formC!: FormControl;
-  @Input() required!: boolean;
+  @Input() label: string = '';
+  @Input() tag: string = '';
+  @Input() key: any;
+  @Input() formC: FormControl = new FormControl;
+  @Input() required: boolean = false;
+  
   requiredLabel = "";
 
   ngOnChanges(): void {

@@ -24,7 +24,7 @@
 						<div class="tab-pane p-3 fade show active" id="nav-vertical-tab1" role="tabpanel" aria-labelledby="nav-vertical-tab1-tab">
 							<div class="tab-pane p-4 fade show active" id="nav-tab1" role="tabpanel" aria-labelledby="nav-tab1-tab">
 	
-								<app-ricerca-utenze (onSearchButtonPressed)="handleSubmit($event)" outgoingDataUrl="http://localhost:3000/test" (onFormDataAvailable)="handleData($event)"></app-ricerca-utenze>
+								<app-ricerca-utenze (onSearchButtonPressed)="handleSubmit($event)" outgoingDataUrl="http://localhost:3000/users" (onFormDataAvailable)="handleData($event)"></app-ricerca-utenze>
 								
 								@if (isLoading){
 									<app-spinner></app-spinner>

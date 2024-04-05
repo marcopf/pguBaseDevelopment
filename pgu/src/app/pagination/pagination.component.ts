@@ -41,7 +41,6 @@ export class PaginationComponent implements OnInit {
     this.pageSelected.emit(Number(element.currentTarget.getAttribute('id').split('-')[1]));
   }
   ngOnInit(){
-    console.log(this.currentPage, this.padding, this.totalElements)
     this.totalElementsArray = Array.from(Array(this.numberOfPages).keys()).map((el)=>el + 1)
   }
 }

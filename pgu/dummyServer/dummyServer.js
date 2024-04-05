@@ -112,7 +112,62 @@ let formExample = {
 
   "first": false,
   "size": 10,
-  "number": 5,
+  "number": 1,
+  "sort": {
+    "sorted": false,
+    "empty": true,
+    "unsorted": true
+  },
+  "numberOfElements": 10,
+  "empty": false
+}
+
+let formExample2 = {
+  "content": [{
+  Nome: "giovanni",
+  Cognome: "panico",
+  Username: "gpanico",
+  Usernameciao: "hahahaha",
+  "Codice Fiscale": "TRAMR98L07G453S",
+  Email: "test@test.it",
+  id: 1
+},{
+  Nome: "alessandro",
+  Cognome: "di stefano",
+  Username: "aldisti",
+  Usernameciao: "testlverdi",
+  "Codice Fiscale": "TRAMR98L07G4678S",
+  Email: "test@test.it",
+  id: 2
+},{
+  Nome: "marco",
+  Cognome: "paternosto",
+  Username: "mpaterno",
+  Usernameciao: "testmrossi",
+  "Codice Fiscale": "YTRVBG98L07G453S",
+  Email: "test@test.it",
+  id: 24
+}],
+  "pageable": {
+    "pageNumber": 1,
+    "pageSize": 5,
+    "sort": {
+      "sorted": false,
+      "empty": true,
+      "unsorted": true
+    },
+    "offset": 5,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": false,
+
+  "totalPages": 10,
+  "totalElements": 100,
+
+  "first": false,
+  "size": 10,
+  "number": 2,
   "sort": {
     "sorted": false,
     "empty": true,
@@ -205,6 +260,14 @@ app.get('/roma', (req, res)=>{
 app.get('/notAuth', (req, res)=>{
   res.status(401);
   res.send("hey")
+})
+app.get('/users', (req, res)=>{
+  formExample.number = req.query.page
+  if (req.query.page == 1){
+    res.json(formExample)
+    return ;
+  } 
+  res.json(formExample2)
 })
 app.post("/form", (req, res)=>{
   //setTimeout(() => {

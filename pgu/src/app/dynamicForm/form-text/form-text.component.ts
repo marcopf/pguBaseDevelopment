@@ -10,12 +10,12 @@ import { ReactiveFormsModule, FormControl } from '@angular/forms';
   styleUrl: './form-text.component.scss'
 })
 export class FormTextComponent implements OnChanges {
-  @Input() label!: string;
-  @Input() type!: string;
-  @Input() tag!: string;
-  @Input() key!: any;
-  @Input() formC!: FormControl;
-  @Input() required!: boolean;
+  @Input() label: string = '';
+  @Input() type: string = 'text';
+  @Input() tag: string = '';
+  @Input() key: any;
+  @Input() formC: FormControl = new FormControl;
+  @Input() required: boolean = false;
   requiredLabel = "";
 
   checkError(e: any){
