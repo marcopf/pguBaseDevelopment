@@ -6,8 +6,8 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ConfigurazioneIstituzioneService } from '../configurazione-istituzione.service';
-import { TranslatorPipe } from '../languages/translator.pipe';
-import { LanguagesService } from '../languages/languages.service';
+import { TranslatorPipe } from '../../assets/languages/translator.pipe';
+import { LanguagesService } from '../../assets/languages/languages.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,29 +23,45 @@ export class NavbarComponent {
   constructor (protected configuration: ConfigurazioneIstituzioneService,private oauthService: OAuthService, @Inject(PLATFORM_ID) private _platform: Object, protected languagesService: LanguagesService){
     if (isPlatformBrowser(this._platform)){
       this.oauthService.configure(authCodeFlowConfig);
-      console.log(this.oauthService.loadDiscoveryDocumentAndLogin());
+      this.oauthService.loadDiscoveryDocumentAndLogin();
       this.oauthService.setupAutomaticSilentRefresh();
     }
   }
 
+  /**
+   * Semplice funzione che effettua un controllo sull'utente corrente,
+   * e valuta se quest'ultimo e loggato e possiede un token valido.
+   * 
+   * Il controllo sfrutta le funzioni messe a disposizione dal pacchetto <angular-oauth2-oidc>
+   */
   checkStatus(){
     if (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken()){
       this.isLogged = true;
     }
   }
 
+  /**
+   * Semplice funzione che triggera il redirect alla pagina di login
+   * specificata nel file di configurazione OAUTH2 [src/app/oauth2.config.ts].
+   * 
+   * Il redirect come anche l'intera gestione dell flusso OAUTH2 viene gestito dalle funzioni
+   * messe a disposizione dal pacchetto <angular-oauth2-oidc>
+   */
   login(){
     window.location.href = "";
-    console.log(this.oauthService.loadDiscoveryDocumentAndTryLogin());
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
 
   }
 
+  /**
+   * Semplice funzione che invalida il token attualmente detenuto dall'utente corrente
+   * ed effettua il logout dalla sessione.
+   * 
+   * l'intera gestione dell flusso OAUTH2 viene gestito dalle funzioni messe
+   * a disposizione dal pacchetto <angular-oauth2-oidc>
+   */
   logout(){
     this.oauthService.revokeTokenAndLogout()
     this.oauthService.logOut();
-  }
-
-  switchLanguage(_: any, selectedLanguage: string){
-    this.languagesService.currentLanguage = selectedLanguage;
   }
 }

@@ -1,8 +1,4 @@
-interface Labels{
-    [key: string]: string
-}
-
-const english_language: Labels  = {
+const english_language  = {
     account: "Menu",
 
     searchParams: 'Search Params'

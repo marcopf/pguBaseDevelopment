@@ -41,6 +41,13 @@ export class PaginationComponent implements OnInit {
   emitSelectedPage(element: any){
     this.pageSelected.emit(Number(element.currentTarget.getAttribute('id').split('-')[1]));
   }
+
+  /**
+   * Funzione che viene chiamata all'inizio del ciclo di vita del componente.
+   * Crea un'array a partire dal numero di pagine che il server ci ha restituito formattandolo
+   * del tipo [1, 2, ..., numero_di_pagina_massimo] per poterno iterare nell'template html creando cosi
+   * i link alle varie pagine disponibili
+   */
   ngOnInit(){
     this.totalElementsArray = Array.from(Array(this.numberOfPages).keys()).map((el)=>el + 1)
   }

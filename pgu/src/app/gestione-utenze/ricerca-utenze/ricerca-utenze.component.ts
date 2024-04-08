@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DynamicFormComponent } from '../../dynamicForm/dynamic-form.component';
 import { FormControl } from '@angular/forms';
-import { LanguagesService } from '../../languages/languages.service';
-import { TranslatorPipe } from '../../languages/translator.pipe';
+import { LanguagesService } from '../../../assets/languages/languages.service';
+import { TranslatorPipe } from '../../../assets/languages/translator.pipe';
 
 type dynamicFormComponent = {
   id: string,
