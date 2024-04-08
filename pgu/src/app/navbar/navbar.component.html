@@ -129,7 +129,9 @@
 						</div>
 						<div class="menu-wrapper">
 						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link" [routerLink]="['/gestione-utenze']" routerLinkActive="active" aria-current="page">Gestione Utenti</a></li>
+							<li class="nav-item" [ngClass]="{'active': isActive('')}"><a class="nav-link" [ngClass]="{'active': isActive('')}" [routerLink]="['/']" aria-current="page">Home</a></li>
+							<li class="nav-item" [ngClass]="{'active': isActive('gestione-utenti')}"><a class="nav-link" [ngClass]="{'active': isActive('gestione-utenti')}" [routerLink]="['/gestione-utenti']" aria-current="page">Gestione Utenti</a></li>
+							<li class="nav-item" [ngClass]="{'active': isActive('Gestione Ambiente')}"><a class="nav-link" [ngClass]="{'active': isActive('Gestione Ambiente')}" [routerLink]="['/gestione-ambiente']" aria-current="page">Gestione Ambiente</a></li>
 						</ul>
 						</div>
 					</div>

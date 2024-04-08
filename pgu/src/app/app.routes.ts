@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 let guard = new Guard();
 
 export const routes: Routes = [
-    {path: "gestione-utenze", component: GestioneUtenzeComponent, title: "Gestione-Utenze", canActivate: [guard.isLogged], data: {title: 'test'}},
+    {path: "gestione-utenti", component: GestioneUtenzeComponent, title: "Gestione-Utenti", canActivate: [guard.isLogged], data: {title: 'test'}},
     {path: "gestione-ambiente", component: GestioneUtenzeComponent, title: "Gestione-Ambiente", canActivate: [guard.isLogged]},
     {path: "**", component: HomeComponent, title: "Gestione-Utenze"}
 ];
