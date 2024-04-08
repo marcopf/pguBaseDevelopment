@@ -9,7 +9,6 @@
 				<nav aria-label="Navigazione secondaria">
 				  <a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menuC1" role="button" aria-expanded="false" aria-controls="menuC1">
 					<span>{{configuration.NOME_ISTITUZIONE}}</span>
-					<svg class="icon" aria-hidden="true"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
 				  </a>
 				</nav>
 			  </div>
@@ -36,8 +35,10 @@
 				  </div>
 				</div>
 				<div class="btn-group">
-					<button (click)="checkStatus()" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  {{ 'account'  | translator:languagesService.currentLanguage}}
+					<button (click)="checkStatus()" type="button" class="btn btn-primary btn-sm dropdown-toggle p-2 d-flex" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span>
+							{{ 'account'  | translator:languagesService.currentLanguage}}
+						</span>
 					  <svg class="icon-expand icon icon-sm icon-light"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
 					</button>
 					<div class="dropdown-menu">
@@ -70,7 +71,9 @@
 				  <a class="nav-link" [routerLink]="['/']">
 					<img class="icon" src="{{configuration.LOGO_ISTITUZIONE}}" alt="">
 					<div class="it-brand-text">
-					  <div class="it-brand-title">{{configuration.NOME_ISTITUZIONE}}</div>
+					  <div class="it-brand-title">
+							{{configuration.NOME_ISTITUZIONE}}
+						</div>
 					  <div class="it-brand-tagline d-none d-md-block">{{configuration.TAGLINE_ISTITUZIONE}}</div>
 					</div>
 				  </a>
@@ -102,7 +105,7 @@
 		  </div>
 		</div>
 	  </div>
-	  <div class="d-block d-md-none ">
+	  <div class="d-block d-lg-none ">
 		  <div class="it-header-navbar-wrapper">
 			<div class="container">
 			  <div class="row">
@@ -136,7 +139,7 @@
 			</div>
 		  </div>
 	  </div>
-	  <div class="d-none d-md-block ">
+	  <div class="d-none d-lg-block ">
 		  <div class="it-header-navbar-wrapper primary-bg-a8">
 			<div class="container">
 			  <div class="row">
