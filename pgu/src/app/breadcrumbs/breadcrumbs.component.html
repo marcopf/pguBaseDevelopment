@@ -1,0 +1,21 @@
+@if (iterablePath.length > 0){
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <nav class="breadcrumb-container" aria-label="Percorso di navigazione">
+            <ol class="breadcrumb m-0">
+              <li class="breadcrumb-item d-flex"><a class="nav-link" [routerLink]="['/']">Home</a><span class="separator">&gt;</span></li>
+              @for(link of iterablePath; track link; let i = $index){
+                @if (i == iterablePath.length - 1){
+                  <li class="breadcrumb-item d-flex"><a class="nav-link" [routerLink]="['/' + link]">{{link}}</a></li>
+                }
+                @else {
+                  <li class="breadcrumb-item d-flex"><a class="nav-link" [routerLink]="['/' + link]">{{link}}</a><span class="separator">&gt;</span></li>
+                }
+              }
+            </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+}
