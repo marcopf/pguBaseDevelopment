@@ -18,6 +18,14 @@ interface Pagination {
 	retrievedElements: number
 }
 
+interface TableConfig {
+	incomingDataLink: string | null;
+	outgoingDataLink: string | null;
+	type: "link" | "button" | null;
+	text: string | null,
+	hasCheckBox: boolean
+}
+
 @Component({
   selector: 'app-gestione-utenze',
   standalone: true,
@@ -37,6 +45,13 @@ export class GestioneUtenzeComponent {
 		retrievedElements: 0,
 		numberOfPages: 0
 	}
+	tableConfig: TableConfig = {
+		incomingDataLink: null,
+		outgoingDataLink: null,
+		type: "link",
+		text: "Dettagli",
+		hasCheckBox: false
+	  }
 
   	/**
   	  *  Effettua la chiamata per ottenere le info relative alla tabella che mostra i risultati della ricerca

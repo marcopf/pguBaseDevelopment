@@ -27,20 +27,12 @@ export class TableComponent implements OnInit{
   @Output() lineChanges = new EventEmitter<data[]>;
   @Input() retrieveUrl: string = "";
   @Input() basicValue: data[] | undefined = undefined;
-
-
-  // tableConfig: TableConfig = {
-  //   incomingDataLink: null,
-  //   outgoingDataLink: null,
-  //   type: null,
-  //   text: null
-  // }
-  tableConfig: TableConfig = {
+  @Input() tableConfig: TableConfig = {
     incomingDataLink: null,
     outgoingDataLink: null,
-    type: "link",
-    text: "Dettagli",
-    hasCheckBox: true
+    type: null,
+    text: null,
+    hasCheckBox: false
   }
 
   updateSelected(e: any){
