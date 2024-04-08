@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DynamicFormComponent } from '../../dynamicForm/dynamic-form.component';
 import { FormControl } from '@angular/forms';
+import { LanguagesService } from '../../languages/languages.service';
+import { TranslatorPipe } from '../../languages/translator.pipe';
 
 type dynamicFormComponent = {
   id: string,
@@ -20,7 +22,7 @@ interface objInterface {
 @Component({
   selector: 'app-ricerca-utenze',
   standalone: true,
-  imports: [DynamicFormComponent],
+  imports: [DynamicFormComponent, TranslatorPipe],
   templateUrl: './ricerca-utenze.component.html',
   styleUrl: './ricerca-utenze.component.scss'
 })
@@ -77,5 +79,8 @@ export class RicercaUtenzeComponent {
 
   handleSubmit(e: any){
     this.onSearchButtonPressed.emit(true);
+  }
+  constructor(protected languageServices: LanguagesService){
+
   }
 }

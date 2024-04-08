@@ -1,134 +1,14 @@
-<!-- <header class="it-header-wrapper">
-	<div class="it-header-slim-wrapper primary-bg-a11">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="it-header-slim-wrapper-content">
-						<img class="icon" src="/assets/svg/italiaLogo.svg" alt="">
-						<a class="d-none d-lg-block navbar-brand" href="#">V.1.3.0 Governo Italiano</a>
-						<div class="nav-mobile">
-							<nav aria-label="Navigazione secondaria">
-								<a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menuC1" role="button" aria-expanded="false" aria-controls="menuC1">
-									<span>Ente appartenenza</span>
-									<svg class="icon" aria-hidden="true"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
-								</a>
-							</nav>
-						</div>
-						<div class="it-header-slim-right-zone">
-							<div class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<span class="visually-hidden">Selezione lingua: lingua selezionata</span>
-									<span>ITA</span>
-									<svg class="icon d-none d-lg-block"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
-								</a>
-								<div class="dropdown-menu">
-									<div class="row">
-										<div class="col-12">
-											<div class="link-list-wrapper">
-												<ul class="link-list">
-													<li><a class="dropdown-item list-item" href="#"><span>ITA <span class="visually-hidden">selezionata</span></span></a></li>
-													<li><a class="dropdown-item list-item" href="#"><span>ENG</span></a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="btn-group">
-								<button (click)="checkStatus()" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								  Menu
-								  <svg class="icon-expand icon icon-sm icon-light"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
-								</button>
-								<div class="dropdown-menu">
-								  <div class="link-list-wrapper">
-									<ul class="link-list">
-										@if(isLogged){
-											<li><a (click)="logout()" class="dropdown-item list-item" href="#"><span>Logout</span></a></li>
-										}
-										@if(!isLogged){
-											<li><a (click)="login()" class="dropdown-item list-item" href="#"><span>Login</span></a></li>
-										}
-									  <li><a class="dropdown-item list-item" onclick="return false;" href="#"><span>Info</span></a></li>
-									</ul>
-								  </div>
-								</div>
-							  </div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="it-nav-wrapper">
-		<div class="it-header-center-wrapper">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="it-header-center-content-wrapper">
-							<div class="it-brand-wrapper">
-								<a href="#">
-									<img class="icon img-fluid" src="/assets/imgs/maseLogo.png" alt="">
-									<div class="it-brand-text">
-										<div class="it-brand-title">
-											<h2>
-												Ministero dell'Ambiente e della Sicurezza Energetica
-											</h2>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="it-header-navbar-wrapper primary-bg-a8">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
-							<button class="custom-navbar-toggler" type="button" aria-controls="navC1" aria-expanded="false" aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#navC1">
-								<svg class="icon">
-									<use href="/assets/svg/sprites.svg#it-burger"></use>
-								</svg>
-							</button>
-							<div class="navbar-collapsable" id="navC1" style="display: none;">
-								<div class="overlay" style="display: none;"></div>
-								<div class="close-div">
-									<button class="btn close-menu" type="button">
-										<span class="visually-hidden">Nascondi la navigazione</span>
-										<svg class="icon">
-											<use href="/assets/svg/sprites.svg#it-close-big"></use>
-										</svg>
-									</button>
-								</div>
-								<div class="menu-wrapper">
-									<ul class="navbar-nav" #navbarLinks>
-										<li class="nav-item"><a class="nav-link" [routerLink]="['/gestione-utenze']" aria-current="page">Gestione Utenze</a></li>
-										<li class="nav-item"><a class="nav-link" [routerLink]="['/gestione-ambiente']" aria-current="page">Gestione Ambiente</a></li>
-									</ul>
-								</div>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</header>  -->
-
 <header class="it-header-wrapper">
 	<div class="it-header-slim-wrapper">
 	  <div class="container">
 		<div class="row">
 		  <div class="col-12">
 			<div class="it-header-slim-wrapper-content">
-			  <a class="d-none d-lg-block navbar-brand" href="#">Ente appartenenza</a>
+			  <a class="d-none d-lg-block navbar-brand" href="#">{{configuration.NOME_ISTITUZIONE}}</a>
 			  <div class="nav-mobile">
 				<nav aria-label="Navigazione secondaria">
 				  <a class="it-opener d-lg-none" data-bs-toggle="collapse" href="#menuC1" role="button" aria-expanded="false" aria-controls="menuC1">
-					<span>Ente appartenenza</span>
+					<span>{{configuration.NOME_ISTITUZIONE}}</span>
 					<svg class="icon" aria-hidden="true"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
 				  </a>
 				</nav>
@@ -137,7 +17,7 @@
 				<div class="nav-item dropdown">
 				  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<span class="visually-hidden">Selezione lingua: lingua selezionata</span>
-					<span>ITA</span>
+					<span>{{languagesService.currentLanguage}}</span>
 					<svg class="icon d-none d-lg-block"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
 				  </a>
 				  <div class="dropdown-menu">
@@ -145,8 +25,8 @@
 					  <div class="col-12">
 						<div class="link-list-wrapper">
 						  <ul class="link-list">
-							<li><a class="dropdown-item list-item" href="#"><span>ITA <span class="visually-hidden">selezionata</span></span></a></li>
-							<li><a class="dropdown-item list-item" href="#"><span>ENG</span></a></li>
+							<li><a onclick="return false;" class="dropdown-item list-item" (click)="switchLanguage($event, 'ita')"><span>ITA <span class="visually-hidden">selezionata</span></span></a></li>
+							<li><a onclick="return false;" class="dropdown-item list-item" (click)="switchLanguage($event, 'eng')"><span>ENG</span></a></li>
 						  </ul>
 						</div>
 					  </div>
@@ -155,7 +35,7 @@
 				</div>
 				<div class="btn-group">
 					<button (click)="checkStatus()" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  Menu
+					  {{ 'account'  | translator:languagesService.currentLanguage}}
 					  <svg class="icon-expand icon icon-sm icon-light"><use href="/assets/svg/sprites.svg#it-expand"></use></svg>
 					</button>
 					<div class="dropdown-menu">
@@ -185,11 +65,11 @@
 			<div class="col-12">
 			  <div class="it-header-center-content-wrapper">
 				<div class="it-brand-wrapper">
-				  <a href="#">
-					<svg class="icon" aria-hidden="true"><use href="/assets/svg/sprites.svg#it-pa"></use></svg>
+				  <a class="nav-link" [routerLink]="['/']">
+					<img class="icon" src="{{configuration.LOGO_ISTITUZIONE}}" alt="">
 					<div class="it-brand-text">
-					  <div class="it-brand-title">Nome dell'Istituzione</div>
-					  <div class="it-brand-tagline d-none d-md-block">Tag line dell'Istituzione</div>
+					  <div class="it-brand-title">{{configuration.NOME_ISTITUZIONE}}</div>
+					  <div class="it-brand-tagline d-none d-md-block">{{configuration.TAGLINE_ISTITUZIONE}}</div>
 					</div>
 				  </a>
 				</div>
