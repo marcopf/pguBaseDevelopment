@@ -20,6 +20,9 @@ export class BreadcrumbsComponent implements OnInit {
       if (el instanceof NavigationEnd){
         this.currentRoute = el.url;
         this.iterablePath = this.currentRoute.split('/').filter(el=>el != '');
+        this.iterablePath = this.iterablePath.map(el=>{
+          return el.split('?')[0];
+        })
       }
     })
   }

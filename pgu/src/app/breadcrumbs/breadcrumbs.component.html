@@ -7,7 +7,7 @@
               <li class="breadcrumb-item d-flex"><a class="nav-link" [routerLink]="['/']">Home</a><span class="separator">&gt;</span></li>
               @for(link of iterablePath; track link; let i = $index){
                 @if (i == iterablePath.length - 1){
-                  <li class="breadcrumb-item d-flex"><a class="nav-link" [routerLink]="['/' + link]">{{link}}</a></li>
+                  <li class="breadcrumb-item d-flex active"><a class="nav-link" [routerLink]="['/' + link]">{{link}}</a></li>
                 }
                 @else {
                   <li class="breadcrumb-item d-flex"><a class="nav-link" [routerLink]="['/' + link]">{{link}}</a><span class="separator">&gt;</span></li>
