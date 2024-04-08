@@ -6,8 +6,8 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ConfigurazioneIstituzioneService } from '../configurazione-istituzione.service';
-import { TranslatorPipe } from '../../assets/languages/translator.pipe';
-import { LanguagesService } from '../../assets/languages/languages.service';
+import { TranslatorPipe } from '../../assets/Languages/translator.pipe';
+import { LanguagesService } from '../../assets/Languages/languages.service';
 
 @Component({
   selector: 'app-navbar',

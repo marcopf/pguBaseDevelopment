@@ -21,7 +21,7 @@ interface AllLanguages{
   providedIn: 'root'
 })
 export class LanguagesService {
-  currentLanguage: string = 'eng';
+  currentLanguage: string = 'ita';
   languages: AllLanguages = languages;
   languagesIterable: string[] = Object.keys(this.languages);
 

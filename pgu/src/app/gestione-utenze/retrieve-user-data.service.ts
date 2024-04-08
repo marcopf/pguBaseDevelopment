@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-const SEARCH_USER = 'http://localhost:3000/users';
+import URL from '../../assets/Url/url';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +25,7 @@ export class RetrieveUserDataService {
     }
 
     //effttuo la chimata all'endpoint agganciando tutti i query params elaborati
-    const res = await fetch(SEARCH_USER + queryParamsPart, {
+    const res = await fetch(URL.gestione_utenti.CERCA_UTENTI + queryParamsPart, {
       method: 'GET',
     });
 
