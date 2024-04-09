@@ -40,7 +40,7 @@ export class GestioneUtenzeComponent {
 	savedQueryParams: any = undefined;
 	paginationInfo: Pagination = {
 		size: 10,
-		page: 1,
+		page: 0,
 		totalElements: 0,
 		retrievedElements: 0,
 		numberOfPages: 0
