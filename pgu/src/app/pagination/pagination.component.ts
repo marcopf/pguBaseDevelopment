@@ -12,7 +12,7 @@ export class PaginationComponent implements OnInit {
   @Input() retrievedElements: number = 0;
   @Input() elementsPerPage: number = 0;
   @Input() numberOfPages: number = 0;
-  @Input() currentPage: number = 1;
+  @Input() currentPage: number = 0;
   @Input() padding: number = 1;
   @Input() isTableLoaded: boolean = false;
 
@@ -20,6 +20,9 @@ export class PaginationComponent implements OnInit {
   @Output() elementsPerPageSwitch = new EventEmitter<number>;
   totalElementsArray: number[] = [];
 
+  getAbsValue(num: number){
+    return Math.abs(num)
+  }
   /**
    * Funzione che si occupa di inviare il dato relativo al numero di elementi per pagina desiderati dall'utente
    * ogni volta che questo valore viene cambiato
@@ -49,6 +52,7 @@ export class PaginationComponent implements OnInit {
    * i link alle varie pagine disponibili
    */
   ngOnInit(){
-    this.totalElementsArray = Array.from(Array(this.numberOfPages).keys()).map((el)=>el + 1)
+    this.totalElementsArray = Array.from(Array(this.numberOfPages).keys());
+    console.log(this.totalElementsArray)
   }
 }

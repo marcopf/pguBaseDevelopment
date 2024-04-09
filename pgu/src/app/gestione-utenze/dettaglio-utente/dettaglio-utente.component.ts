@@ -18,14 +18,9 @@ export class DettaglioUtenteComponent implements OnInit{
 
   ngOnInit(): void {
     let idFromParams = Number(this.activatedRoute.snapshot.queryParams['id']);
-    
-    if (Number.isNaN(idFromParams)){
-      this.router.navigate(['/gestione-utenti'])
-      return ;
-    }
     this.selectedUserId = idFromParams;
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router){
+  constructor(private activatedRoute: ActivatedRoute){
   }
 }

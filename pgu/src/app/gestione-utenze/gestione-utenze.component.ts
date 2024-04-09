@@ -64,7 +64,7 @@ export class GestioneUtenzeComponent {
 			this.fetchedData = response.content as data[];
 			paginationInfo.totalElements = Number(response.totalElements);
 			paginationInfo.numberOfPages = Number(response.totalPages);
-			paginationInfo.page = Number(response.number) + 1;
+			paginationInfo.page = Number(response.number);
 			paginationInfo.size = Number(response.size);
 			paginationInfo.retrievedElements = response.numberOfElements;
 			if (this.fetchedData.length > 0){
