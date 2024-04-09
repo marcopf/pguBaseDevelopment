@@ -60,73 +60,72 @@ let table2 = [{
 }]
 
 let formExample = {
-  "content": [{
-  Nome: "gulia",
-  Cognome: "bianchi",
-  Username: "inequi",
-  Usernameciao: "hahahaha",
-  "Codice Fiscale": "TRAMR98L07G453S",
-  Email: "test@test.it",
-  id: 1
-},{
-  Nome: "luigitetst",
-  Cognome: "verdi",
-  Username: "lverdi",
-  Usernameciao: "testlverdi",
-  "Codice Fiscale": "TRAMR98L07G4678S",
-  Email: "test@test.it",
-  id: 2
-},{
-  Nome: "mario",
-  Cognome: "rossi",
-  Username: "mrossi",
-  Usernameciao: "testmrossi",
-  "Codice Fiscale": "YTRVBG98L07G453S",
-  Email: "test@test.it",
-  id: 24
-},{
-  Nome: "test",
-  Cognome: "verdi",
-  Username: "lverdi",
-  Usernameciao: "testlverdi",
-  "Codice Fiscale": "TRAMR98L07G4678S",
-  Email: "test@test.it",
-  id: 12
-},{
-  Nome: "test",
-  Cognome: "verdi",
-  Username: "lverdi",
-  Usernameciao: "testlverdi",
-  "Codice Fiscale": "TRAMR98L07G4678S",
-  Email: "test@test.it",
-  id: 12
-}],
+  "content": [
+      {
+          "_username": "luigi",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "fdd17dd8-9eed-4681-91be-13ead178a865"
+      },
+      {
+          "_username": "marco",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "genova"
+              ]
+          },
+          "_id": "1931af5c-6b3c-4798-948b-4bd9f3ab98f3"
+      },
+      {
+          "_username": "mario",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "7febf772-16be-43e9-8522-e9ff0d21cb2f"
+      },
+      {
+          "username": "paolo",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "chieti"
+              ]
+          },
+          "_id": "aefafa2d-0cb9-437d-9458-cf8f133ec6ba"
+      }
+  ],
   "pageable": {
-    "pageNumber": 1,
-    "pageSize": 5,
-    "sort": {
-      "sorted": false,
-      "empty": true,
-      "unsorted": true
-    },
-    "offset": 5,
-    "paged": true,
-    "unpaged": false
+      "pageNumber": 0,
+      "pageSize": 10,
+      "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+      },
+      "offset": 0,
+      "unpaged": false,
+      "paged": true
   },
-  "last": false,
-
-  "totalPages": 3,
-  "totalElements": 13,
-
-  "first": false,
-  "size": 5,
-  "number": 1,
-  "sort": {
-    "sorted": false,
-    "empty": true,
-    "unsorted": true
-  },
-  "numberOfElements": 5,
+  "last": true,
+  "totalPages": 1,
+  "totalElements": 4,
+  "first": true,
+  "size": 10,
+  "number": 0,
+  "sort": null,
+  "numberOfElements": 4,
   "empty": false
 }
 
@@ -341,11 +340,11 @@ app.get('/notAuth', (req, res)=>{
 })
 app.get('/users', (req, res)=>{
   formExample.number = req.query.page
-  if (req.query.page == 1){
+  if (req.query.page == 0){
     res.json(formExample)
     return ;
   } 
-  if (req.query.page == 2){
+  if (req.query.page == 1){
     res.json(formExample2)
     return ;
   } 

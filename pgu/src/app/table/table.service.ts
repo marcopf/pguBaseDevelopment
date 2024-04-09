@@ -12,10 +12,36 @@ export class TableService {
   objsKeys:string[] = [];
   contentLoaded: boolean = false;
 
+  keyExpander(dataList: data[], keyToExpand: string): data[]{
+    let expandedObj: data[];
+
+    if (dataList[0][keyToExpand] === undefined){
+      return [];
+    }
+    dataList.forEach((obj, index)=>{
+      let tempMemory = obj[keyToExpand] as unknown as data;
+      let keys = Object.keys(tempMemory);
+      let objKeys = Object.keys(obj);
+
+      objKeys.forEach(key=>{
+        if (key[0] == '_' && key != '_id'){
+          delete obj[key];
+        }
+      })
+      delete obj[keyToExpand];
+      keys.forEach(key=>{
+        obj[key] = tempMemory[key];
+      })
+      console.log(obj)
+      
+    })
+    console.log(dataList)
+    return dataList;
+  }
   
   async retrieveData(url: string, basicValue?: data[]) {
     if (basicValue != undefined){
-      this.objs = basicValue;
+      this.objs = this.keyExpander(basicValue, 'attributes');
       if (basicValue.length > 0)
         this.objsKeys = Object.keys(this.objs[0]);
       this.contentLoaded = true;

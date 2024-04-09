@@ -10,7 +10,9 @@
                             <th scope="col">#</th>
                         }
                         @for(key of tableService.objsKeys; track key){
-                            <th scope="col">{{key}}</th>
+                            @if (key !== '_id'){
+                                <th scope="col">{{key}}</th>
+                            }
                         }
                         @if(tableConfig.type != null){
                             <th scope="col"></th>
@@ -26,15 +28,17 @@
                             <td>
                                 <div>
                                     <div class="form-check">
-                                      <input (change)="updateSelected($event)" id="checkbox-{{tableService.objs[i]['id']}}" type="checkbox">
-                                      <label class="m-0" for="checkbox-{{tableService.objs[i]['id']}}"></label>
+                                      <input (change)="updateSelected($event)" id="checkbox-{{tableService.objs[i]['_id']}}" type="checkbox">
+                                      <label class="m-0" for="checkbox-{{tableService.objs[i]['_id']}}"></label>
                                     </div>
                                 </div>  
                             </td>
                         }
                         <!-- scorro la lista che contiene le chiavi che verrano poi usate per accedere all'oggetto -->
                         @for(key of tableService.objsKeys; track key){
-                            <td style="text-align: start; vertical-align: middle;">{{obj[key]}}</td>
+                            @if (key !== '_id'){
+                                <td style="text-align: start; vertical-align: middle;">{{obj[key]}}</td>
+                            }
                         }
                         <!-- controllo se e' necessario aggiungere bottoni o link -->
                         @if(tableConfig.type == "button"){
@@ -44,7 +48,7 @@
                         }
                         @if(tableConfig.type == "link"){
                             <td>
-                                <a class="btn btn-outline-primary p-2 nav-link" [routerLink]="['/gestione-utenti/dettaglio-utente/']" [queryParams]="{id: obj['id'], }">{{tableConfig.text}}</a>
+                                <a class="btn btn-outline-primary p-2 nav-link" [routerLink]="['/gestione-utenti/dettaglio-utente/']" [queryParams]="{id: obj['_id'], }">{{tableConfig.text}}</a>
                             </td>
                         }
                     </tr>

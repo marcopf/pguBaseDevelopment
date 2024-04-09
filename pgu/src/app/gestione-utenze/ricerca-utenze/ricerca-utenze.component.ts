@@ -38,7 +38,7 @@ export class RicercaUtenzeComponent {
       type: "text",
       required: true,
       controls: ["^.{3,15}$"],
-      value: "",
+      value: "ciao",
       disabled: false
     },{
       id: "ccognome",
@@ -46,7 +46,7 @@ export class RicercaUtenzeComponent {
       type: "text",
       required: true,
       controls: ["^.{3,15}$"],
-      value: "",
+      value: "prova",
       disabled: false
     }
   ];
