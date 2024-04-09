@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { TableService } from './table.service';
 import { EventEmitter } from '@angular/core';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RouterModule } from '@angular/router';
 
 interface TableConfig {
   incomingDataLink: string | null;
@@ -18,7 +19,7 @@ interface data {
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [SpinnerComponent],
+  imports: [SpinnerComponent, RouterModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })

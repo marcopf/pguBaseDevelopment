@@ -263,7 +263,7 @@ const form = [
     size: 6,
     required: true,
     controls: ["^.{3,15}$"],
-    value: "",
+    value: "test",
     disabled: false
   },
   {

@@ -44,7 +44,7 @@
                         }
                         @if(tableConfig.type == "link"){
                             <td>
-                                <button class="btn btn-outline-primary p-2">{{tableConfig.text}}</button>
+                                <a class="btn btn-outline-primary p-2 nav-link" [routerLink]="['/gestione-utenti/dettaglio-utente/']" [queryParams]="{id: obj['id'], }">{{tableConfig.text}}</a>
                             </td>
                         }
                     </tr>
