@@ -27,6 +27,9 @@ export class RetrieveUserDataService {
     //effttuo la chimata all'endpoint agganciando tutti i query params elaborati
     const res = await fetch(URL.gestione_utenti.CERCA_UTENTI + queryParamsPart, {
       method: 'GET',
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
+      }
     });
 
     let jsonRes = {

@@ -4,7 +4,7 @@ let port = '4242';
 
 const URL = {
     gestione_utenti:{
-        CERCA_UTENTI: `${protocol}://${domain}:${port}/users`
+        CERCA_UTENTI: `${protocol}://${domain}:${port}/users/`
     }
 }
 
