@@ -10,15 +10,20 @@
 				</li>
 			}
 			@for(number of totalElementsArray; track number){
-				@if (number !== currentPage && getAbsValue(currentPage - number) <= padding){
+				@if (number !== currentPage && getAbsValue(currentPage - number) <= padding ){
 					<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">{{(number + 1)}}</button></li>
 				}
 				@if (number !== currentPage && getAbsValue(currentPage - number) == padding + 1){
 					@if (number < currentPage){
 						<li class="page-item"><button class="page-link" id="pageNumber-0" (click)="emitSelectedPage($event)">1</button></li>
+						@if (number != 0){
+							<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
+						}
 					}
-					<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
 					@if (number > currentPage) {
+						@if (number != numberOfPages - 1){
+							<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
+						}
 						<li class="page-item"><button class="page-link" id="pageNumber-{{(numberOfPages - 1)}}" (click)="emitSelectedPage($event)">{{(numberOfPages)}}</button></li>
 					}
 				}
