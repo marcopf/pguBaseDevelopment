@@ -20,6 +20,7 @@ export class RetrieveUserDataService {
     })
 
     //similmente alla sezione di ricerca, creo i query params che definisco la paginazione
+    
     if (paginationInfo != undefined){
       queryParamsPart += `&page=${paginationInfo.page}&size=${paginationInfo.size}`
     }

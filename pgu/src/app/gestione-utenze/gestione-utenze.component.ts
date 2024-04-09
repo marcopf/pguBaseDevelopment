@@ -134,7 +134,7 @@ export class GestioneUtenzeComponent {
 		this.isLoading = true;    
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
-		this.paginationInfo.page = 1;
+		this.paginationInfo.page = 0;
 		this.paginationInfo.size = 10;
   	}
 
