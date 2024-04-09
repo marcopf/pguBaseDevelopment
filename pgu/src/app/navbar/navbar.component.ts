@@ -69,7 +69,6 @@ export class NavbarComponent implements OnInit{
 
   isActive(linkLabel: string){
     if (linkLabel == this.lastSegment){
-      console.log(linkLabel, this.lastSegment)
       return true;
     }
     return false;
