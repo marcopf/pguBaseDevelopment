@@ -10,8 +10,8 @@
       <div class="row mt-5 align-items-end ">
   
         <!-- ciclo l'array ottenuto andando a creare ogni componente necessario partendo dal json ottenuto tramite richiesta API -->
-        @for(element of objs; let i = $index; track element){
-          @if (objs.length != 0){
+        @for(element of basicValue; let i = $index; track element){
+          @if (basicValue!.length != 0){
   
               <!-- filtro ogni oggetto identificando il tipo -->
               @switch(element.type){

@@ -22,17 +22,17 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane p-4 fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
               @if(outgoingDataUrl != null){
-                <app-dynamic-form (dataAsked)="handleSubmit($event)" (formData)="catchData($event)" formBtn="CERCA" [basicValue]="form1"></app-dynamic-form>
+                <app-dynamic-form [contentLoaded]="true" (dataAsked)="handleSubmit($event)" (formData)="catchData($event)" formBtn="CERCA" [basicValue]="form1"></app-dynamic-form>
               }
             </div>
             <div class="tab-pane p-4 fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
               @if(outgoingDataUrl != null){
-                <app-dynamic-form (dataAsked)="handleSubmit($event)" formBtn="CERCA" (formData)="catchData($event)" [basicValue]="form2"></app-dynamic-form>
+                <app-dynamic-form [contentLoaded]="true" (dataAsked)="handleSubmit($event)" formBtn="CERCA" (formData)="catchData($event)" [basicValue]="form2"></app-dynamic-form>
               }
             </div>
             <div class="tab-pane p-4 fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
               @if(outgoingDataUrl != null){
-                <app-dynamic-form (dataAsked)="handleSubmit($event)" formBtn="CERCA" (formData)="catchData($event)" [basicValue]="form3"></app-dynamic-form>
+                <app-dynamic-form [contentLoaded]="true" (dataAsked)="handleSubmit($event)" formBtn="CERCA" (formData)="catchData($event)" [basicValue]="form3"></app-dynamic-form>
               }
             </div>
           </div>

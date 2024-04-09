@@ -3,6 +3,9 @@ const cors = require('cors')
 const app = express();
 const port = 3000;
 
+let totalPages = 8
+let numberOfElements = 32
+
 let table = [{
   Nome: "gulia",
   Cognome: "bianchi",
@@ -119,8 +122,8 @@ let formExample = {
       "paged": true
   },
   "last": true,
-  "totalPages": 5,
-  "totalElements": 18,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
   "first": true,
   "size": 4,
   "number": 0,
@@ -189,8 +192,8 @@ let formExample2 =  {
       "paged": true
   },
   "last": true,
-  "totalPages": 5,
-  "totalElements": 18,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
   "first": true,
   "size": 4,
   "number": 1,
@@ -258,8 +261,8 @@ let formExample3 =  {
       "paged": true
   },
   "last": true,
-  "totalPages": 5,
-  "totalElements": 18,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
   "first": true,
   "size": 4,
   "number": 2,
@@ -327,11 +330,218 @@ let formExample5 =  {
       "paged": true
   },
   "last": true,
-  "totalPages": 5,
-  "totalElements": 18,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
   "first": true,
   "size": 4,
   "number": 4,
+  "sort": null,
+  "numberOfElements": 4,
+  "empty": false
+}
+let formExample6 =  {
+  "content": [
+      {
+          "username": "luigi test 5",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "fdd17dd8-9eed-4681-91be-13ead178a865"
+      },
+      {
+          "username": "marco",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "genova"
+              ]
+          },
+          "_id": "1931af5c-6b3c-4798-948b-4bd9f3ab98f3"
+      },
+      {
+          "username": "mario",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "7febf772-16be-43e9-8522-e9ff0d21cb2f"
+      },
+      {
+          "username": "paolo",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "chieti"
+              ]
+          },
+          "_id": "aefafa2d-0cb9-437d-9458-cf8f133ec6ba"
+      }
+  ],
+  "pageable": {
+      "pageNumber": 0,
+      "pageSize": 10,
+      "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+      },
+      "offset": 0,
+      "unpaged": false,
+      "paged": true
+  },
+  "last": true,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
+  "first": true,
+  "size": 4,
+  "number": 5,
+  "sort": null,
+  "numberOfElements": 4,
+  "empty": false
+}
+let formExample8 =  {
+  "content": [
+      {
+          "username": "luigi test 5",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "fdd17dd8-9eed-4681-91be-13ead178a865"
+      },
+      {
+          "username": "marco",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "genova"
+              ]
+          },
+          "_id": "1931af5c-6b3c-4798-948b-4bd9f3ab98f3"
+      },
+      {
+          "username": "mario",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "7febf772-16be-43e9-8522-e9ff0d21cb2f"
+      },
+      {
+          "username": "paolo",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "chieti"
+              ]
+          },
+          "_id": "aefafa2d-0cb9-437d-9458-cf8f133ec6ba"
+      }
+  ],
+  "pageable": {
+      "pageNumber": 0,
+      "pageSize": 10,
+      "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+      },
+      "offset": 0,
+      "unpaged": false,
+      "paged": true
+  },
+  "last": true,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
+  "first": true,
+  "size": 4,
+  "number": 7,
+  "sort": null,
+  "numberOfElements": 4,
+  "empty": false
+}
+let formExample7 =  {
+  "content": [
+      {
+          "username": "luigi test 7",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "fdd17dd8-9eed-4681-91be-13ead178a865"
+      },
+      {
+          "username": "marco",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "genova"
+              ]
+          },
+          "_id": "1931af5c-6b3c-4798-948b-4bd9f3ab98f3"
+      },
+      {
+          "username": "mario",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "roma"
+              ]
+          },
+          "_id": "7febf772-16be-43e9-8522-e9ff0d21cb2f"
+      },
+      {
+          "username": "paolo",
+          "enabled": true,
+          
+          "attributes": {
+              "_sede": [
+                  "chieti"
+              ]
+          },
+          "_id": "aefafa2d-0cb9-437d-9458-cf8f133ec6ba"
+      }
+  ],
+  "pageable": {
+      "pageNumber": 0,
+      "pageSize": 10,
+      "sort": {
+          "empty": true,
+          "sorted": false,
+          "unsorted": true
+      },
+      "offset": 0,
+      "unpaged": false,
+      "paged": true
+  },
+  "last": true,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
+  "first": true,
+  "size": 4,
+  "number": 6,
   "sort": null,
   "numberOfElements": 4,
   "empty": false
@@ -396,8 +606,8 @@ let formExample4 =  {
       "paged": true
   },
   "last": true,
-  "totalPages": 5,
-  "totalElements": 18,
+  "totalPages": totalPages,
+  "totalElements": numberOfElements,
   "first": true,
   "size": 4,
   "number": 3,
@@ -411,7 +621,6 @@ const form = [
     id: "cname",
     label: "Nome",
     type: "text",
-    size: 6,
     required: true,
     controls: ["^.{3,15}$"],
     value: "test",
@@ -421,7 +630,6 @@ const form = [
     id: "csurname",
     label: "Cognome",
     type: "text",
-    size: 6,
     required: false,
     controls: ["^.{3,15}$"],
     value: "",
@@ -431,7 +639,6 @@ const form = [
     id: "fiscalCode",
     label: "Codice Fiscale",
     type: "text",
-    size: 6,
     required: false,
     controls: ["^.{10,15}$"],
     value: "",
@@ -441,7 +648,6 @@ const form = [
     id: "username",
     label: "Username",
     type: "text",
-    size: 6,
     required: false,
     controls: ["^.{3,15}$"],
     value: "",
@@ -451,7 +657,6 @@ const form = [
     id: "email",
     label: "E-mail",
     type: "text",
-    size: 6,
     required: true,
     controls: ["^.{3,15}$"],
     value: "",
@@ -468,6 +673,15 @@ const form = [
   }
 
 ];
+
+let values = {
+  cname: 'Marco',
+  csurname: 'paternosto',
+  fiscalCode: 'PTRMRC98L07H501S',
+  username: 'mpaterno',
+  email: 'test@test.it',
+  toggle: 'true'
+}
 
 app.use(cors());
 app.use(express.json());
@@ -490,6 +704,10 @@ app.get('/notAuth', (req, res)=>{
   res.status(401);
   res.send("hey")
 })
+app.get('/values', (req, res)=>{
+  res.status(200);
+  res.json(values)
+})
 app.get('/users', (req, res)=>{
   formExample.number = req.query.page
   if (req.query.page == 0){
@@ -508,7 +726,19 @@ app.get('/users', (req, res)=>{
     res.json(formExample4)
     return ;
   } 
-  res.json(formExample5)
+  if (req.query.page == 4){
+    res.json(formExample5)
+    return ;
+  } 
+  if (req.query.page == 5){
+    res.json(formExample6)
+    return ;
+  } 
+  if (req.query.page == 6){
+    res.json(formExample7)
+    return ;
+  } 
+  res.json(formExample8)
 })
 app.post("/form", (req, res)=>{
   //setTimeout(() => {
@@ -520,10 +750,10 @@ app.post("/form", (req, res)=>{
   console.log(req.body)
 })
 app.get("/form", (req, res)=>{
-  //setTimeout(() => {
+  setTimeout(() => {
     res.json(form);
 
-  //}, 2000);
+  }, 2000);
 })
 
 app.listen(port, () => {

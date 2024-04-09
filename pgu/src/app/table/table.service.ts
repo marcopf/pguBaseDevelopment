@@ -32,10 +32,8 @@ export class TableService {
       keys.forEach(key=>{
         obj[key] = tempMemory[key];
       })
-      console.log(obj)
       
     })
-    console.log(dataList)
     return dataList;
   }
   

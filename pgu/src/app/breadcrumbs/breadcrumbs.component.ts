@@ -22,7 +22,7 @@ export class BreadcrumbsComponent implements OnInit {
         this.iterablePath = this.currentRoute.split('/').filter(el=>el != '');
         this.iterablePath = this.iterablePath.map(el=>{
           return el.split('?')[0];
-        })
+        }).filter(el=>el != '')
       }
     })
   }

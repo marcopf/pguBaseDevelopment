@@ -53,6 +53,5 @@ export class PaginationComponent implements OnInit {
    */
   ngOnInit(){
     this.totalElementsArray = Array.from(Array(this.numberOfPages).keys());
-    console.log(this.totalElementsArray)
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { DynamicFormService } from './dynamic-form.service';
 import { FormToggleComponent } from './form-toggle/form-toggle.component';
@@ -31,22 +31,19 @@ type dynamicFormComponent = {
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss'
 })
-export class DynamicFormComponent implements OnInit{
+export class DynamicFormComponent implements OnInit, OnChanges{
   @Input() incomingData: string = "";
   @Input() formTitle: string = "";
   @Input() formBtn: string = "";
   @Input() basicValue:  dynamicFormComponent[] | null = null;
   @Output() formData = new EventEmitter<objInterface>;
   @Output() dataAsked = new EventEmitter<boolean>;
-
-
+  @Input() contentLoaded: boolean = false;
 
   tag: string = "create-";
   addUserForm = new FormGroup({});
   controlsReference: objInterface = {};
-  objs: dynamicFormComponent[] = [];
   formGroupObj: objInterface = {};
-  contentLoaded: boolean = false;
 
   onSubmit(){
     this.dataAsked.emit(true);
@@ -56,10 +53,19 @@ export class DynamicFormComponent implements OnInit{
   formInit(){
     getDynamicForm(this.incomingData).then(res=>{
       this.contentLoaded = true;
-      this.objs = res;
-      this.formGroupObj = this.formFields.createFormGroupObj(this.objs);
+      this.basicValue = res;
+      this.formGroupObj = this.formFields.createFormGroupObj(this.basicValue!);
       this.addUserForm = new FormGroup(this.formGroupObj);
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.basicValue == null){
+      this.formInit();
+      return ;
+    }
+    this.formGroupObj = this.formFields.createFormGroupObj(this.basicValue);
+    this.addUserForm = new FormGroup(this.formGroupObj);
   }
 
   ngOnInit(): void {
@@ -67,9 +73,7 @@ export class DynamicFormComponent implements OnInit{
       this.formInit();
       return ;
     }
-    this.contentLoaded = true;
-    this.objs = this.basicValue;
-    this.formGroupObj = this.formFields.createFormGroupObj(this.objs);
+    this.formGroupObj = this.formFields.createFormGroupObj(this.basicValue);
     this.addUserForm = new FormGroup(this.formGroupObj);
   }
 
