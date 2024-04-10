@@ -111,7 +111,7 @@ export class UserInfoService {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorizaion: `Bearer ${sessionStorage.getItem('access_token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
       },
       body: JSON.stringify(this.unexpandedUserData)
     });
