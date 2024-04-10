@@ -9,7 +9,20 @@
               </ul>
               <div class="tab-content" id="card-simpleContent">
                 <div class="tab-pane p-4 fade show active" id="card-simpletab1" role="tabpanel" aria-labelledby="card-simple1-tab">
-                    <app-dynamic-form [contentLoaded]="userInfoService.contentLoaded" [basicValue]="userInfoService.formMetaData" [formTitle]="'Modifica i Tuoi Dati'" (formData)="userInfoService.handleSubmit($event)" [formBtn]="'MODIFICA DATI'"></app-dynamic-form>
+                    <div class="row">
+                        <div class="col-8">
+                            <h1>Modifica Anagrafica</h1>
+                        </div>
+                        <div class="col-4">
+                            @if (userInfoService.unexpandedUserData.enabled){
+                                <button (click)="userInfoService.manageUserStatus($event, false)" class="btn btn-danger float-end h-100">Disabilita</button>
+                            }
+                            @else{
+                                <button (click)="userInfoService.manageUserStatus($event, true)" class="btn btn-success float-end h-100">Abilita</button>
+                            }
+                        </div>
+                    </div>
+                    <app-dynamic-form [contentLoaded]="userInfoService.contentLoaded" [basicValue]="userInfoService.formMetaData" [formTitle]="''" (formData)="userInfoService.handleSubmit($event)" [formBtn]="'MODIFICA DATI'"></app-dynamic-form>
 
                 </div>
                 <div class="tab-pane p-4 fade" id="card-simpletab2" role="tabpanel" aria-labelledby="card-simple2-tab">Contenuto 2</div>

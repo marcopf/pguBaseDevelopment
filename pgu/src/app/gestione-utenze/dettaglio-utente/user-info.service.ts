@@ -93,39 +93,62 @@ export class UserInfoService {
   }
 
   prepareFormBody(formData: any){
+    let obj = Object.assign({}, this.unexpandedUserData);
     let keys = Object.keys(formData);
+
     keys.forEach(key=>{
-      console.log(key, this.unexpandedUserData[key])
-      if (this.unexpandedUserData[key] == undefined){
+      console.log(key, obj[key])
+      if (obj[key] == undefined){
         if (Array.isArray(formData[key]))
-          this.unexpandedUserData.attributes[key] = formData[key];
+          obj.attributes[key] = formData[key];
         else
-          this.unexpandedUserData.attributes[key] = [formData[key]];
+          obj.attributes[key] = [formData[key]];
       }
       else{
-        this.unexpandedUserData[key] = formData[key];
+        obj[key] = formData[key];
       }
     })
+    return obj
   }
 
   async handleSubmit(formData:any){
-    this.prepareFormBody(formData);
+    let preparedForm = this.prepareFormBody(formData);
 
-    console.log(this.unexpandedUserData)
+    delete preparedForm.enabled
+    console.log(preparedForm)
     const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
       },
-      body: JSON.stringify(this.unexpandedUserData)
+      body: JSON.stringify(preparedForm)
     });
     if (res.ok)
       console.log('ok :)')
     else 
       console.log('not ok :(')
-
   }
+
+  async manageUserStatus(e: any, newStatus: boolean){
+    let preparedForm = Object.assign({}, this.unexpandedUserData);
+
+    preparedForm.enabled = newStatus;
+    console.log(preparedForm)
+    const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
+      },
+      body: JSON.stringify(preparedForm)
+    });
+    if (res.ok)
+      console.log('ok :)')
+    else 
+      console.log('not ok :(')
+  }
+
   constructor(private activatedRoute: ActivatedRoute) {
     this.userId = this.activatedRoute.snapshot.queryParams['id'];
   }

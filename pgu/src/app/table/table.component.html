@@ -37,7 +37,23 @@
                         <!-- scorro la lista che contiene le chiavi che verrano poi usate per accedere all'oggetto -->
                         @for(key of tableService.objsKeys; track key){
                             @if (key !== '_id'){
-                                <td style="text-align: start; vertical-align: middle;">{{obj[key]}}</td>
+                                <td style="text-align: start; vertical-align: middle;">
+                                    @if (key == 'status'){
+                                        @if (obj[key] == 'true'){
+                                            <div class="chip chip-success chip-lg chip-simple">
+                                                <span class="chip-label">Abilitato</span>
+                                            </div>
+                                        }
+                                        @else{
+                                            <div class="chip chip-danger chip-lg chip-simple">
+                                                <span class="chip-label">Disabilitato</span>
+                                            </div>
+                                        }
+                                    }
+                                    @else{
+                                        {{obj[key]}}
+                                    }
+                                </td>
                             }
                         }
                         <!-- controllo se e' necessario aggiungere bottoni o link -->
