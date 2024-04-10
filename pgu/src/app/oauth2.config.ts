@@ -24,6 +24,4 @@ export const authCodeFlowConfig: AuthConfig = {
   // Important: Request offline_access to get a refresh token
   // The api scope is a usecase specific one
   scope: 'openid profile email offline_access api',
-
-  showDebugInformation: true,
 };

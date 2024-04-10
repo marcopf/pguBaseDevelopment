@@ -29,6 +29,11 @@
                     <app-form-date [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [required]="element.required"></app-form-date>
                   </div>
                 }
+                @case("number"){
+                  <div class="col-12 col-md-6 col-sm-12 my-4">
+                    <app-form-number [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [required]="element.required"></app-form-number>
+                  </div>
+                }
                 @case("select"){
                   <div class="col-12 col-md-6 col-sm-12 my-4">
                     <app-form-select [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [options]="element.options" [required]="element.required"></app-form-select>

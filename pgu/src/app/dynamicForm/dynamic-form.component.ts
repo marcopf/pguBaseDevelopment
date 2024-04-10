@@ -8,6 +8,7 @@ import { FormTextComponent } from './form-text/form-text.component';
 import { FormSelectComponent } from './form-select/form-select.component';
 import getDynamicForm from './API/getDynamicForm';
 import { SpinnerComponent } from '../table/spinner/spinner.component';
+import { FormNumberComponent } from './form-number/form-number.component';
 
 interface objInterface {
   [key: string]: FormControl;
@@ -27,7 +28,7 @@ type dynamicFormComponent = {
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [FormToggleComponent, FormCheckboxComponent, FormDateComponent, FormTextComponent, FormSelectComponent, ReactiveFormsModule, SpinnerComponent],
+  imports: [FormToggleComponent, FormCheckboxComponent, FormDateComponent, FormTextComponent, FormSelectComponent, ReactiveFormsModule, SpinnerComponent, FormNumberComponent],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss'
 })

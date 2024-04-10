@@ -36,12 +36,21 @@ export class DettaglioUtenteComponent implements OnInit{
     fetch('http://localhost:3000/form').then(res=>{
       return res.json();
     }).then(msg=>{
-      this.contentLoaded = true;
       this.userForm = msg as dynamicFormComponent[];
-    })
-    fetch('http://localhost:3000/values').then(res=>{
-      return res.json();
-    }).then(msg=>{
+      fetch('http://localhost:3000/values').then(res=>{
+        return res.json();
+      }).then(msg=>{
+        this.contentLoaded = true;
+        console.log(msg)
+        Object.keys(msg).forEach(el=>{
+          this.userForm.forEach((input: any)=>{
+            if (input['id'] == el){
+              input['value'] = msg[el];
+            }
+          })
+        })
+        console.log(this.userForm)
+      })
     })
   }
 

@@ -640,7 +640,7 @@ const form = [
     label: "Codice Fiscale",
     type: "text",
     required: false,
-    controls: ["^.{10,15}$"],
+    controls: ["^.{10,18}$"],
     value: "",
     disabled: false
   },
@@ -670,7 +670,16 @@ const form = [
     controls: ["^.{3,15}$"],
     value: "",
     disabled: false
-  }
+  },
+  {
+    id: "togsfvfvbgle",
+    label: "Numero",
+    type: "number",
+    required: true,
+    controls: ["^1[0-5]$"],
+    value: "3",
+    disabled: false
+  },
 
 ];
 
