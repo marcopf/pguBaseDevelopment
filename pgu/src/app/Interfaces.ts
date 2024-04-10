@@ -16,7 +16,7 @@ export type DynamicFormType = {
 }
 
 export type GenericObject = {
-    [key:string]: string
+    [key:string]: any
 }
   
 export type Pagination = {

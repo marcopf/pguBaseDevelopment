@@ -11,15 +11,20 @@
                 <div class="tab-pane p-4 fade show active" id="card-simpletab1" role="tabpanel" aria-labelledby="card-simple1-tab">
                     <div class="row">
                         <div class="col-8">
-                            <h1>Modifica Anagrafica</h1>
+                            <h1 class="text-primary">Modifica Anagrafica</h1>
                         </div>
                         <div class="col-4">
-                            @if (userInfoService.unexpandedUserData.enabled){
-                                <button (click)="userInfoService.manageUserStatus($event, false)" class="btn btn-danger float-end h-100">Disabilita</button>
-                            }
-                            @else{
-                                <button (click)="userInfoService.manageUserStatus($event, true)" class="btn btn-success float-end h-100">Abilita</button>
-                            }
+                            <div class="form-check col-6 h-100 w-100 d-flex justify-content-end align-items-center">
+                                <div class="d-flex float-end">
+                                    <div class="toggles">
+                                      <label for="toggleEsempio2a">
+                                        {{userInfoService.unexpandedUserData.enabled ? 'Abilitato' : 'Disabilitato'}}
+                                        <input [checked]="this.userInfoService.unexpandedUserData" (change)="userInfoService.manageUserStatus($event, !userInfoService.unexpandedUserData.enabled)" type="checkbox" id="toggleEsempio2a">
+                                        <span class="lever"></span>
+                                      </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <app-dynamic-form [contentLoaded]="userInfoService.contentLoaded" [basicValue]="userInfoService.formMetaData" [formTitle]="''" (formData)="userInfoService.handleSubmit($event)" [formBtn]="'MODIFICA DATI'"></app-dynamic-form>

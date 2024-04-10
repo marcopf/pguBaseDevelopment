@@ -131,17 +131,16 @@ export class UserInfoService {
   }
 
   async manageUserStatus(e: any, newStatus: boolean){
-    let preparedForm = Object.assign({}, this.unexpandedUserData);
 
-    preparedForm.enabled = newStatus;
-    console.log(preparedForm)
+    this.unexpandedUserData.enabled = newStatus;
+    console.log(this.unexpandedUserData)
     const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
       },
-      body: JSON.stringify(preparedForm)
+      body: JSON.stringify(this.unexpandedUserData)
     });
     if (res.ok)
       console.log('ok :)')

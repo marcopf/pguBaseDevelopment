@@ -66,7 +66,7 @@ let formExample = {
   "content": [
       {
           "username": "luigi",
-          "enabled": true,
+          "status": true,
           
           "attributes": {
               "_sede": [
