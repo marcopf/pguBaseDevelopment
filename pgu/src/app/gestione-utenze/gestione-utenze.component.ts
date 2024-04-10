@@ -5,26 +5,7 @@ import { RicercaUtenzeComponent } from './ricerca-utenze/ricerca-utenze.componen
 import { SpinnerComponent } from '../table/spinner/spinner.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { RetrieveUserDataService } from './retrieve-user-data.service';
-
-interface data {
-  [key:string]: string
-}
-
-interface Pagination {
-	size: number,
-	page: number,
-	totalElements: number,
-	numberOfPages: number,
-	retrievedElements: number
-}
-
-interface TableConfig {
-	incomingDataLink: string | null;
-	outgoingDataLink: string | null;
-	type: "link" | "button" | null;
-	text: string | null,
-	hasCheckBox: boolean
-}
+import { GenericObject, Pagination, TableConfig } from '../Interfaces';
 
 @Component({
   selector: 'app-gestione-utenze',
@@ -34,7 +15,7 @@ interface TableConfig {
   styleUrl: './gestione-utenze.component.scss'
 })
 export class GestioneUtenzeComponent {
-	fetchedData: data[] | undefined = undefined;
+	fetchedData: GenericObject[] | undefined = undefined;
 	isLoading: boolean = false;
 	isTableLoaded: boolean = false;
 	savedQueryParams: any = undefined;
@@ -61,7 +42,7 @@ export class GestioneUtenzeComponent {
   	  */
   	getUsersInfo(params: any, paginationInfo?: any){
 		this.searchUserService.searchUser(params, paginationInfo).then(response=>{
-			this.fetchedData = response.content as data[];
+			this.fetchedData = response.content as GenericObject[];
 			paginationInfo.totalElements = Number(response.totalElements);
 			paginationInfo.numberOfPages = Number(response.totalPages);
 			paginationInfo.page = Number(response.number);

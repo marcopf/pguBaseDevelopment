@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import languages from './languageFiles'
-
-interface Labels{
-  [key: string]: string
-}
-
-interface AllLanguages{
-  [key: string]: Labels
-}
+import { AllLanguages } from '../../app/Interfaces';
 
 
 /**

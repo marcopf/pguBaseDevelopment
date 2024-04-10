@@ -1,22 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { DynamicFormType, FormControlObjectType } from '../Interfaces';
 
-type dynamicFormComponent = {
-  id: string,
-  label: string,
-  type: string,
-  required: boolean
-  options?: string [] | undefined,
-  controls?: string[],
-  value: string,
-  disabled: boolean
-}
-
-interface objInterface {
-  [key: string]: FormControl;
-}
-
-function createControl(element: dynamicFormComponent): FormControl{
+function createControl(element: DynamicFormType): FormControl{
   let validators = [];
   
   if (element.required){
@@ -27,7 +13,7 @@ function createControl(element: dynamicFormComponent): FormControl{
       validators.push(Validators.pattern(regex))
     })
   }
-  if (element.type == 'checkbox' || element.type == 'toggle')
+  if (element['TYPE'] == 'checkbox' || element['TYPE'] == 'toggle')
     return (new FormControl({value: element.value == 'true' ? true : false, disabled: element.disabled}, validators));
   return (new FormControl({value: element.value, disabled: element.disabled}, validators));
 }
@@ -37,10 +23,10 @@ function createControl(element: dynamicFormComponent): FormControl{
 })
 export class DynamicFormService {
 
-  createFormGroupObj(elements: dynamicFormComponent[]){
-    let obj: objInterface = {};
+  createFormGroupObj(elements: DynamicFormType[]){
+    let obj: FormControlObjectType = {};
   
-    elements.forEach((el: dynamicFormComponent)=>{
+    elements.forEach((el: DynamicFormType)=>{
       if (el.id === "dummy")
         return ;
 

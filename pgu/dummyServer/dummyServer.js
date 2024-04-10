@@ -620,63 +620,77 @@ const form = [
   {
     id: "cname",
     label: "Nome",
-    type: "text",
+    validator:{
+      TYPE: "text",
+      controls: ["^.{3,15}$"],
+    },
     required: true,
-    controls: ["^.{3,15}$"],
     value: "test",
     disabled: false
   },
   {
     id: "csurname",
     label: "Cognome",
-    type: "text",
+    validator:{
+      TYPE: "text",
+      controls: ["^.{3,15}$"],
+    },
     required: false,
-    controls: ["^.{3,15}$"],
     value: "",
     disabled: false
   },
   {
     id: "fiscalCode",
     label: "Codice Fiscale",
-    type: "text",
+    validator:{
+      TYPE: "text",
+      controls: ["^.{3,15}$"],
+    },
     required: false,
-    controls: ["^.{10,18}$"],
     value: "",
     disabled: false
   },
   {
     id: "username",
     label: "Username",
-    type: "text",
+    validator:{
+      TYPE: "text",
+      controls: ["^.{3,15}$"],
+    },
     required: false,
-    controls: ["^.{3,15}$"],
     value: "",
     disabled: false
   },
   {
     id: "email",
     label: "E-mail",
-    type: "text",
+    validator:{
+      TYPE: "text",
+      controls: ["^.{3,15}$"],
+    },
     required: true,
-    controls: ["^.{3,15}$"],
     value: "",
     disabled: false
   },
   {
     id: "toggle",
     label: "Numero",
-    type: "toggle",
+    validator:{
+      TYPE: "toggle",
+      controls: ["^.{3,15}$"],
+    },
     required: true,
-    controls: ["^.{3,15}$"],
     value: "",
     disabled: false
   },
   {
     id: "togsfvfvbgle",
     label: "Numero",
-    type: "number",
+    validator:{
+      TYPE: "number",
+      controls: ["^.{3,15}$"],
+    },
     required: true,
-    controls: ["^1[0-5]$"],
     value: "3",
     disabled: false
   },

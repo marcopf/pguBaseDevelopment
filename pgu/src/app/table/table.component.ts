@@ -3,18 +3,7 @@ import { TableService } from './table.service';
 import { EventEmitter } from '@angular/core';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { RouterModule } from '@angular/router';
-
-interface TableConfig {
-  incomingDataLink: string | null;
-  outgoingDataLink: string | null;
-  type: "link" | "button" | null;
-  text: string | null,
-  hasCheckBox: boolean
-}
-
-interface data {
-  [key:string]: string
-}
+import { GenericObject, TableConfig } from '../Interfaces';
 
 @Component({
   selector: 'app-table',
@@ -24,10 +13,10 @@ interface data {
   styleUrl: './table.component.scss'
 })
 export class TableComponent implements OnInit{
-  selectedLines: data[] = [];
-  @Output() lineChanges = new EventEmitter<data[]>;
+  selectedLines: GenericObject[] = [];
+  @Output() lineChanges = new EventEmitter<GenericObject[]>;
   @Input() retrieveUrl: string = "";
-  @Input() basicValue: data[] | undefined = undefined;
+  @Input() basicValue: GenericObject[] | undefined = undefined;
   @Input() tableConfig: TableConfig = {
     incomingDataLink: null,
     outgoingDataLink: null,

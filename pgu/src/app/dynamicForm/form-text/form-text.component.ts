@@ -11,7 +11,6 @@ import { ReactiveFormsModule, FormControl } from '@angular/forms';
 })
 export class FormTextComponent implements OnChanges {
   @Input() label: string = '';
-  @Input() type: string = 'text';
   @Input() tag: string = '';
   @Input() key: any;
   @Input() formC: FormControl = new FormControl;

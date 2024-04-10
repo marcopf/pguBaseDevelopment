@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import URL from '../../assets/Url/url';
+import { GenericObject, Pagination } from '../Interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RetrieveUserDataService {
 
-  async searchUser(obj: any, paginationInfo?: any){
+  prepareQueryParamsString(obj: GenericObject, paginationInfo?: Pagination){
     let keys = Object.keys(obj);
     let queryParamsPart = '?';
 
@@ -20,10 +21,14 @@ export class RetrieveUserDataService {
     })
 
     //similmente alla sezione di ricerca, creo i query params che definisco la paginazione
-    
     if (paginationInfo != undefined){
       queryParamsPart += `&page=${paginationInfo.page}&size=${paginationInfo.size}`
     }
+    return queryParamsPart
+  }
+
+  async searchUser(obj: GenericObject, paginationInfo?: Pagination){
+    let queryParamsPart = this.prepareQueryParamsString(obj, paginationInfo);
 
     //effttuo la chimata all'endpoint agganciando tutti i query params elaborati
     const res = await fetch(URL.gestione_utenti.CERCA_UTENTI + queryParamsPart, {

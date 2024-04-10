@@ -1,23 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DynamicFormComponent } from '../../dynamicForm/dynamic-form.component';
-import { FormControl } from '@angular/forms';
 import { LanguagesService } from '../../../assets/Languages/languages.service';
 import { TranslatorPipe } from '../../../assets/Languages/translator.pipe';
-
-type dynamicFormComponent = {
-  id: string,
-  label: string,
-  type: string,
-  required: boolean
-  options?: string [] | undefined,
-  controls?: string[],
-  value: string,
-  disabled: boolean
-}
-
-interface objInterface {
-  [key: string]: FormControl;
-}
+import { DynamicFormType, FormControlObjectType } from '../../Interfaces';
 
 @Component({
   selector: 'app-ricerca-utenze',
@@ -27,15 +12,15 @@ interface objInterface {
   styleUrl: './ricerca-utenze.component.scss'
 })
 export class RicercaUtenzeComponent {
-  @Output() onFormDataAvailable = new EventEmitter<objInterface>
+  @Output() onFormDataAvailable = new EventEmitter<FormControlObjectType>
   @Output() onSearchButtonPressed = new EventEmitter<boolean>
   @Input() outgoingDataUrl: null | string = null;
 
-  form1: dynamicFormComponent[] = [
+  form1: DynamicFormType[] = [
     {
       id: "cname",
       label: "Nome",
-      type: "text",
+      TYPE: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "ciao",
@@ -43,29 +28,29 @@ export class RicercaUtenzeComponent {
     },{
       id: "ccognome",
       label: "Cognome",
-      type: "text",
+      TYPE: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "prova",
       disabled: false
     }
   ];
-  form2: dynamicFormComponent[] = [
+  form2: DynamicFormType[] = [
     {
       id: "ccodicefiscale",
       label: "Codice Fiscale",
-      type: "text",
+      TYPE: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "",
       disabled: false
     }
   ];
-  form3: dynamicFormComponent[] = [
+  form3: DynamicFormType[] = [
     {
       id: "cemail",
       label: "Email",
-      type: "text",
+      TYPE: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "",

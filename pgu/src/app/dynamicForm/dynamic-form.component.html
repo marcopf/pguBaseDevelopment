@@ -14,7 +14,7 @@
           @if (basicValue!.length != 0){
   
               <!-- filtro ogni oggetto identificando il tipo -->
-              @switch(element.type){
+              @switch(element['TYPE']){
                 @case("checkbox"){
                   <div class="col-12 col-md-12 col-sm-12 my-4">
                     <div class="row">
@@ -31,7 +31,7 @@
                 }
                 @case("number"){
                   <div class="col-12 col-md-6 col-sm-12 my-4">
-                    <app-form-number [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [required]="element.required"></app-form-number>
+                    <app-form-date [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [required]="element.required"></app-form-date>
                   </div>
                 }
                 @case("select"){
@@ -52,7 +52,7 @@
                 }
                 @default{
                   <div class="col-12 col-md-6 col-sm-12 my-4">
-                    <app-form-text [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [type]="element.type" [required]="element.required"></app-form-text>
+                    <app-form-text [formC]="formGroupObj[element.id]" [tag]="tag" [key]="element.id" [label]="element.label" [required]="element.required"></app-form-text>
                   </div>
                 }
               }

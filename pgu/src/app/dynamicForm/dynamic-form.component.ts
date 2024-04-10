@@ -9,21 +9,7 @@ import { FormSelectComponent } from './form-select/form-select.component';
 import getDynamicForm from './API/getDynamicForm';
 import { SpinnerComponent } from '../table/spinner/spinner.component';
 import { FormNumberComponent } from './form-number/form-number.component';
-
-interface objInterface {
-  [key: string]: FormControl;
-}
-
-type dynamicFormComponent = {
-  id: string,
-  label: string,
-  type: string,
-  required: boolean
-  options?: string [] | undefined,
-  controls?: string[],
-  value: string,
-  disabled: boolean
-}
+import { DynamicFormType, FormControlObjectType } from '../Interfaces';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -36,15 +22,15 @@ export class DynamicFormComponent implements OnInit, OnChanges{
   @Input() incomingData: string = "";
   @Input() formTitle: string = "";
   @Input() formBtn: string = "";
-  @Input() basicValue:  dynamicFormComponent[] | null = null;
-  @Output() formData = new EventEmitter<objInterface>;
+  @Input() basicValue:  DynamicFormType[] | null = null;
+  @Output() formData = new EventEmitter<FormControlObjectType>;
   @Output() dataAsked = new EventEmitter<boolean>;
   @Input() contentLoaded: boolean = false;
 
   tag: string = "create-";
   addUserForm = new FormGroup({});
-  controlsReference: objInterface = {};
-  formGroupObj: objInterface = {};
+  controlsReference: FormControlObjectType = {};
+  formGroupObj: FormControlObjectType = {};
 
   onSubmit(){
     this.dataAsked.emit(true);

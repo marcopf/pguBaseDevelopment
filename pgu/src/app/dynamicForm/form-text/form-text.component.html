@@ -2,7 +2,7 @@
     <label class="active p-0" for="{{tag + key}}">{{label}}{{requiredLabel}}</label>
     <input
         (keyup)="checkError($event)"
-      type="{{type}}"
+      type="text"
       class="form-control"
       id="{{tag + key}}"
       [formControl]="formC"

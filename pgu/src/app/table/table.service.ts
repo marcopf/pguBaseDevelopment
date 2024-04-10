@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
-
-interface data {
-  [key:string]: string
-}
+import { GenericObject } from '../Interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {  
-  objs:data[] = []; 
+  objs:GenericObject[] = []; 
   objsKeys:string[] = [];
   contentLoaded: boolean = false;
 
-  keyExpander(dataList: data[], keyToExpand: string): data[]{
-    let expandedObj: data[];
-
+  keyExpander(dataList: GenericObject[], keyToExpand: string): GenericObject[]{
     if (dataList[0][keyToExpand] === undefined){
       return [];
     }
-    dataList.forEach((obj, index)=>{
-      let tempMemory = obj[keyToExpand] as unknown as data;
+    dataList.forEach((obj)=>{
+      let tempMemory = obj[keyToExpand] as unknown as GenericObject;
       let keys = Object.keys(tempMemory);
       let objKeys = Object.keys(obj);
 
@@ -37,7 +32,7 @@ export class TableService {
     return dataList;
   }
   
-  async retrieveData(url: string, basicValue?: data[]) {
+  async retrieveData(url: string, basicValue?: GenericObject[]) {
     if (basicValue != undefined){
       this.objs = this.keyExpander(basicValue, 'attributes');
       if (basicValue.length > 0)
