@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { DynamicFormService } from './dynamic-form.service';
 import { FormToggleComponent } from './form-toggle/form-toggle.component';
@@ -18,7 +18,7 @@ import { DynamicFormType, FormControlObjectType } from '../Interfaces';
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.scss'
 })
-export class DynamicFormComponent implements OnInit, OnChanges{
+export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy{
   @Input() incomingData: string = "";
   @Input() formTitle: string = "";
   @Input() formBtn: string = "";
@@ -53,6 +53,9 @@ export class DynamicFormComponent implements OnInit, OnChanges{
     }
     this.formGroupObj = this.formFields.createFormGroupObj(this.basicValue);
     this.addUserForm = new FormGroup(this.formGroupObj);
+  }
+
+  ngOnDestroy(): void {
   }
 
   ngOnInit(): void {

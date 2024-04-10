@@ -19,7 +19,7 @@
                                     <div class="toggles">
                                       <label for="toggleEsempio2a">
                                         {{userInfoService.unexpandedUserData.enabled ? 'Abilitato' : 'Disabilitato'}}
-                                        <input [checked]="this.userInfoService.unexpandedUserData" (change)="userInfoService.manageUserStatus($event, !userInfoService.unexpandedUserData.enabled)" type="checkbox" id="toggleEsempio2a">
+                                        <input [checked]="this.userInfoService.unexpandedUserData.enabled" (change)="userInfoService.manageUserStatus($event, !userInfoService.unexpandedUserData.enabled)" type="checkbox" id="toggleEsempio2a">
                                         <span class="lever"></span>
                                       </label>
                                     </div>

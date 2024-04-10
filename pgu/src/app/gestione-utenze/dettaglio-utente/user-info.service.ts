@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class UserInfoService {
+export class UserInfoService{
   formMetaData: any[] = [];
   userData: any = {};
   unexpandedUserData: any = {};
@@ -55,6 +55,7 @@ export class UserInfoService {
   }
 
   async getUserData(id: string){
+    this.userId = this.activatedRoute.snapshot.queryParams['id'];
     const res = await fetch(`${URL.dettaglio_utenze.GET_USER_DATA}${id}/`, {
       method: 'GET',
       headers: {
@@ -89,7 +90,6 @@ export class UserInfoService {
         }
       });
     })
-    console.log(this.formMetaData)
   }
 
   prepareFormBody(formData: any){
@@ -97,7 +97,6 @@ export class UserInfoService {
     let keys = Object.keys(formData);
 
     keys.forEach(key=>{
-      console.log(key, obj[key])
       if (obj[key] == undefined){
         if (Array.isArray(formData[key]))
           obj.attributes[key] = formData[key];
@@ -112,10 +111,11 @@ export class UserInfoService {
   }
 
   async handleSubmit(formData:any){
+    
     let preparedForm = this.prepareFormBody(formData);
 
+    this.userId = this.activatedRoute.snapshot.queryParams['id'];
     delete preparedForm.enabled
-    console.log(preparedForm)
     const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
       method: 'PUT',
       headers: {
@@ -131,9 +131,8 @@ export class UserInfoService {
   }
 
   async manageUserStatus(e: any, newStatus: boolean){
-
+    this.userId = this.activatedRoute.snapshot.queryParams['id'];
     this.unexpandedUserData.enabled = newStatus;
-    console.log(this.unexpandedUserData)
     const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
       method: 'PUT',
       headers: {
@@ -149,6 +148,5 @@ export class UserInfoService {
   }
 
   constructor(private activatedRoute: ActivatedRoute) {
-    this.userId = this.activatedRoute.snapshot.queryParams['id'];
   }
 }
