@@ -20,7 +20,7 @@ export class RicercaUtenzeComponent {
     {
       id: "cname",
       label: "Nome",
-      TYPE: "text",
+      type: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "ciao",
@@ -28,7 +28,7 @@ export class RicercaUtenzeComponent {
     },{
       id: "ccognome",
       label: "Cognome",
-      TYPE: "text",
+      type: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "prova",
@@ -39,7 +39,7 @@ export class RicercaUtenzeComponent {
     {
       id: "ccodicefiscale",
       label: "Codice Fiscale",
-      TYPE: "text",
+      type: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "",
@@ -50,7 +50,7 @@ export class RicercaUtenzeComponent {
     {
       id: "cemail",
       label: "Email",
-      TYPE: "text",
+      type: "text",
       required: true,
       controls: ["^.{3,15}$"],
       value: "",

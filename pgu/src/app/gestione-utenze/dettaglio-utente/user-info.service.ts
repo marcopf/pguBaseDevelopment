@@ -52,7 +52,7 @@ export class UserInfoService {
   }
 
   async getUserData(id: string){
-    const res = await fetch(`${URL.dettaglio_utenze.GET_USER_DATA}${id}/`, {
+    const res = await fetch(`${URL.dettaglio_utenze.GET_USER_DATA}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
@@ -61,7 +61,8 @@ export class UserInfoService {
     let exitStatus = true;
 
     try {
-      this.userData = this.keyExpander(await res.json(), 'attributes');
+      let values = [await res.json()];
+      this.userData = this.keyExpander(values, 'attributes')[0];
     } catch (error) {
       console.log(error)
       exitStatus = false;

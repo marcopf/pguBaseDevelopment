@@ -7,7 +7,7 @@ export type FormControlObjectType = {
 export type DynamicFormType = {
     id: string,
     label: string,
-    TYPE: string,
+    type: string,
     required: boolean
     options?: string [] | undefined,
     controls?: string[],

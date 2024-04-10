@@ -13,7 +13,7 @@ function createControl(element: DynamicFormType): FormControl{
       validators.push(Validators.pattern(regex))
     })
   }
-  if (element['TYPE'] == 'checkbox' || element['TYPE'] == 'toggle')
+  if (element.type == 'checkbox' || element.type == 'toggle')
     return (new FormControl({value: element.value == 'true' ? true : false, disabled: element.disabled}, validators));
   return (new FormControl({value: element.value, disabled: element.disabled}, validators));
 }

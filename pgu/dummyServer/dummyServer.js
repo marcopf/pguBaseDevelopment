@@ -698,12 +698,30 @@ const form = [
 ];
 
 let values = {
-  cname: 'Marco',
-  csurname: 'paternosto',
-  fiscalCode: 'PTRMRC98L07H501S',
-  username: 'mpaterno',
-  email: 'test@test.it',
-  toggle: 'true'
+  "id": "7febf772-17be-43e9-8522-e9ff0d21cb2f",
+  "createdTimestamp": 1712132020851,
+  "username": "alessandro",
+  "enabled": true,
+  "totp": false,
+  "emailVerified": true,
+  "firstName": "Alessandro",
+  "lastName": "Di Stefano",
+  "email": "alessandro@leonardo.com",
+  "attributes": {
+      "sede": [
+          "milano"
+      ]
+  },
+  "disableableCredentialTypes": [],
+  "requiredActions": [],
+  "notBefore": 0,
+  "access": {
+      "manageGroupMembership": true,
+      "view": true,
+      "mapRoles": true,
+      "impersonate": true,
+      "manage": true
+  }
 }
 
 app.use(cors());
@@ -727,7 +745,7 @@ app.get('/notAuth', (req, res)=>{
   res.status(401);
   res.send("hey")
 })
-app.get('/values', (req, res)=>{
+app.get('/user', (req, res)=>{
   res.status(200);
   res.json(values)
 })
@@ -772,7 +790,7 @@ app.post("/form", (req, res)=>{
   //}, 2000);
   console.log(req.body)
 })
-app.get("/form", (req, res)=>{
+app.get("/users/profile/metadata/", (req, res)=>{
   setTimeout(() => {
     res.json(form);
 
