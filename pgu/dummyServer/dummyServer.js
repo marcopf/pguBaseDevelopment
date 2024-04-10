@@ -673,10 +673,10 @@ const form = [
     disabled: false
   },
   {
-    id: "toggle",
-    label: "Numero",
+    id: "test",
+    label: "test",
     validator:{
-      type: "TOGGLE",
+      type: "TEXT",
       controls: []
     },
     required: true,
@@ -684,10 +684,10 @@ const form = [
     disabled: false
   },
   {
-    id: "test23",
-    label: "prova",
+    id: "sede",
+    label: "Sede",
     validator:{
-      type: "SELECT",
+      type: "TEXT",
       controls: [],
     },
     options: ['test1', 'test2'],
@@ -708,9 +708,13 @@ let values = {
   "firstName": "Alessandro",
   "lastName": "Di Stefano",
   "email": "alessandro@leonardo.com",
-  "attributes": {
+  "attributes":
+  {
       "sede": [
           "milano"
+      ],
+      "test": [
+          "ciao"
       ]
   },
   "disableableCredentialTypes": [],
@@ -729,10 +733,10 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/table", (req, res)=>{
-  setTimeout(() => {
+  // setTimeout(() => {
     res.json(formExample);
 
-  }, 2000);
+  // }, 2000);
 })
 
 app.get('/chieti', (req, res)=>{
@@ -792,10 +796,10 @@ app.post("/form", (req, res)=>{
   console.log(req.body)
 })
 app.get("/users/profile/metadata/", (req, res)=>{
-  setTimeout(() => {
+  // setTimeout(() => {
     res.json(form);
 
-  }, 2000);
+  // }, 2000);
 })
 
 app.listen(port, () => {

@@ -92,11 +92,15 @@ export class UserInfoService {
     console.log(this.formMetaData)
   }
 
-  prepareFormBody(formData:any){
+  prepareFormBody(formData: any){
     let keys = Object.keys(formData);
     keys.forEach(key=>{
+      console.log(key, this.unexpandedUserData[key])
       if (this.unexpandedUserData[key] == undefined){
-        this.unexpandedUserData.attributes[key] = [formData[key]];
+        if (Array.isArray(formData[key]))
+          this.unexpandedUserData.attributes[key] = formData[key];
+        else
+          this.unexpandedUserData.attributes[key] = [formData[key]];
       }
       else{
         this.unexpandedUserData[key] = formData[key];
@@ -107,6 +111,7 @@ export class UserInfoService {
   async handleSubmit(formData:any){
     this.prepareFormBody(formData);
 
+    console.log(this.unexpandedUserData)
     const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
       method: 'PUT',
       headers: {
