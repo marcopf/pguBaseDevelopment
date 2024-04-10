@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import URL from '../../../assets/Url/url';
 import { GenericObject } from '../../Interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ import { GenericObject } from '../../Interfaces';
 export class UserInfoService {
   formMetaData: any[] = [];
   userData: any = {};
+  unexpandedUserData: any = {};
   contentLoaded: boolean = false;
+  userId: string = '';
 
   keyExpander(dataList: GenericObject[], keyToExpand: string): GenericObject[]{
     if (dataList[0][keyToExpand] === undefined){
@@ -61,9 +64,9 @@ export class UserInfoService {
     let exitStatus = true;
 
     try {
-      let values = [await res.json()];
-      console.log(values)
-      this.userData = this.keyExpander(values, 'attributes')[0];
+      let values = await res.json();
+      this.unexpandedUserData = Object.assign({}, values);
+      this.userData = this.keyExpander([values], 'attributes')[0];
     } catch (error) {
       console.log(error)
       exitStatus = false;
@@ -88,5 +91,35 @@ export class UserInfoService {
     })
     console.log(this.formMetaData)
   }
-  constructor() { }
+
+  prepareFormBody(formData:any){
+    let keys = Object.keys(formData);
+    keys.forEach(key=>{
+      if (this.unexpandedUserData[key] == undefined){
+        this.unexpandedUserData.attributes[key] = [formData[key]];
+      }
+      else{
+        this.unexpandedUserData[key] = formData[key];
+      }
+    })
+  }
+
+  async handleSubmit(formData:any){
+    this.prepareFormBody(formData);
+
+    const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
+      method: 'PUT',
+      headers: {
+        Authorizaion: `Bearer ${sessionStorage.getItem('access_token')}`
+      }
+    });
+    if (res.ok)
+      console.log('ok :)')
+    else 
+      console.log('not ok :(')
+
+  }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.userId = this.activatedRoute.snapshot.queryParams['id'];
+  }
 }

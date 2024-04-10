@@ -618,11 +618,11 @@ let formExample4 =  {
 
 const form = [
   {
-    id: "cname",
+    id: "firstName",
     label: "Nome",
     validator:{
       type: "TEXT",
-      controls: ["^.{3,15}$"],
+      controls: []
     },
     required: true,
     value: "test",
@@ -633,7 +633,7 @@ const form = [
     label: "Cognome",
     validator:{
       type: "TEXT",
-      controls: ["^.{3,15}$"],
+      controls: []
     },
     required: false,
     value: "",
@@ -644,7 +644,7 @@ const form = [
     label: "Codice Fiscale",
     validator:{
       type: "TEXT",
-      controls: ["^.{3,15}$"],
+      controls: []
     },
     required: false,
     value: "",
@@ -655,7 +655,7 @@ const form = [
     label: "Username",
     validator:{
       type: "TEXT",
-      controls: ["^.{3,15}$"],
+      controls: []
     },
     required: false,
     value: "",
@@ -666,7 +666,7 @@ const form = [
     label: "E-mail",
     validator:{
       type: "TEXT",
-      controls: ["^.{3,15}$"],
+      controls: []
     },
     required: true,
     value: "",
@@ -677,7 +677,7 @@ const form = [
     label: "Numero",
     validator:{
       type: "TOGGLE",
-      controls: ["^.{3,15}$"],
+      controls: []
     },
     required: true,
     value: "",

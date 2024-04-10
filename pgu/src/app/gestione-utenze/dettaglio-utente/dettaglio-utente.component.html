@@ -9,7 +9,7 @@
               </ul>
               <div class="tab-content" id="card-simpleContent">
                 <div class="tab-pane p-4 fade show active" id="card-simpletab1" role="tabpanel" aria-labelledby="card-simple1-tab">
-                    <app-dynamic-form [contentLoaded]="userInfoService.contentLoaded" [basicValue]="userInfoService.formMetaData" [formTitle]="'Modifica i Tuoi Dati'" (formData)="handleSubmit($event)" [formBtn]="'MODIFICA DATI'"></app-dynamic-form>
+                    <app-dynamic-form [contentLoaded]="userInfoService.contentLoaded" [basicValue]="userInfoService.formMetaData" [formTitle]="'Modifica i Tuoi Dati'" (formData)="userInfoService.handleSubmit($event)" [formBtn]="'MODIFICA DATI'"></app-dynamic-form>
 
                 </div>
                 <div class="tab-pane p-4 fade" id="card-simpletab2" role="tabpanel" aria-labelledby="card-simple2-tab">Contenuto 2</div>

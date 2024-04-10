@@ -16,10 +16,6 @@ export class DettaglioUtenteComponent implements OnInit{
   userForm: DynamicFormComponent[] = [];
   contentLoaded: boolean = false;
 
-  handleSubmit(e:any){
-    console.log(e)
-  }
-
   ngOnInit(): void {
     let idFromParams = this.activatedRoute.snapshot.queryParams['id'];
     console.log()

@@ -1,6 +1,6 @@
 let protocol = 'http';
 let domain = 'localhost';
-let port = '3000';
+let port = '4242';
 
 const URL = {
     gestione_utenti:{
@@ -8,7 +8,8 @@ const URL = {
     },
     dettaglio_utenze:{
         GET_FORM_METADATA: `${protocol}://${domain}:${port}/users/profile/metadata/`,
-        GET_USER_DATA: `${protocol}://${domain}:${port}/user/`
+        GET_USER_DATA: `${protocol}://${domain}:${port}/users/`,
+        PUT_UPDATED_USER_DATA: `${protocol}://${domain}:${port}/users/`,
     }
 }
 
