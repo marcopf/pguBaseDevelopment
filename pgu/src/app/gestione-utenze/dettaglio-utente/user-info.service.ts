@@ -52,7 +52,7 @@ export class UserInfoService {
   }
 
   async getUserData(id: string){
-    const res = await fetch(`${URL.dettaglio_utenze.GET_USER_DATA}`, {
+    const res = await fetch(`${URL.dettaglio_utenze.GET_USER_DATA}${id}/`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
@@ -80,7 +80,7 @@ export class UserInfoService {
     this.contentLoaded = true;
     Object.keys(this.userData).forEach(key=>{
       this.formMetaData.forEach((element: any) => {
-        if (element.id == key){
+        if (element.id == key && this.userData[key] != undefined){
           element.value = this.userData[key];
         }
       });
