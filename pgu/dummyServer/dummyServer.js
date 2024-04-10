@@ -621,7 +621,7 @@ const form = [
     id: "cname",
     label: "Nome",
     validator:{
-      TYPE: "text",
+      type: "TEXT",
       controls: ["^.{3,15}$"],
     },
     required: true,
@@ -632,7 +632,7 @@ const form = [
     id: "csurname",
     label: "Cognome",
     validator:{
-      TYPE: "text",
+      type: "TEXT",
       controls: ["^.{3,15}$"],
     },
     required: false,
@@ -643,7 +643,7 @@ const form = [
     id: "fiscalCode",
     label: "Codice Fiscale",
     validator:{
-      TYPE: "text",
+      type: "TEXT",
       controls: ["^.{3,15}$"],
     },
     required: false,
@@ -654,7 +654,7 @@ const form = [
     id: "username",
     label: "Username",
     validator:{
-      TYPE: "text",
+      type: "TEXT",
       controls: ["^.{3,15}$"],
     },
     required: false,
@@ -665,7 +665,7 @@ const form = [
     id: "email",
     label: "E-mail",
     validator:{
-      TYPE: "text",
+      type: "TEXT",
       controls: ["^.{3,15}$"],
     },
     required: true,
@@ -676,7 +676,7 @@ const form = [
     id: "toggle",
     label: "Numero",
     validator:{
-      TYPE: "toggle",
+      type: "TOGGLE",
       controls: ["^.{3,15}$"],
     },
     required: true,
@@ -684,14 +684,15 @@ const form = [
     disabled: false
   },
   {
-    id: "togsfvfvbgle",
-    label: "Numero",
+    id: "test23",
+    label: "prova",
     validator:{
-      TYPE: "number",
-      controls: ["^.{3,15}$"],
+      type: "SELECT",
+      controls: [],
     },
+    options: ['test1', 'test2'],
     required: true,
-    value: "3",
+    value: "",
     disabled: false
   },
 
@@ -745,7 +746,7 @@ app.get('/notAuth', (req, res)=>{
   res.status(401);
   res.send("hey")
 })
-app.get('/user', (req, res)=>{
+app.get('/users/:id', (req, res)=>{
   res.status(200);
   res.json(values)
 })

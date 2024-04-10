@@ -1,0 +1,4 @@
+*/node_modules
+#custom
+*/src/assets/Url/url.ts
+*/src/app/oauth2.config.ts

@@ -62,6 +62,7 @@ export class UserInfoService {
 
     try {
       let values = [await res.json()];
+      console.log(values)
       this.userData = this.keyExpander(values, 'attributes')[0];
     } catch (error) {
       console.log(error)
