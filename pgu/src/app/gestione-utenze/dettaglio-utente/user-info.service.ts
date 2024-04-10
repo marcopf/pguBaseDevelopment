@@ -110,6 +110,7 @@ export class UserInfoService {
     const res = await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`, {
       method: 'PUT',
       headers: {
+        'Content-Type': 'application/json',
         Authorizaion: `Bearer ${sessionStorage.getItem('access_token')}`
       },
       body: JSON.stringify(this.unexpandedUserData)
