@@ -1,6 +1,6 @@
 let protocol = 'http';
 let domain = 'localhost';
-let port = '3000';
+let port = '4242';
 
 const URL = {
     gestione_utenti:{
