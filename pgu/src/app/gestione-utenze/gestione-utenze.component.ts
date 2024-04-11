@@ -84,6 +84,7 @@ export class GestioneUtenzeComponent {
 		this.isLoading = true;    
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
+		this.paginationInfo.page = 0;
 
 		if (this.savedQueryParams != undefined){
 			this.paginationInfo.size = pageSize;

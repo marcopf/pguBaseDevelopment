@@ -25,6 +25,7 @@ export class FormTextComponent implements OnChanges {
       e.target.classList.remove("is-invalid")
       e.target.classList.add("is-valid")
     }
+    // this.formC.setValue(temp);
   }
 
   ngOnChanges(): void {
