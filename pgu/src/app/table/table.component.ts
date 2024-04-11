@@ -4,8 +4,6 @@ import { EventEmitter } from '@angular/core';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { GenericObject, TableConfig } from '../Interfaces';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-
 
 @Component({
 	selector: 'app-table',
@@ -26,43 +24,36 @@ export class TableComponent implements OnInit{
 		text: null,
 		hasCheckBox: false
 	}
-	menustate: 'present' | 'notPresent' = 'present';
 
 	/**
+	 * La funzione va dapprima a recuperare l'id dell'utente selezioneato per poi
+	 * ottenere dall'oggetto contenente tutti gli utenti ottenuti quello che e' stato appena
+	 * targettato.
+	 * in seguito viene controllato se l'elemento e' gia presente nell'array, in caso
+	 * negativo lo aggiungo nella lista di utenti selezionati, altrimenti cerco l'utente
+	 * nella lista degli utenti selezionati e lo rimuovo.
 	 * 
-	 * @param e 
+	 * infine viene emesso un segnale contenente tutti gli utenti selezionati.
+	 * 
+	 * @param echeckBox Rappresenta il bersaglio che e' stato cliccato
 	 */
-	updateSelected(e: any){
-		let selectedLine = e.target;
-
-		//il format id aspettato e' del tipo checkbox-idRelativo con lo split[1] seleziono solo la parte relativa all'id
+	updateSelected(checkBox: any){
+		let selectedLine = checkBox.target;
 		let selectedLineId = selectedLine.getAttribute('id').split("-")[1];
-
-		//tramite il metodo filter selezione dall'array di partenza l'elemento richiesto
 		let selectedObj = this.tableService.objs.filter(el=> el['id'] == selectedLineId)[0];
 
-		//controllo se l'elemento selezionato e' gia presente nell'array che verra' emesso
 		if (this.selectedLines.filter(el=>el['id'] == selectedObj['id']).length == 0){
-
-			//aggiungo l'oggetto all'array che verra' poi emesso
 			this.selectedLines.push(selectedObj);
 		}else{
-
-			//creo la variabile che salvera' la posizione dell'elemento selezionato all'interno dell'array
 			let objPosition = 0;
 
-			//cerco l'elemento
 			this.selectedLines.forEach((el, i)=>{
 				if (el['id'] == selectedObj['id']){
 					objPosition = i;
 				}
 			})
-
-			//elimino l'elemento trovato dall'array
 			this.selectedLines.splice(objPosition, 1)
 		}
-
-		//emetto la lista aggiornata al componente padre
 		this.lineChanges.emit(this.selectedLines);
 	}
 

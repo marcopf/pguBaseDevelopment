@@ -4,7 +4,8 @@ import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(), provideOAuthClient()]
+  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(), provideOAuthClient(), provideAnimations()]
 };
