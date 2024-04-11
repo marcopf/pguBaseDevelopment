@@ -2,7 +2,7 @@ import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authCodeFlowConfig: AuthConfig = {
   // Url of the Identity Provider
-  issuer: 'http://localhost:8080/realms/master',
+  issuer: 'http://localhost:8080/realms/Demo',
 
   // URL of the SPA to redirect the user to after login
   redirectUri: 'http://localhost:4200',
@@ -15,7 +15,6 @@ export const authCodeFlowConfig: AuthConfig = {
   // is a sign that the auth server is not configured with SPAs in mind
   // and it might not enforce further best practices vital for security
   // such applications.
-  dummyClientSecret: 'WhosDT7DybVioByf7BvrERQRDpP3Fa7t',
 
   responseType: 'code',
 
