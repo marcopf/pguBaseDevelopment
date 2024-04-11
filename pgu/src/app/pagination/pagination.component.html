@@ -1,64 +1,64 @@
-@if (isTableLoaded){
-	<nav class="pagination-wrapper justify-content-center pagination-total" aria-label="Navigazione centrata">
-		<ul class="pagination">
-			@if (currentPage != 0){
-				<li class="page-item">
-					<button class="page-link" tabindex="-1" aria-hidden="true" id="pageNumber-{{currentPage - 1}}" (click)="emitSelectedPage($event)">
-						<svg class="icon icon-primary"><use href="/assets/svg/sprites.svg#it-chevron-left"></use></svg>
+@if	(isTableLoaded){
+	<nav class="pagination-wrapper justify-content-center pagination-total"	aria-label="Navigazione	centrata">
+		<ul	class="pagination">
+			@if	(currentPage != 0){
+				<li	class="page-item">
+					<button	class="page-link" tabindex="-1"	aria-hidden="true" id="pageNumber-{{currentPage	- 1}}" (click)="emitSelectedPage($event)">
+						<svg class="icon icon-primary"><use	href="/assets/svg/sprites.svg#it-chevron-left"></use></svg>
 						<span class="visually-hidden">Pagina precedente</span>
 					</button>
 				</li>
 			}
-			@for(number of totalElementsArray; track number){
-				@if (number !== currentPage && getAbsValue(currentPage - number) <= padding ){
-					<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">{{(number + 1)}}</button></li>
+			@for(number	of totalElementsArray; track number){
+				@if	(number	!==	currentPage	&& getAbsValue(currentPage - number) <= padding	){
+					<li	class="page-item"><button class="page-link"	id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">{{(number +	1)}}</button></li>
 				}
-				@if (number !== currentPage && getAbsValue(currentPage - number) == padding + 1){
-					@if (number < currentPage){
-						<li class="page-item"><button class="page-link" id="pageNumber-0" (click)="emitSelectedPage($event)">1</button></li>
-						@if (number != 0){
-							<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
+				@if	(number	!==	currentPage	&& getAbsValue(currentPage - number) == padding	+ 1){
+					@if	(number	< currentPage){
+						<li	class="page-item"><button class="page-link"	id="pageNumber-0" (click)="emitSelectedPage($event)">1</button></li>
+						@if	(number	!= 0){
+							<li	class="page-item"><button class="page-link"	id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
 						}
 					}
-					@if (number > currentPage) {
-						@if (number != numberOfPages - 1){
-							<li class="page-item"><button class="page-link" id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
+					@if	(number	> currentPage) {
+						@if	(number	!= numberOfPages - 1){
+							<li	class="page-item"><button class="page-link"	id="pageNumber-{{(number)}}" (click)="emitSelectedPage($event)">...</button></li>
 						}
-						<li class="page-item"><button class="page-link" id="pageNumber-{{(numberOfPages - 1)}}" (click)="emitSelectedPage($event)">{{(numberOfPages)}}</button></li>
+						<li	class="page-item"><button class="page-link"	id="pageNumber-{{(numberOfPages	- 1)}}"	(click)="emitSelectedPage($event)">{{(numberOfPages)}}</button></li>
 					}
 				}
-				@if (number == currentPage ){
-					<li class="page-item">
+				@if	(number	== currentPage ){
+					<li	class="page-item">
 						<a class="page-link" href="#" aria-current="page">
-							<span class="d-inline-block d-sm-none">Pagina </span>{{(currentPage + 1)}}
+							<span class="d-inline-block	d-sm-none">Pagina </span>{{(currentPage	+ 1)}}
 						</a>
 					</li>
 				}
 			}
-			@if (currentPage != numberOfPages - 1){
-				<li class="page-item">
-					<button class="page-link" id="pageNumber-{{currentPage + 1}}" (click)="emitSelectedPage($event)">
+			@if	(currentPage != numberOfPages -	1){
+				<li	class="page-item">
+					<button	class="page-link" id="pageNumber-{{currentPage + 1}}" (click)="emitSelectedPage($event)">
 						<span class="visually-hidden">Pagina successiva</span>
-						<svg class="icon icon-primary"><use href="/assets/svg/sprites.svg#it-chevron-right"></use></svg>
+						<svg class="icon icon-primary"><use	href="/assets/svg/sprites.svg#it-chevron-right"></use></svg>
 					</button>
 				</li>	
 			}
 		</ul>
-		<div class="container-fluid d-flex justify-content-center">
-			<p class="m-0 d-flex align-items-center">{{((currentPage + 1) - 1) * elementsPerPage}}-{{(((currentPage + 1) - 1) * elementsPerPage) + retrievedElements}} di {{totalElements}} elementi</p>
+		<div class="container-fluid	d-flex justify-content-center">
+			<p class="m-0 d-flex align-items-center">{{((currentPage + 1) -	1) * elementsPerPage}}-{{(((currentPage	+ 1) - 1) *	elementsPerPage) + retrievedElements}} di {{totalElements}}	elementi</p>
 			<div class="dropdown">
-				<button class="btn btn-dropdown dropdown-toggle" type="button" id="pagerChanger" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Salta alla pagina">
+				<button	class="btn btn-dropdown	dropdown-toggle" type="button" id="pagerChanger" data-bs-toggle="dropdown" aria-haspopup="true"	aria-expanded="false" aria-label="Salta	alla pagina">
 					{{elementsPerPage}}/pagina
-					<svg class="icon icon-primary icon-sm"><use href="assets/svg/sprites.svg#it-expand"></use></svg>
+					<svg class="icon icon-primary icon-sm"><use	href="assets/svg/sprites.svg#it-expand"></use></svg>
 				</button>
 				<div class="dropdown-menu" aria-labelledby="pagerChanger">
 					<div class="link-list-wrapper">
-						<ul class="link-list">
-							<li><button class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-10">10/pagina</span></button></li>
-							<li><button class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-20">20/pagina</span></button></li>
-							<li><button class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-30">30/pagina</span></button></li>
-							<li><button class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-40">40/pagina</span></button></li>
-							<li><button class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-50">50/pagina</span></button></li>
+						<ul	class="link-list">
+							<li><button	class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-10">10/pagina</span></button></li>
+							<li><button	class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-20">20/pagina</span></button></li>
+							<li><button	class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-30">30/pagina</span></button></li>
+							<li><button	class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-40">40/pagina</span></button></li>
+							<li><button	class="dropdown-item list-item"><span (click)="switchElementPerPage($event)" id="elementPerPage-50">50/pagina</span></button></li>
 						</ul>
 					</div>
 				</div>

@@ -12,7 +12,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
   standalone: true,
   imports: [RouterOutlet, NavbarComponent, FooterComponent, ScrollerComponent, CookieRequestComponent, BottomNavbarComponent, BreadcrumbsComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'pgu';

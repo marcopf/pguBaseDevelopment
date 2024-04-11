@@ -58,10 +58,24 @@ export class RicercaUtenzeComponent {
 		}
 	];
 
-	catchData(e:any){
-		this.onFormDataAvailable.emit(e);
+	/**
+	 * Funzione che semplicemente fa da tramite tra in componente <dynamicFormComponent>
+	 * e il genitore di questo componente, quando l'utente clicca invio l'evento generato
+	 * nel form passa attraverso questa funzione che ne emette uno a sua volta
+	 * 
+	 * @param formData - Rappresenta il form con i dati inseriti al suo interno
+	 */
+	catchData(formData:any){
+		this.onFormDataAvailable.emit(formData);
 	}
-
+	
+	/**
+	 * Funzione che semplicemente fa da tramite tra in componente <dynamicFormComponent>
+	 * e il genitore di questo componente, quando l'utente clicca invio l'evento generato
+	 * nel form passa attraverso questa funzione che ne emette uno a sua volta
+	 * 
+	 * @param e - Rappresenta un booleano che avverte la pressione di un pulsante
+	 */
 	handleSubmit(e: any){
 		this.onSearchButtonPressed.emit(true);
 	}

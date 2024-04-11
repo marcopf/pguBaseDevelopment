@@ -40,7 +40,7 @@ export class GestioneUtenzeComponent {
   	  *  @param params         - rappresenta l'oggetto che contiene i query params relativi alla ricerca
   	  *  @param paginationInfo - rappresenta l'oggetto che contiene i query params relativi alla paginazione
   	  */
-  	getUsersInfo(params: any, paginationInfo?: any){
+  	getUserList(params: any, paginationInfo: Pagination){
 		this.searchUserService.searchUser(params, paginationInfo).then(response=>{
 			this.fetchedData = response.content as GenericObject[];
 			paginationInfo.totalElements = Number(response.totalElements);
@@ -62,14 +62,14 @@ export class GestioneUtenzeComponent {
 	  * 
 	  * @param requestedPageNumber - rappresenta la pagina che l'utente ha selezionato nel componente <app-pagination>
 	  */
-  	makePaginationRequest(requestedPageNumber: any){
+  	changePageNumber(requestedPageNumber: number){
 		this.isLoading = true;    
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
 
 		if (this.savedQueryParams != undefined){
 			this.paginationInfo.page = requestedPageNumber;
-			this.getUsersInfo(this.savedQueryParams, this.paginationInfo);
+			this.getUserList(this.savedQueryParams, this.paginationInfo);
 		}
   	}
 
@@ -88,7 +88,7 @@ export class GestioneUtenzeComponent {
 
 		if (this.savedQueryParams != undefined){
 			this.paginationInfo.size = pageSize;
-			this.getUsersInfo(this.savedQueryParams, this.paginationInfo);
+			this.getUserList(this.savedQueryParams, this.paginationInfo);
 		}
 	}
 
@@ -100,10 +100,10 @@ export class GestioneUtenzeComponent {
   	  * 
   	  *  @param searchParams - rappresenta l'oggetto che contiene i query params relativi alla ricerca
   	  */
-	handleData(searchParams: any){
+	handleIncomingFormData(searchParams: any){
 		this.isLoading = false;
 		this.savedQueryParams = searchParams;
-		this.getUsersInfo(this.savedQueryParams, this.paginationInfo);
+		this.getUserList(this.savedQueryParams, this.paginationInfo);
 	}
 
   	/**
@@ -112,7 +112,7 @@ export class GestioneUtenzeComponent {
   	  * 
   	  *  @param _ - dummy params
   	  */
-  	handleSubmit(_: any){
+  	handleSearchUserBtnPress(_: any){
 		this.isLoading = true;    
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
