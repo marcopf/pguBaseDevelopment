@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TableComponent	} from '../table/table.component';
 import { DynamicFormComponent }	from '../dynamicForm/dynamic-form.component';
 import { RicercaUtenzeComponent	} from './ricerca-utenze/ricerca-utenze.component';
@@ -16,12 +16,12 @@ import { ViewportScroller } from '@angular/common';
 	templateUrl: './gestione-utenze.component.html',
 	styleUrl:	'./gestione-utenze.component.scss',
 })
-export class GestioneUtenzeComponent{
+export class GestioneUtenzeComponent implements OnInit{
 	@ViewChild('table', {static: false}) test!: ElementRef;
 	fetchedData: GenericObject[] | undefined = undefined;
 	isLoading: boolean = false;
 	isTableLoaded: boolean = false;
-	savedQueryParams: any =	undefined;
+	savedQueryParams: any =	{};
 	paginationInfo:	Pagination = {
 		size: 10,
 		page: 0,
@@ -43,19 +43,19 @@ export class GestioneUtenzeComponent{
 	  *  @param	params		   - rappresenta l'oggetto che contiene	i query	params relativi	alla ricerca
 	  *  @param	paginationInfo - rappresenta l'oggetto che contiene	i query	params relativi	alla paginazione
 	  */
-	getUserList(params:	any, paginationInfo: Pagination){
-		this.searchUserService.searchUser(params, paginationInfo).then(response=>{
-			this.fetchedData = response.content	as GenericObject[];
-			paginationInfo.totalElements = Number(response.totalElements);
-			paginationInfo.numberOfPages = Number(response.totalPages);
-			paginationInfo.page	= Number(response.number);
-			paginationInfo.size	= Number(response.size);
-			paginationInfo.retrievedElements = response.numberOfElements;
-			if (this.fetchedData.length	> 0){
-				this.isTableLoaded = true;
-			}
-			this.isLoading = false;
-		})
+	async getUserList(params:	any, paginationInfo: Pagination){
+		const response = await this.searchUserService.searchUser(params, paginationInfo);
+
+		this.fetchedData = response.content	as GenericObject[];
+		paginationInfo.totalElements = Number(response.totalElements);
+		paginationInfo.numberOfPages = Number(response.totalPages);
+		paginationInfo.page	= Number(response.number);
+		paginationInfo.size	= Number(response.size);
+		paginationInfo.retrievedElements = response.numberOfElements;
+		if (this.fetchedData.length	> 0){
+			this.isTableLoaded = true;
+		}
+		this.isLoading = false;
 	}
 
 	/**
@@ -70,10 +70,8 @@ export class GestioneUtenzeComponent{
 		this.fetchedData = undefined;
 		this.isTableLoaded = false;
 
-		if (this.savedQueryParams != undefined){
-			this.paginationInfo.page = requestedPageNumber;
-			this.getUserList(this.savedQueryParams,	this.paginationInfo);
-		}
+		this.paginationInfo.page = requestedPageNumber;
+		this.getUserList(this.savedQueryParams,	this.paginationInfo);
 	}
 
 	/**
@@ -89,10 +87,8 @@ export class GestioneUtenzeComponent{
 		this.isTableLoaded = false;
 		this.paginationInfo.page = 0;
 
-		if (this.savedQueryParams != undefined){
-			this.paginationInfo.size = pageSize;
-			this.getUserList(this.savedQueryParams,	this.paginationInfo);
-		}
+		this.paginationInfo.size = pageSize;
+		this.getUserList(this.savedQueryParams,	this.paginationInfo);
 	}
 
 	/**
@@ -107,7 +103,11 @@ export class GestioneUtenzeComponent{
 		this.isLoading = false;
 
 		this.savedQueryParams =	searchParams;
-		this.getUserList(this.savedQueryParams,	this.paginationInfo);
+		this.getUserList(this.savedQueryParams,	this.paginationInfo).then(el=>{
+			if (this.fetchedData!.length > 0)
+				this.viewportScroller.scrollToPosition([0, this.test!.nativeElement.getBoundingClientRect().top - 50])
+
+		});
 	}
 
 	/**
@@ -122,10 +122,12 @@ export class GestioneUtenzeComponent{
 		this.isTableLoaded = false;
 		this.paginationInfo.page = 0;
 		this.paginationInfo.size = 10;
-		this.viewportScroller.scrollToPosition([0, this.test!.nativeElement.getBoundingClientRect().top - 50])
 	}
 
-  constructor(private searchUserService: RetrieveUserDataService, private viewportScroller: ViewportScroller){
 
-  }
+	ngOnInit(): void {
+		this.getUserList({},	this.paginationInfo);
+	}
+	constructor(private searchUserService: RetrieveUserDataService, private viewportScroller: ViewportScroller){	
+	}
 }

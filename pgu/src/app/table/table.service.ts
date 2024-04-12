@@ -21,7 +21,7 @@ export class TableService {
 	* @returns L'oggetto espanso
 	*/
 	keyExpander(dataList: GenericObject[], keyToExpand: string): GenericObject[]{
-		if (dataList[0][keyToExpand] === undefined){
+		if (dataList.length == 0 || dataList[0][keyToExpand] === undefined){
 			return [];
 		}
 		dataList.forEach((obj)=>{

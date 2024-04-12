@@ -23,7 +23,10 @@
 					</app-pagination>
 					
 					@if (!isTableLoaded){
-						<h1 class="text-danger">No data Found !</h1>
+						<div class="callout callout-highlight danger">
+							<div class="callout-title"><svg class="icon"><use href="/assets/svg/sprites.svg#it-close-circle"></use></svg>Nessun Utente Trovato</div>
+							<p> <strong> Spiacenti, la ricerca non ha prodotto risultati. </strong><br>Nessun utente corrisponde ai criteri specificati.</p>
+						</div>
 					}
 				}
 			</div>	
