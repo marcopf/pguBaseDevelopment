@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { DynamicFormComponent } from '../../dynamicForm/dynamic-form.component';
 import { UserInfoService } from './user-info.service';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { NavigationEnd, Router } from '@angular/router';
+import {ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -55,6 +57,6 @@ export class DettaglioUtenteComponent implements OnInit, OnDestroy{
 		this.userInfoService.weHaveResponse = null;
 	}
 
-	constructor(protected userInfoService: UserInfoService){
+	constructor(protected userInfoService: UserInfoService, protected router: Router, private viewportScroller: ViewportScroller){
 	}
 }

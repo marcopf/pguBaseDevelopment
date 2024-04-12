@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import URL from '../../assets/Url/url';
 import { GenericObject, Pagination } from '../Interfaces';
+import { stringify } from 'querystring';
 
 @Injectable({
 	providedIn: 'root'
@@ -23,19 +24,22 @@ export class RetrieveUserDataService {
 	 */
 	prepareQueryParamsString(obj: GenericObject, paginationInfo?: Pagination){
 		let keys = Object.keys(obj);
-		let queryParamsPart = '?';
-
+		let queryParams = '?';
+		let searchParams = keys.length > 0 ? 'q=' : '';
+		let paginationParams = '';
+		
 		keys.forEach((key, index)=>{
-			if (index != 0){
-				queryParamsPart += `&${key}=${obj[key]}`
-			}else{
-				queryParamsPart += `${key}=${obj[key]}`
-			}
+			if (keys.length - 1 == index)
+				searchParams += `${key}:${obj[key]}`
+			else
+				searchParams += `${key}:${obj[key]},`
 		})
 		if (paginationInfo != undefined){
-			queryParamsPart += `&page=${paginationInfo.page}&size=${paginationInfo.size}`
+			paginationParams += `&page=${paginationInfo.page}&size=${paginationInfo.size}`
 		}
-		return queryParamsPart
+		queryParams += searchParams += paginationParams
+		console.log(queryParams )
+		return queryParams
 	}
 
 	/**

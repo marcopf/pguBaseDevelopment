@@ -18,7 +18,7 @@ export class RicercaUtenzeComponent {
 
 	form1: DynamicFormType[] = [
 		{
-			id: "cname",
+			id: "firstName",
 			label: "Nome",
 			type: "TEXT",
 			required: true,
@@ -26,7 +26,7 @@ export class RicercaUtenzeComponent {
 			value: "",
 			disabled: false
 		},{
-			id: "ccognome",
+			id: "lastName",
 			label: "Cognome",
 			type: "TEXT",
 			required: true,

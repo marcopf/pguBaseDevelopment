@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { TableComponent	} from '../table/table.component';
 import { DynamicFormComponent }	from '../dynamicForm/dynamic-form.component';
 import { RicercaUtenzeComponent	} from './ricerca-utenze/ricerca-utenze.component';
@@ -29,6 +29,7 @@ import { animate, state, style,	transition,	trigger	} from '@angular/animations'
 	// ]
 })
 export class GestioneUtenzeComponent {
+	@ViewChild('table', {static: false}) test: ElementRef | null = null;
 	fetchedData: GenericObject[] | undefined = undefined;
 	isLoading: boolean = false;
 	isTableLoaded: boolean = false;
@@ -66,6 +67,7 @@ export class GestioneUtenzeComponent {
 				this.isTableLoaded = true;
 			}
 			this.isLoading = false;
+			console.log(this.test)
 		})
 	}
 
@@ -116,6 +118,7 @@ export class GestioneUtenzeComponent {
 	  */
 	handleIncomingFormData(searchParams: any){
 		this.isLoading = false;
+
 		this.savedQueryParams =	searchParams;
 		this.getUserList(this.savedQueryParams,	this.paginationInfo);
 	}
