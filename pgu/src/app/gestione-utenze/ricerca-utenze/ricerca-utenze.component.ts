@@ -22,7 +22,7 @@ export class RicercaUtenzeComponent {
 			label: "Nome",
 			type: "TEXT",
 			required: false,
-			controls: ["^.{3,15}$"],
+			controls: ["^.{0,255}$"],
 			value: "",
 			disabled: false
 		},{
@@ -30,7 +30,7 @@ export class RicercaUtenzeComponent {
 			label: "Cognome",
 			type: "TEXT",
 			required: false,
-			controls: ["^.{3,15}$"],
+			controls: ["^.{0,255}$"],
 			value: "",
 			disabled: false
 		}
@@ -40,8 +40,8 @@ export class RicercaUtenzeComponent {
 			id: "codiceFiscale",
 			label: "Codice Fiscale",
 			type: "TEXT",
-			required: true,
-			controls: ["^.{3,15}$"],
+			required: false,
+			controls: ["^.{0,255}$"],
 			value: "",
 			disabled: false
 		}
@@ -51,8 +51,8 @@ export class RicercaUtenzeComponent {
 			id: "email",
 			label: "Email",
 			type: "TEXT",
-			required: true,
-			controls: ["^.{3,15}$"],
+			required: false,
+			controls: ["^.{0,255}$"],
 			value: "",
 			disabled: false
 		}

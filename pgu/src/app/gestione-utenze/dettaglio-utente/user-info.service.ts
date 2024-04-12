@@ -14,6 +14,7 @@ export class UserInfoService{
 	contentLoaded: boolean = false;
 	userId:	string = '';
 	weHaveResponse: boolean | string | null = null;
+	errors: GenericObject[] = [];
 
 	/**
 	 * Funzione che scorre tutto l'array passato in input e va ad estrarre 
@@ -123,6 +124,13 @@ export class UserInfoService{
 		})
 		delete obj.enabled
 		delete obj.userAttributesMetadata
+		this.errors.forEach((field: any)=>{
+			let input = document.querySelector('#' + field.field);
+			let inputTooltip = document.querySelector('#' + field.field + '-tooltip');
+
+			input?.classList.remove('is-invalid');
+			inputTooltip!.textContent = '';
+		})
 		return obj
 	}
 
@@ -152,7 +160,8 @@ export class UserInfoService{
 		}
 		else{
 			let jsonRes = await res.json();
-
+			
+			this.errors = jsonRes.errors;
 			jsonRes.errors.forEach((error: any)=>{
 				if (error.errorMessage != undefined && error.field == undefined){
 					this.weHaveResponse = error.errorMessage;
