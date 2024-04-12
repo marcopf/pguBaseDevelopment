@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { TableComponent	} from '../table/table.component';
 import { DynamicFormComponent }	from '../dynamicForm/dynamic-form.component';
 import { RicercaUtenzeComponent	} from './ricerca-utenze/ricerca-utenze.component';
@@ -6,7 +6,7 @@ import { SpinnerComponent }	from '../table/spinner/spinner.component';
 import { PaginationComponent } from	'../pagination/pagination.component';
 import { RetrieveUserDataService } from	'./retrieve-user-data.service';
 import { GenericObject,	Pagination,	TableConfig	} from '../Interfaces';
-import { animate, state, style,	transition,	trigger	} from '@angular/animations';
+import { ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -15,21 +15,9 @@ import { animate, state, style,	transition,	trigger	} from '@angular/animations'
 	imports: [TableComponent,	DynamicFormComponent, RicercaUtenzeComponent, SpinnerComponent,	PaginationComponent],
 	templateUrl: './gestione-utenze.component.html',
 	styleUrl:	'./gestione-utenze.component.scss',
-	// animations: [
-	// 	trigger('inOutAnimation', [
-	// 		transition(':enter',[
-	// 			style({	opacity:	0 }),
-	// 			animate('0.6s ease-out', style({opacity: 1}))
-	// 		]),
-	// 		transition(':leave', [
-	// 			style({	opacity: 1	}),
-	// 			animate('0.6s	ease-in', style({opacity:	0 }))
-	// 		])
-	// 	])
-	// ]
 })
-export class GestioneUtenzeComponent {
-	@ViewChild('table', {static: false}) test: ElementRef | null = null;
+export class GestioneUtenzeComponent{
+	@ViewChild('table', {static: false}) test!: ElementRef;
 	fetchedData: GenericObject[] | undefined = undefined;
 	isLoading: boolean = false;
 	isTableLoaded: boolean = false;
@@ -48,7 +36,7 @@ export class GestioneUtenzeComponent {
 		text: "Dettagli",
 		hasCheckBox: false
 	  }
-
+	
 	/**
 	  *  Effettua la chiamata per ottenere le info relative	alla tabella che mostra	i risultati	della ricerca
 	  * 
@@ -67,7 +55,6 @@ export class GestioneUtenzeComponent {
 				this.isTableLoaded = true;
 			}
 			this.isLoading = false;
-			console.log(this.test)
 		})
 	}
 
@@ -124,7 +111,7 @@ export class GestioneUtenzeComponent {
 	}
 
 	/**
-	  *  Serve lo scopo	di effettuare un "refresh" della tabella ogni volta	che	l'utente preme il
+	  *  Serve lo scopo	di effettuare un "refreclientHeightsh" della tabella ogni volta	che	l'utente preme il
 	  *  pulsante di richerca
 	  * 
 	  *  @param	_ -	dummy params
@@ -135,9 +122,10 @@ export class GestioneUtenzeComponent {
 		this.isTableLoaded = false;
 		this.paginationInfo.page = 0;
 		this.paginationInfo.size = 10;
+		this.viewportScroller.scrollToPosition([0, this.test!.nativeElement.getBoundingClientRect().top - 50])
 	}
 
-  constructor(private searchUserService: RetrieveUserDataService){
+  constructor(private searchUserService: RetrieveUserDataService, private viewportScroller: ViewportScroller){
 
   }
 }

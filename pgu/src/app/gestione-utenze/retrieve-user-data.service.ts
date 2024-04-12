@@ -38,7 +38,6 @@ export class RetrieveUserDataService {
 			paginationParams += `&page=${paginationInfo.page}&size=${paginationInfo.size}`
 		}
 		queryParams += searchParams += paginationParams
-		console.log(queryParams )
 		return queryParams
 	}
 
