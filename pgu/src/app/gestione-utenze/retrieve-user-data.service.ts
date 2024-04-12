@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import URL from '../../assets/Url/url';
 import { GenericObject, Pagination } from '../Interfaces';
 import { stringify } from 'querystring';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { GenericServiceService } from '../generic-service.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -67,6 +69,7 @@ export class RetrieveUserDataService {
 				Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
 			}
 		});
+		this.genericService.checkStatus(res.status);
 		try {
 			jsonRes = await res.json();
 			console.log(jsonRes)
@@ -76,5 +79,5 @@ export class RetrieveUserDataService {
 		return jsonRes;
 	}
 
-	constructor() { }
+	constructor(private genericService:GenericServiceService) { }
 }

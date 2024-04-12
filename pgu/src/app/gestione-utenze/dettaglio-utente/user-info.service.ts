@@ -3,6 +3,7 @@ import URL from	'../../../assets/Url/url';
 import { GenericObject } from '../../Interfaces';
 import { ActivatedRoute	} from '@angular/router';
 import { nextTick } from 'process';
+import { GenericServiceService } from '../../generic-service.service';
 
 @Injectable({
 	providedIn:	'root'
@@ -65,6 +66,7 @@ export class UserInfoService{
 				Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
 			}
 		})
+		this.genericService.checkStatus(res.status);
 		try	{
 			let	values = await res.json();
 			let	formMetadata = Object.assign([], values.userAttributesMetadata);
@@ -155,6 +157,7 @@ export class UserInfoService{
 			},
 			body: JSON.stringify(preparedForm)
 		});
+		this.genericService.checkStatus(res.status);
 		if (res.ok){
 			this.weHaveResponse = true;
 		}
@@ -203,6 +206,7 @@ export class UserInfoService{
 			},
 			body: JSON.stringify(this.unexpandedUserData)
 		});
+		this.genericService.checkStatus(res.status);
 		if (res.ok){
 			this.weHaveResponse = true;
 			setTimeout(() => {
@@ -217,6 +221,6 @@ export class UserInfoService{
 		}
 	}
 
-	constructor(private	activatedRoute:	ActivatedRoute)	{
+	constructor(private	activatedRoute:	ActivatedRoute, private genericService: GenericServiceService)	{
 	}
 }
