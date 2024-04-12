@@ -25,7 +25,7 @@ export class RetrieveUserDataService {
 	prepareQueryParamsString(obj: GenericObject, paginationInfo?: Pagination){
 		let keys = Object.keys(obj);
 		let queryParams = '?';
-		let searchParams = keys.length > 0 ? 'q=' : '';
+		let searchParams = keys.length > 0 ? 'search=' : '';
 		let paginationParams = '';
 		
 		keys.forEach((key, index)=>{
