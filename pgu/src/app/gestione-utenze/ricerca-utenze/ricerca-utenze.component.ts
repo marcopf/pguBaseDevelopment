@@ -37,7 +37,7 @@ export class RicercaUtenzeComponent {
 	];
 	form2: DynamicFormType[] = [
 		{
-			id: "ccodicefiscale",
+			id: "codicefiscale",
 			label: "Codice Fiscale",
 			type: "TEXT",
 			required: true,
@@ -48,7 +48,7 @@ export class RicercaUtenzeComponent {
 	];
 	form3: DynamicFormType[] = [
 		{
-			id: "cemail",
+			id: "email",
 			label: "Email",
 			type: "TEXT",
 			required: true,
