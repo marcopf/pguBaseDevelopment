@@ -21,7 +21,7 @@ export class RicercaUtenzeComponent {
 			id: "firstName",
 			label: "Nome",
 			type: "TEXT",
-			required: true,
+			required: false,
 			controls: ["^.{3,15}$"],
 			value: "",
 			disabled: false
@@ -29,7 +29,7 @@ export class RicercaUtenzeComponent {
 			id: "lastName",
 			label: "Cognome",
 			type: "TEXT",
-			required: true,
+			required: false,
 			controls: ["^.{3,15}$"],
 			value: "",
 			disabled: false

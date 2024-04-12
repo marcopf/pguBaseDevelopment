@@ -17,9 +17,9 @@
 										Informazioni Modificate con <b>Successo</b>.
 									</div>
 								}
-								@else if (userInfoService.weHaveResponse == false){
+								@else{
 									<div [@inOutAnimation] class="alert alert-danger" role="alert">
-										Errore: qualcosa e' andato <b>storto</b>.
+										{{userInfoService.weHaveResponse}}
 									</div>
 								}
 							</div>

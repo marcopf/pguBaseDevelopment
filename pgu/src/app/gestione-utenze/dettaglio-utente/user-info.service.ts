@@ -2,6 +2,7 @@ import { Injectable	} from '@angular/core';
 import URL from	'../../../assets/Url/url';
 import { GenericObject } from '../../Interfaces';
 import { ActivatedRoute	} from '@angular/router';
+import { nextTick } from 'process';
 
 @Injectable({
 	providedIn:	'root'
@@ -12,7 +13,7 @@ export class UserInfoService{
 	unexpandedUserData:	any	= {};
 	contentLoaded: boolean = false;
 	userId:	string = '';
-	weHaveResponse: boolean | null = null;
+	weHaveResponse: boolean | string | null = null;
 
 	/**
 	 * Funzione che scorre tutto l'array passato in input e va ad estrarre 
@@ -112,8 +113,6 @@ export class UserInfoService{
 		
 		keys.forEach(key=>{
 			if (obj[key] == undefined){
-				console.log(key, formData[key])
-
 				if (Array.isArray(formData[key]))
 					obj.attributes[key]	= formData[key]	== undefined ? '' :	formData[key];
 				else
@@ -150,15 +149,24 @@ export class UserInfoService{
 		});
 		if (res.ok){
 			this.weHaveResponse = true;
-			setTimeout(() => {
-				this.weHaveResponse = null;
-			}, 3000);
 		}
 		else{
-			this.weHaveResponse = false;
-			setTimeout(() => {
-				this.weHaveResponse = null;
-			}, 3000);
+			let jsonRes = await res.json();
+
+			jsonRes.errors.forEach((error: any)=>{
+				if (error.errorMessage != undefined && error.field == undefined){
+					this.weHaveResponse = error.errorMessage;
+					return;
+				}
+				let input = document.querySelector('#' + error.field);
+				let inputTooltip = document.querySelector('#' + error.field + '-tooltip');
+
+				this.weHaveResponse = 'Errore: informazioni inserite non valide!'
+				input?.classList.add('is-invalid');
+				input?.classList.remove('is-valid');
+				inputTooltip?.classList.add('text-danger');
+				inputTooltip!.textContent = 'Errore: sono stati inseriti caratteri non validi';
+			})
 		}
 	}
 

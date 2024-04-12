@@ -27,7 +27,7 @@ export class DynamicFormComponent implements OnInit, OnChanges{
 	@Output() dataAsked = new EventEmitter<boolean>;
 	@Input() contentLoaded: boolean = false;
 
-	tag: string = "create-";
+	tag: string = "";
 	addUserForm = new FormGroup({});
 	controlsReference: FormControlObjectType = {};
 	formGroupObj: FormControlObjectType = {};

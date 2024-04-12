@@ -69,6 +69,7 @@ export class RetrieveUserDataService {
 		});
 		try {
 			jsonRes = await res.json();
+			console.log(jsonRes)
 		} catch (error) {
 			console.log(error);
 		}
