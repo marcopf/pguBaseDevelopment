@@ -65,7 +65,7 @@ export class UserInfoService{
 		})
 		try	{
 			let	values = await res.json();
-			let	formMetadata = Object.assign([], values.userProfileMetadata.attributes);
+			let	formMetadata = Object.assign([], values.userAttributesMetadata);
 			let	userData = Object.assign({}, values);
 
 			this.unexpandedUserData	= values;
@@ -88,7 +88,8 @@ export class UserInfoService{
 		this.contentLoaded = true;
 		Object.keys(this.userData).forEach(key=>{
 			this.formMetaData.forEach((element:	any) => {
-				if (element.id == key && this.userData[key]	!= undefined){
+				element['id']  = element.name
+				if (element.id == key && this.userData[key] != undefined){
 					element.value =	this.userData[key];
 				}
 			});
@@ -122,7 +123,7 @@ export class UserInfoService{
 				obj[key] = formData[key] == undefined ?	'' : formData[key];
 		})
 		delete obj.enabled
-		delete obj.userProfileMetadata
+		delete obj.userAttributesMetadata
 		return obj
 	}
 
@@ -175,7 +176,7 @@ export class UserInfoService{
 	async manageUserStatus(e: any, newStatus: boolean){
 		this.userId	= this.activatedRoute.snapshot.queryParams['id'];
 		this.unexpandedUserData.enabled	= newStatus;
-		delete this.unexpandedUserData.userProfileMetadata
+		delete this.unexpandedUserData.userAttributesMetadata
 
 		const res =	await fetch(`${URL.dettaglio_utenze.PUT_UPDATED_USER_DATA}${this.userId}/`,	{
 			method:	'PUT',

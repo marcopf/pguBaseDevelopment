@@ -13,12 +13,12 @@
 						<div class="row">
 							<div class="col-12">
 								@if (userInfoService.weHaveResponse == true){
-									<div class="alert alert-success" role="alert">
+									<div [@inOutAnimation] class="alert alert-success" role="alert">
 										Informazioni Modificate con <b>Successo</b>.
 									</div>
 								}
 								@else if (userInfoService.weHaveResponse == false){
-									<div class="alert alert-danger" role="alert">
+									<div [@inOutAnimation] class="alert alert-danger" role="alert">
 										Errore: qualcosa e' andato <b>storto</b>.
 									</div>
 								}

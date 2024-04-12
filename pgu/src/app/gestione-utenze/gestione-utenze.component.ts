@@ -15,18 +15,18 @@ import { animate, state, style,	transition,	trigger	} from '@angular/animations'
 	imports: [TableComponent,	DynamicFormComponent, RicercaUtenzeComponent, SpinnerComponent,	PaginationComponent],
 	templateUrl: './gestione-utenze.component.html',
 	styleUrl:	'./gestione-utenze.component.scss',
-	animations: [
-		trigger('inOutAnimation', [
-			transition(':enter',[
-				style({	opacity:	0 }),
-				animate('0.3s ease-out', style({opacity: 1}))
-			]),
-			transition(':leave', [
-				style({	opacity: 1	}),
-				animate('1s	ease-in', style({opacity:	0 }))
-			])
-		])
-	]
+	// animations: [
+	// 	trigger('inOutAnimation', [
+	// 		transition(':enter',[
+	// 			style({	opacity:	0 }),
+	// 			animate('0.6s ease-out', style({opacity: 1}))
+	// 		]),
+	// 		transition(':leave', [
+	// 			style({	opacity: 1	}),
+	// 			animate('0.6s	ease-in', style({opacity:	0 }))
+	// 		])
+	// 	])
+	// ]
 })
 export class GestioneUtenzeComponent {
 	fetchedData: GenericObject[] | undefined = undefined;

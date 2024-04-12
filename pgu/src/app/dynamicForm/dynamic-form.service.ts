@@ -20,8 +20,8 @@ export class DynamicFormService {
 	 * @param input 
 	 */
 	createControl(input: DynamicFormType): FormControl{
-		let validators = [];
-		
+		let validators:any = [];
+
 		if (input.required){
 			validators.push(Validators.required);
 		}

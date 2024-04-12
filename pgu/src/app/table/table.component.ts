@@ -4,6 +4,7 @@ import { EventEmitter } from '@angular/core';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { GenericObject, TableConfig } from '../Interfaces';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
 	selector: 'app-table',
@@ -11,6 +12,24 @@ import { GenericObject, TableConfig } from '../Interfaces';
 	imports: [SpinnerComponent, RouterModule],
 	templateUrl: './table.component.html',
 	styleUrl: './table.component.scss',
+	animations: [
+		trigger('inOutAnimation', [
+			transition(':enter',[
+				style({
+					opacity: 0,
+					transform:	'scale(1.1)'
+				}),
+				animate('0.5s ease-out', style({
+					opacity: 1,
+					transform:	'scale(1)'
+				}))
+			]),
+			transition(':leave', [
+				style({	opacity: 1	}),
+				animate('0.6s	ease-in', style({opacity:	0 }))
+			])
+		])
+	]
 })
 export class TableComponent implements OnInit{
 	selectedLines: GenericObject[] = [];
