@@ -4,7 +4,7 @@ import { DynamicModalService } from './dynamic-modal.service';
 import { GenericServiceService } from '../generic-service.service';
 import { DynamicFormType } from '../Interfaces';
 import { Router } from '@angular/router';
-import URL from '../../assets/Url/url';
+
 @Component({
 	selector: 'app-dynamic-modal',
 	standalone: true,

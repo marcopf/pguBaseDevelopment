@@ -1,7 +1,7 @@
 import { Injectable	} from '@angular/core';
 import URL from	'../../../assets/Url/url';
 import { GenericObject } from '../../Interfaces';
-import { ActivatedRoute	} from '@angular/router';
+import { ActivatedRoute, Router	} from '@angular/router';
 import { nextTick } from 'process';
 import { GenericServiceService } from '../../generic-service.service';
 
@@ -67,16 +67,26 @@ export class UserInfoService{
 			}
 		})
 		this.genericService.checkStatus(res.status);
-		try	{
-			let	values = await res.json();
-			let	formMetadata = Object.assign([], values.userAttributesMetadata);
-			let	userData = Object.assign({}, values);
-
-			this.unexpandedUserData	= values;
-			this.formMetaData =	this.keyExpander(formMetadata, 'validator');
-			this.userData =	this.keyExpander([userData], 'attributes')[0];
-		} catch	(error)	{
-			console.log(error)
+		let	values = await res.json();
+		if (res.ok){
+			try	{
+				let	formMetadata = Object.assign([], values.userAttributesMetadata);
+				let	userData = Object.assign({}, values);
+	
+				this.unexpandedUserData	= values;
+				this.formMetaData =	this.keyExpander(formMetadata, 'validator');
+				this.userData =	this.keyExpander([userData], 'attributes')[0];
+			} catch	(error)	{
+				console.log(error)
+			}
+		}
+		else{
+			console.log(values)
+			values.errors.forEach((error: any)=>{
+				if (error.error != undefined && error.error == 'User not found'){
+					this.router.navigate(['/not-found']);
+				}
+			})
 		}
 	}
 	
@@ -221,6 +231,6 @@ export class UserInfoService{
 		}
 	}
 
-	constructor(private	activatedRoute:	ActivatedRoute, private genericService: GenericServiceService)	{
+	constructor(private	activatedRoute:	ActivatedRoute, private genericService: GenericServiceService, private router: Router)	{
 	}
 }

@@ -1,6 +1,6 @@
 <div class="container-fluid" style="min-height: 110svh;">
 	<div class="row justify-content-center">
-		<div class="col-sm-12 col-md-10 col-lg-8">
+		<div class="col-sm-12 col-md-11 col-lg-10">
 			<app-ricerca-utenze (onSearchButtonPressed)="handleSearchUserBtnPress($event)" outgoingDataUrl="http://localhost:4242/users/" (onFormDataAvailable)="handleIncomingFormData($event)"></app-ricerca-utenze>
 			
 			@if (isLoading){

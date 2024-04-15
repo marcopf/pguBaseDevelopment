@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { DynamicFormType, GenericObject } from '../Interfaces';
-import URL from '../../assets/Url/url';
 import { GenericServiceService } from '../generic-service.service';
 import { Router } from '@angular/router';
 
