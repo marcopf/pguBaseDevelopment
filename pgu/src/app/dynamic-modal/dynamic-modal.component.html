@@ -1,0 +1,28 @@
+@if (icon == null){
+    <button type="button" (click)="modalClick()" class="{{btnStyle}}" >{{modalBtn}}</button>
+  }
+  @else{
+    <button type="button" (click)="modalClick()" class="{{btnStyle}}" ><svg class="icon icon-white"><use attr.href="assets/svg/sprites.svg#it-{{icon}}" attr.xlink:href="assets/svg/sprites.svg#it-{{icon}}"></use></svg></button>
+  }
+  
+  <div #modalElement class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content rounded-4">
+        <div class="modal-header">
+          <h2 class="modal-title h2 text-primary " id="myExtraLargeModalLabel">{{modalTitle}}</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi finestra modale"></button>
+        </div>
+        <div class="modal-body p-4">
+          @if (showForm){
+              <app-dynamic-form
+              [basicValue]="this.userformService.formMetaData"
+              [contentLoaded]="this.userformService.contentLoaded"
+              [formBtn]="modalBtn"
+              (formData)="handleSubmit($event)"
+              ></app-dynamic-form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  

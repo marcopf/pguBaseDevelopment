@@ -4,7 +4,9 @@ let port = '4242';
 
 const URL = {
     gestione_utenti:{
-        CERCA_UTENTI: `${protocol}://${domain}:${port}/users/`
+        CERCA_UTENTI: `${protocol}://${domain}:${port}/users/`,
+        AGGIUNGI_UTENTE: `${protocol}://${domain}:${port}/users/`,
+        AGGIUNGI_UTENTE_METADATA: `${protocol}://${domain}:${port}/users/profile/metadata/`,
     },
     dettaglio_utenze:{
         GET_FORM_METADATA: `${protocol}://${domain}:${port}/users/profile/metadata/`,

@@ -2,12 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DynamicFormComponent } from '../../dynamicForm/dynamic-form.component';
 import { LanguagesService } from '../../../assets/Languages/languages.service';
 import { TranslatorPipe } from '../../../assets/Languages/translator.pipe';
-import { DynamicFormType, FormControlObjectType } from '../../Interfaces';
-
+import { DynamicFormType, FormControlObjectType, GenericObject } from '../../Interfaces';
+import { DynamicModalComponent } from '../../dynamic-modal/dynamic-modal.component';
+import  URL  from '../../../assets/Url/url'
 @Component({
 	selector: 'app-ricerca-utenze',
 	standalone: true,
-	imports: [DynamicFormComponent, TranslatorPipe],
+	imports: [DynamicFormComponent, TranslatorPipe, DynamicModalComponent],
 	templateUrl: './ricerca-utenze.component.html',
 	styleUrl: './ricerca-utenze.component.scss'
 })
@@ -15,6 +16,8 @@ export class RicercaUtenzeComponent {
 	@Output() onFormDataAvailable = new EventEmitter<FormControlObjectType>
 	@Output() onSearchButtonPressed = new EventEmitter<boolean>
 	@Input() outgoingDataUrl: null | string = null;
+	metaDataUrl: string = URL.gestione_utenti.AGGIUNGI_UTENTE_METADATA;
+	submitUrl: string = URL.gestione_utenti.AGGIUNGI_UTENTE;
 
 	form1: DynamicFormType[] = [
 		{
