@@ -68,6 +68,7 @@ export class DynamicModalService {
 			this.formMetaData = this.keyExpander(formMetadata, 'validator');
 			this.formMetaData.forEach(element=>{
 				element['id'] = element.name;
+				element['value'] = "";
 			})
 			formExtension.forEach(newElement=>{
 				this.formMetaData.push(newElement);

@@ -76,6 +76,10 @@ export class UserInfoService{
 				this.unexpandedUserData	= values;
 				this.formMetaData =	this.keyExpander(formMetadata, 'validator');
 				this.userData =	this.keyExpander([userData], 'attributes')[0];
+				this.formMetaData.forEach((input: any)=>{
+					input['value'] = "";
+					input['id']  = input.name
+				})
 			} catch	(error)	{
 				console.log(error)
 			}
@@ -102,7 +106,6 @@ export class UserInfoService{
 		this.contentLoaded = true;
 		Object.keys(this.userData).forEach(key=>{
 			this.formMetaData.forEach((element:	any) => {
-				element['id']  = element.name
 				if (element.id == key && this.userData[key] != undefined){
 					element.value =	this.userData[key];
 				}
