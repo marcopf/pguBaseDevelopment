@@ -13,12 +13,30 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi finestra modale"></button>
         </div>
         <div class="modal-body p-4">
+            @if (userformService.weHaveResponse != null){
+                <div class="conatiner-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            @if (userformService.weHaveResponse == true){
+                                <div class="alert alert-success" role="alert">
+                                    Utente creato con <b>Successo</b>.
+                                </div>
+                            }
+                            @else{
+                                <div class="alert alert-danger" role="alert">
+                                    {{userformService.weHaveResponse}}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
           @if (showForm){
               <app-dynamic-form
-              [basicValue]="this.userformService.formMetaData"
-              [contentLoaded]="this.userformService.contentLoaded"
-              [formBtn]="modalBtn"
-              (formData)="handleSubmit($event)"
+                [basicValue]="this.userformService.formMetaData"
+                [contentLoaded]="this.userformService.contentLoaded"
+                [formBtn]="modalBtn"
+                (formData)="createUser($event)"
               ></app-dynamic-form>
           }
         </div>

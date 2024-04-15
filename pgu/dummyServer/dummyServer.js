@@ -739,7 +739,7 @@ const registrationForm = {
       value: "",
     },
     {
-      name: "opti",
+      name: "options",
       required: false,
       label: "options",
       disabled: false,

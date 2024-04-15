@@ -31,10 +31,12 @@ export class RetrieveUserDataService {
 		let paginationParams = '';
 		
 		keys.forEach((key, index)=>{
-			if (keys.length - 1 == index)
-				searchParams += `${key}:${obj[key]}`
-			else
-				searchParams += `${key}:${obj[key]},`
+			if (obj[key] != "" && obj[key]){
+				if (keys.length - 1 == index)
+					searchParams += `${key}:${obj[key]}`
+				else
+					searchParams += `${key}:${obj[key]},`
+			}
 		})
 		if (paginationInfo != undefined){
 			paginationParams += `&page=${paginationInfo.page}&size=${paginationInfo.size}`

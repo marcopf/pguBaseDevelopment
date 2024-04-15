@@ -16,6 +16,7 @@
 							[submitUrl]="submitUrl"
 							[btnStyle]="'btn btn-outline-primary p-2'"
 							[modalBtn]="'AGGIUNGI UTENTE'"
+							[formExtension]="extendUserRegistration"
 							[modalTitle]="'Aggiungi Utente'"
 						></app-dynamic-modal>
 					</div>
@@ -25,6 +26,7 @@
 				<li class="nav-item"><a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Nome e Cognome</a></li>
 				<li class="nav-item"><a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Codice Fiscale</a></li>
 				<li class="nav-item"><a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Email</a></li>
+				<li class="nav-item"><a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab4" role="tab" aria-controls="tab3" aria-selected="false">Avanzato</a></li>
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane p-4 fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
@@ -57,6 +59,17 @@
 							formBtn="CERCA"
 							(formData)="catchData($event)"
 							[basicValue]="form3"
+						></app-dynamic-form>
+					}
+				</div>
+				<div class="tab-pane p-4 fade" id="tab4" role="tabpanel" aria-labelledby="tab3-tab">
+					@if(outgoingDataUrl != null){
+						<app-dynamic-form
+							[contentLoaded]="true"
+							(dataAsked)="handleSubmit($event)"
+							formBtn="CERCA"
+							(formData)="catchData($event)"
+							[basicValue]="formMetadata"
 						></app-dynamic-form>
 					}
 				</div>

@@ -2,6 +2,9 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { DynamicFormComponent } from '../dynamicForm/dynamic-form.component';
 import { DynamicModalService } from './dynamic-modal.service';
 import { GenericServiceService } from '../generic-service.service';
+import { DynamicFormType } from '../Interfaces';
+import { Router } from '@angular/router';
+import URL from '../../assets/Url/url';
 @Component({
 	selector: 'app-dynamic-modal',
 	standalone: true,
@@ -17,21 +20,23 @@ export class DynamicModalComponent {
 	@Input() modalTitle: string = '';
 	@Input() btnStyle: string = "btn p-0";
 	@Input() icon: string | null = null;
-	showForm: boolean = false;
+	@Input() formExtension: DynamicFormType[] = [];
 
+	modalControl: any;
+	showForm: boolean = false;
 
 	async modalClick() {
 		this.showForm = true;
 		if (this.metaDataUrl == null)
 			return;
-		this.userformService.getUserData(this.metaDataUrl);
+		this.userformService.getUserData(this.metaDataUrl, this.formExtension);
 		if (typeof document !== 'undefined') {
 			try {
 				const bootstrap = await import('bootstrap');
-				const modal = new bootstrap.Modal(this.modalElement.nativeElement, { keyboard: false });
+				this.modalControl = new bootstrap.Modal(this.modalElement.nativeElement, { keyboard: false });
 				const duptThis = this;
 
-				modal.show();
+				this.modalControl.show();
 
 				this.modalElement.nativeElement.addEventListener("hidden.bs.modal", ()=>{
 					duptThis.showForm = false;
@@ -42,38 +47,14 @@ export class DynamicModalComponent {
 		}
 	}
 
-	 async handleSubmit(e: any){
-		let keys = Object.keys(e);
-		let obj: any = {
-			attributes: {
+	createUser(userInsertedData: any){
+		if (!this.submitUrl)
+			alert('Error: bad submit url.');
 
-			}
-		}
-
-		keys.forEach((key: string)=>{
-			if (key == 'username' || key == 'firstName' || key == 'lastName' || key == 'email'){
-				obj[key] = e[key];
-			}
-			else{
-				if (Array.isArray(e[key]))
-					obj.attributes[key] = e[key];
-				else
-					obj.attributes[key] = [e[key]];
-			}
-		})
-		
-		const res =	await fetch(`${this.submitUrl}`,	{
-			method:	'POST',
-			headers: {
-				'Content-Type':	'application/json',
-				Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
-			},
-			body: JSON.stringify(obj)
-		});
-		this.genericService.checkStatus(res.status);
+		this.userformService.createNewUser(userInsertedData, this.submitUrl!, this.modalControl)
 	}
 
-	constructor(protected userformService: DynamicModalService, private genericService: GenericServiceService){
+	constructor(protected userformService: DynamicModalService, private genericService: GenericServiceService, private router: Router){
 
 	}
 }
