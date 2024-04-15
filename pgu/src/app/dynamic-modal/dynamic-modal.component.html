@@ -2,7 +2,7 @@
     <button type="button" (click)="modalClick()" class="{{btnStyle}}" >{{modalBtn}}</button>
   }
   @else{
-    <button type="button" (click)="modalClick()" class="{{btnStyle}}" ><svg class="icon icon-white"><use attr.href="assets/svg/sprites.svg#it-{{icon}}" attr.xlink:href="assets/svg/sprites.svg#it-{{icon}}"></use></svg></button>
+    <button type="button" (click)="modalClick()" class="{{btnStyle}} d-flex align-items-center" ><span class="pe-0 d-none pe-md-2 d-md-block">{{modalBtn}}</span><svg class="icon icon-primary"><use attr.href="assets/svg/sprites.svg#it-{{icon}}" attr.xlink:href="assets/svg/sprites.svg#it-{{icon}}"></use></svg></button>
   }
   
   <div #modalElement class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
