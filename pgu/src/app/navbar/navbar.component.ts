@@ -78,7 +78,7 @@ export class NavbarComponent implements OnInit{
 	constructor (protected configuration: ConfigurazioneIstituzioneService,private oauthService: OAuthService, @Inject(PLATFORM_ID) private _platform: Object, protected languagesService: LanguagesService, private router: Router){
 		if (isPlatformBrowser(this._platform)){
 			this.oauthService.configure(authCodeFlowConfig);
-			this.oauthService.loadDiscoveryDocumentAndLogin();
+			this.oauthService.loadDiscoveryDocumentAndTryLogin();
 			this.oauthService.setupAutomaticSilentRefresh();
 		}
 	}
