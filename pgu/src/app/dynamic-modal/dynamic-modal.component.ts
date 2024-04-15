@@ -4,11 +4,12 @@ import { DynamicModalService } from './dynamic-modal.service';
 import { GenericServiceService } from '../generic-service.service';
 import { DynamicFormType } from '../Interfaces';
 import { Router } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-dynamic-modal',
 	standalone: true,
-	imports: [DynamicFormComponent],
+	imports: [DynamicFormComponent, NgbModule],
 	templateUrl: './dynamic-modal.component.html',
 	styleUrl: './dynamic-modal.component.scss'
 })

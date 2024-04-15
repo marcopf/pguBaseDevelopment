@@ -64,7 +64,7 @@
 						}
 						@if(tableConfig.type == "link"){
 							<td>
-								<a class="btn btn-primary btn-xs btn-icon ms-1" [routerLink]="['/gestione-utenti/dettaglio-utente/']" [queryParams]="{id: obj['_id'], }">
+								<a class="btn btn-primary btn-xs btn-icon ms-1 float-end" [routerLink]="['/gestione-utenti/dettaglio-utente/']" [queryParams]="{id: obj['_id'], }">
 									<span>{{tableConfig.text}}</span>
 									<svg class="icon icon-white ms-1"><use href="/assets/svg/sprites.svg#it-search"></use></svg>
 								</a>
