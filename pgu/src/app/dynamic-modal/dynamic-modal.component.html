@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		}
-		@if (showForm){
+		@if	(showForm){
 			<app-dynamic-form
 				[basicValue]="this.userformService.formMetaData"
 				[contentLoaded]="this.userformService.contentLoaded"
@@ -32,8 +32,16 @@
 		}
 	</div>
 	<div class="modal-footer">
-		
+
 	</div>
 </ng-template>
 
-<button	class="{{btnStyle}}" (click)="open(content)">{{modalBtn}}</button>
+
+@if	(icon != null){
+	<button (click)="open(content)"	class="btn btn-primary btn-icon	btn-me {{btnStyle}}">
+		<span>{{modalBtn}}</span>
+		<svg class="icon icon-white	ms-1"><use attr.xlink:href="/assets/svg/sprites.svg#it-{{icon}}"></use></svg>
+	</button>
+}@else{
+	<button	class="{{btnStyle}}" (click)="open(content)">{{modalBtn}}</button>
+}
