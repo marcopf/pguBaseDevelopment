@@ -24,10 +24,10 @@ export class RetrieveUserDataService {
 	 * @param paginationInfo - oggetto contenente informazioni relative alla paginazione
 	 * @returns - stringa con tutti i queryParams correttamente formattata
 	 */
-	prepareQueryParamsString(obj: GenericObject, paginationInfo?: Pagination){
+	prepareQueryParamsString(obj: GenericObject, usersStatus: boolean, paginationInfo?: Pagination){
 		let keys = Object.keys(obj);
 		let queryParams = '?';
-		let searchParams = keys.length > 0 ? 'search=' : '';
+		let searchParams = 'search=enabled:' + usersStatus + ',';
 		let paginationParams = '';
 		
 		keys.forEach((key, index)=>{
@@ -53,8 +53,8 @@ export class RetrieveUserDataService {
 	 * @param paginationInfo - oggetto contenente informazioni relative alla paginazione
 	 * @returns - values retrived from server
 	 */
-	async searchUser(obj: GenericObject, paginationInfo?: Pagination){
-		let queryParamsPart = this.prepareQueryParamsString(obj, paginationInfo);
+	async searchUser(obj: GenericObject, usersStatus: boolean, paginationInfo?: Pagination){
+		let queryParamsPart = this.prepareQueryParamsString(obj, usersStatus, paginationInfo);
 		let jsonRes = {
 			content: [],
 			totalElements: 0,
@@ -79,6 +79,18 @@ export class RetrieveUserDataService {
 			console.log(error);
 		}
 		return jsonRes;
+	}
+
+	async manageUsersStatus(data: GenericObject[]){
+		const res = await fetch('', {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${sessionStorage.getItem('access_token')}`
+			},
+			body: JSON.stringify(data)
+		})
+		this.genericService.checkStatus(res.status);
 	}
 
 	constructor(private genericService:GenericServiceService) { }

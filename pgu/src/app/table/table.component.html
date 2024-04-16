@@ -7,7 +7,13 @@
 			<thead class="table-dark">
 					<tr>
 						@if(tableConfig.hasCheckBox){
-							<th	scope="col">#</th>
+							<th	scope="col">
+								<div class="form-check p-0 m-0 d-flex align-items-end">
+									<input (change)="selectAll($event)" id="checkbox1" type="checkbox">
+									<label for="checkbox1" class="p-0 m-0"></label>
+								  </div>
+								
+							</th>
 						}
 						@for(key of tableService.objsKeys; track key){
 							@if	(key !== '_id'){
@@ -28,8 +34,8 @@
 							<td>
 								<div>
 									<div class="form-check">
-									  <input (change)="updateSelected($event)" id="checkbox-{{tableService.objs[i]['_id']}}" type="checkbox">
-									  <label class="m-0" for="checkbox-{{tableService.objs[i]['_id']}}"></label>
+									  <input [checked]="obj['checkboxStatus']" (change)="updateSelected($event)" id="checkbox*{{tableService.objs[i]['_id']}}" type="checkbox">
+									  <label class="m-0" for="checkbox*{{tableService.objs[i]['_id']}}"></label>
 									</div>
 								</div>	
 							</td>

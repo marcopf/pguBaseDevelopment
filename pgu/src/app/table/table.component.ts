@@ -58,16 +58,16 @@ export class TableComponent implements OnInit{
 	 */
 	updateSelected(checkBox: any){
 		let selectedLine = checkBox.target;
-		let selectedLineId = selectedLine.getAttribute('id').split("-")[1];
-		let selectedObj = this.tableService.objs.filter(el=> el['id'] == selectedLineId)[0];
+		let selectedLineId = selectedLine.getAttribute('id').split("*")[1];
+		let selectedObj = this.tableService.objs.filter(el=> el['_id'] == selectedLineId)[0];
 
-		if (this.selectedLines.filter(el=>el['id'] == selectedObj['id']).length == 0){
+		if (this.selectedLines.filter(el=>el['_id'] == selectedObj['_id']).length == 0){
 			this.selectedLines.push(selectedObj);
 		}else{
 			let objPosition = 0;
 
 			this.selectedLines.forEach((el, i)=>{
-				if (el['id'] == selectedObj['id']){
+				if (el['_id'] == selectedObj['_id']){
 					objPosition = i;
 				}
 			})
@@ -76,8 +76,29 @@ export class TableComponent implements OnInit{
 		this.lineChanges.emit(this.selectedLines);
 	}
 
+	/**
+	 * Funzione che "clicca" tutte le checkbox presenti all'interno della pagina attuale della tabella
+	 * e successivamente in base allo stato aggiorna i valori contenuti all'interno dell'oggetto
+	 * che conserva i valori relativi alle linee selezionate
+	 * 
+	 * @param event - checkbox target
+	 */
+	selectAll(event: any){
+		this.tableService.objs.forEach((element: any)=>{
+			element['checkboxStatus'] = !element['checkboxStatus'];
+		})
+		if (event.currentTarget.checked)
+			this.selectedLines = Object.assign([], this.tableService.objs);
+		else
+			this.selectedLines = [];
+		this.lineChanges.emit(this.selectedLines);
+	}
+
 	ngOnInit(): void {
 		this.tableService.retrieveData(this.retrieveUrl, this.basicValue);
+		this.tableService.objs.forEach((element: any)=>{
+			element['checkboxStatus'] = false;
+		})
 	}
 
 

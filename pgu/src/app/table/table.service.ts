@@ -46,6 +46,7 @@ export class TableService {
 	async retrieveData(url: string, basicValue?: GenericObject[]) {
 		if (basicValue != undefined){
 			this.objs = this.keyExpander(basicValue, 'attributes');
+			
 			if (basicValue.length > 0)
 				this.objsKeys = Object.keys(this.objs[0]);
 			this.contentLoaded = true;

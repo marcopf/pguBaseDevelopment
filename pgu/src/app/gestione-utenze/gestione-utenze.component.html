@@ -6,10 +6,18 @@
 			@if (isLoading){
 				<app-spinner></app-spinner>handleData
 			}
+			<app-toolbar
+				(viewMode)="handleViewModeEvent($event)"
+				(updateUsersStatus)="handleUpdateUsersStatusUEvent($event)"
+			></app-toolbar>
 			<div #table>
 				@if(fetchedData != undefined && !isLoading){
 					<div class="mt-5 t-wrap">
-						<app-table [basicValue]="fetchedData" [tableConfig]="tableConfig"></app-table>
+						<app-table
+							[basicValue]="fetchedData"
+							[tableConfig]="tableConfig"
+							(lineChanges)="handleSelectEvent($event)"
+						></app-table>
 					</div>
 					<app-pagination
 						[isTableLoaded]="isTableLoaded"

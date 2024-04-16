@@ -1,46 +1,39 @@
-@if (icon == null){
-    <button type="button" (click)="modalClick()" class="{{btnStyle}}" >{{modalBtn}}</button>
-  }
-  @else{
-    <button type="button" (click)="modalClick()" class="{{btnStyle}} d-flex align-items-center" ><span class="pe-0 d-none pe-md-2 d-md-block">{{modalBtn}}</span><svg class="icon icon-primary"><use attr.href="assets/svg/sprites.svg#it-{{icon}}" attr.xlink:href="assets/svg/sprites.svg#it-{{icon}}"></use></svg></button>
-  }
-  
-  <div #modalElement class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog m-3 m-md-auto mt-md-4 modal-xl">
-      <div class="modal-content rounded-4">
-        <div class="modal-header">
-          <h2 class="modal-title h2 text-primary " id="myExtraLargeModalLabel">{{modalTitle}}</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi finestra modale"></button>
-        </div>
-        <div class="modal-body p-4">
-            @if (userformService.weHaveResponse != null){
-                <div class="conatiner-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            @if (userformService.weHaveResponse == true){
-                                <div class="alert alert-success" role="alert">
-                                    Utente creato con <b>Successo</b>.
-                                </div>
-                            }
-                            @else{
-                                <div class="alert alert-danger" role="alert">
-                                    {{userformService.weHaveResponse}}
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-          @if (showForm){
-              <app-dynamic-form
-                [basicValue]="this.userformService.formMetaData"
-                [contentLoaded]="this.userformService.contentLoaded"
-                [formBtn]="modalBtn"
-                (formData)="createUser($event)"
-              ></app-dynamic-form>
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-  
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4	class="modal-title text-primary" id="modal-basic-title">{{modalTitle}}</h4>
+		<button	type="button" class="btn-close"	aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		@if	(userformService.weHaveResponse	!= null){
+			<div class="conatiner-fluid">
+				<div class="row">
+					<div class="col-12">
+						@if	(userformService.weHaveResponse	== true){
+							<div class="alert alert-success" role="alert">
+								Utente creato con <b>Successo</b>.
+							</div>
+						}
+						@else{
+							<div class="alert alert-danger"	role="alert">
+								{{userformService.weHaveResponse}}
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		}
+		@if (showForm){
+			<app-dynamic-form
+				[basicValue]="this.userformService.formMetaData"
+				[contentLoaded]="this.userformService.contentLoaded"
+				[formBtn]="modalBtn"
+				(formData)="createUser($event)"
+			></app-dynamic-form>
+		}
+	</div>
+	<div class="modal-footer">
+		
+	</div>
+</ng-template>
+
+<button	class="{{btnStyle}}" (click)="open(content)">{{modalBtn}}</button>

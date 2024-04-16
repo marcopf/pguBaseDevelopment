@@ -63,18 +63,6 @@ export class RicercaUtenzeComponent {
 		}
 	];
 
-	extendUserRegistration: DynamicFormType[] = [
-		{
-			id: "enabled",
-			label: "Abilitare Utente?",
-			type: "TOGGLE",
-			required: false,
-			controls: [],
-			value: "false",
-			disabled: false
-		}
-	];
-
 	/**
 	 * Funzione che semplicemente fa da tramite tra in componente <dynamicFormComponent>
 	 * e il genitore di questo componente, quando l'utente clicca invio l'evento generato

@@ -175,7 +175,7 @@ export class DynamicModalService {
 			this.weHaveResponse = true;
 			setTimeout(() => {
 				this.weHaveResponse = null;
-				modalRef.hide();
+				modalRef.dismissAll();
 				this.router.navigate(['/gestione-utenti/dettaglio-utente'], { queryParams })
 			}, 1000);
 		}

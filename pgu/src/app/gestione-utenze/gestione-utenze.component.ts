@@ -4,15 +4,16 @@ import { DynamicFormComponent }	from '../dynamicForm/dynamic-form.component';
 import { RicercaUtenzeComponent	} from './ricerca-utenze/ricerca-utenze.component';
 import { SpinnerComponent }	from '../table/spinner/spinner.component';
 import { PaginationComponent } from	'../pagination/pagination.component';
-import { RetrieveUserDataService } from	'./retrieve-user-data.service';
+import { RetrieveUserDataService } from	'./gestione-utenze.service';
 import { GenericObject,	Pagination,	TableConfig	} from '../Interfaces';
 import { ViewportScroller } from '@angular/common';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 
 @Component({
 	selector:	'app-gestione-utenze',
 	standalone: true,
-	imports: [TableComponent,	DynamicFormComponent, RicercaUtenzeComponent, SpinnerComponent,	PaginationComponent],
+	imports: [TableComponent,	DynamicFormComponent, RicercaUtenzeComponent, SpinnerComponent,	PaginationComponent, ToolbarComponent],
 	templateUrl: './gestione-utenze.component.html',
 	styleUrl:	'./gestione-utenze.component.scss',
 })
@@ -22,6 +23,8 @@ export class GestioneUtenzeComponent implements OnInit{
 	isLoading: boolean = false;
 	isTableLoaded: boolean = false;
 	savedQueryParams: any =	{};
+	showOnlyEnabledUsers: boolean = true;
+	selectedUsersInfo: GenericObject[] = [];
 	paginationInfo:	Pagination = {
 		size: 10,
 		page: 0,
@@ -34,7 +37,7 @@ export class GestioneUtenzeComponent implements OnInit{
 		outgoingDataLink: null,
 		type: "link",
 		text: "Dettagli",
-		hasCheckBox: false
+		hasCheckBox: true
 	  }
 	
 	/**
@@ -44,7 +47,7 @@ export class GestioneUtenzeComponent implements OnInit{
 	  *  @param	paginationInfo - rappresenta l'oggetto che contiene	i query	params relativi	alla paginazione
 	  */
 	async getUserList(params:	any, paginationInfo: Pagination){
-		const response = await this.searchUserService.searchUser(params, paginationInfo);
+		const response = await this.searchUserService.searchUser(params, this.showOnlyEnabledUsers, paginationInfo);
 
 		this.fetchedData = response.content	as GenericObject[];
 		paginationInfo.totalElements = Number(response.totalElements);
@@ -124,6 +127,42 @@ export class GestioneUtenzeComponent implements OnInit{
 		this.paginationInfo.size = 10;
 	}
 
+	handleSelectEvent(event: any){
+		this.selectedUsersInfo = event.map((element: any)=>{
+			return {_id:element._id, enabled: element.status}}
+		)
+	}
+
+	handleViewModeEvent(event: any){
+		console.log(event)
+		if (event == 'Abilitati')
+			this.showOnlyEnabledUsers = true;
+		else if (event == 'Disabilitati')
+			this.showOnlyEnabledUsers = false;
+		console.log(this.showOnlyEnabledUsers)
+		this.isLoading = true;		
+		this.fetchedData = undefined;
+		this.isLoading = false;
+		this.isTableLoaded = false;
+		this.paginationInfo.page = 0;
+		this.paginationInfo.size = 10;
+		this.getUserList(this.savedQueryParams,	this.paginationInfo);
+	}
+
+	handleUpdateUsersStatusUEvent(event: any){
+		this.isLoading = true;		
+		this.fetchedData = undefined;
+		this.isLoading = false;
+		this.isTableLoaded = false;
+		this.paginationInfo.page = 0;
+		this.paginationInfo.size = 10;
+		this.selectedUsersInfo.forEach((element: GenericObject)=>{
+			element['enabled'] = !element['enabled']
+		})
+		console.log(this.selectedUsersInfo)
+		this.getUserList(this.savedQueryParams,	this.paginationInfo);
+
+	}
 
 	ngOnInit(): void {
 		this.getUserList({},	this.paginationInfo);

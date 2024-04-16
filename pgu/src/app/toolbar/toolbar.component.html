@@ -1,0 +1,42 @@
+<div class="container-fluid	p-0	my-5">
+	<div class="row">
+		<div class="col-6 d-flex align-items-end">
+			<div class="select-wrapper w-50">
+				<label for="defaultSelect">Mostra Utenti</label>
+				<select	(change)="handleChange($event)"	id="defaultSelect">
+				
+					@for (value of selectValues; track value; let i = $index){
+						@if (i == 0){
+							<option selected="{{value}}" value="{{value}}">{{value}}</option>
+						}@else{
+							<option value="{{value}}">{{value}}</option>
+						}
+					}
+
+				</select>
+			  </div>
+		</div>
+		
+		<div class="col-6">
+			<app-dynamic-modal
+				[metaDataUrl]="metaDataUrl"
+				[submitUrl]="submitUrl"
+				[btnStyle]="'btn btn-primary float-end ms-2'"
+				[modalBtn]="'AGGIUNGI UTENTE'"
+				[formExtension]="extendUserRegistration"
+				[modalTitle]="'Aggiungi	Utente'"
+				[icon]="'plus-circle'"
+			></app-dynamic-modal>
+			@if (selectStatus == 'Abilitati'){
+				<button (click)="changeUsersStatus($event)"	class="btn btn-warning float-end ms-2">
+					DISABILITA SELEZIONATI
+				</button>
+			}
+			@if (selectStatus == 'Disabilitati'){
+				<button (click)="changeUsersStatus($event)"	class="btn btn-success float-end ms-2">
+					ABILITA SELEZIONATI
+				</button>
+			}
+		</div>
+	</div>
+</div>
